@@ -5,6 +5,7 @@ if (!process.env.STRIPE_SECRET_KEY) {
 }
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2025-12-15.clover" as any, // Match expected type from Stripe library
+  // @ts-ignore - Stripe API version mismatch in SDK types
+  apiVersion: "2025-12-15.clover",
   typescript: true,
 });
