@@ -7,18 +7,14 @@ import Link from "next/link";
 
 interface DestinationExperiencesProps {
   destinationName: string;
-  experienceSlugs: string[];
+  destinationSlug: string;
 }
 
-export default function DestinationExperiences({ destinationName, experienceSlugs }: DestinationExperiencesProps) {
-  // Filter experiences by matching slug OR matching city name
-  const filteredExperiences = experiences.filter(exp => {
-    const matchesSlug = experienceSlugs.includes(exp.slug);
-    const destinationTerms = destinationName.toLowerCase().split(/[&\s,]+/).filter(term => term.length > 2);
-    const matchesCity = destinationTerms.some(term => exp.cities.toLowerCase().includes(term));
-    
-    return matchesSlug || matchesCity;
-  }).slice(0, 3); // Display 2-3 components
+export default function DestinationExperiences({ destinationName, destinationSlug }: DestinationExperiencesProps) {
+  // Filter experiences by matching the current destination slug in their destinations array
+  const filteredExperiences = experiences.filter(exp => 
+    exp.destinations.includes(destinationSlug)
+  ).slice(0, 3);
 
   if (filteredExperiences.length === 0) return null;
 

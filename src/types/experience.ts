@@ -12,6 +12,7 @@ export interface ItineraryDay {
 export interface Experience {
   slug: string;
   title: string;
+  destinations: string[];
   subtitle?: string;
   duration: string;
   cities: string;

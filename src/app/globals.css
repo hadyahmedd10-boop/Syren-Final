@@ -233,4 +233,45 @@ p, span, a, li, button, input, textarea {
       duration-500; 
   }
 
+  /* === Syren Primary Button === */
+  .syren-btn-primary { 
+    @apply 
+      inline-flex
+      items-center
+      justify-center
+      rounded-full 
+      px-8 py-3 
+      text-[11px] 
+      uppercase 
+      tracking-[0.4em] 
+      font-medium
+      text-black
+      bg-white
+      border 
+      border-white
+      hover:bg-accent-gold 
+      hover:border-accent-gold
+      hover:text-black 
+      transition-all 
+      duration-500; 
+  }
+
+  /* === Syren Input === */
+  .syren-input {
+    @apply
+      w-full
+      bg-surface
+      border
+      border-border
+      rounded-lg
+      px-4 py-3
+      text-sm
+      text-white
+      placeholder:text-white/20
+      focus:outline-none
+      focus:border-primary
+      transition-all
+      duration-300;
+  }
+
 

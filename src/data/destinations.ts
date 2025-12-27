@@ -22,7 +22,7 @@ export const destinations: Destination[] = [
       "Cairo is where ancient wonders meet a living, breathing city. Beyond the pyramids lies art, food, music, and neighborhoods full of soul.",
     heroImage: heroImg,
     vibeKeywords: ["culture", "history", "nightlife"],
-    featuredExperienceSlugs: ["5-day-cairo-experience", "8-day-pyramids-nile-cruise"],
+    featuredExperienceSlugs: ["cairo-after-dark", "5-day-cairo-experience"],
   },
   {
     slug: "luxor-aswan",
@@ -32,7 +32,7 @@ export const destinations: Destination[] = [
       "A journey through Egypt’s most powerful temples and the calm flow of the Nile. Slow, majestic, and deeply spiritual.",
     heroImage: luxuryImg,
     vibeKeywords: ["heritage", "nile", "temples"],
-    featuredExperienceSlugs: ["8-day-pyramids-nile-cruise", "12-day-egyptian-honeymoon-odyssey"],
+    featuredExperienceSlugs: ["nile-signature", "8-day-pyramids-nile-cruise"],
   },
   {
     slug: "red-sea",

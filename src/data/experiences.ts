@@ -5,8 +5,151 @@ import partyImg from "../../public/Images/party.jpg";
 
 export const experiences: Experience[] = [
   {
+    slug: "cairo-after-dark",
+    title: "Cairo After Dark",
+    destinations: ["cairo"],
+    subtitle: "Nightlife, Culture & Hidden Gems",
+    duration: "4 Days / 3 Nights",
+    cities: "Cairo",
+    description: "Experience the electric energy of Cairo after the sun sets. From hidden jazz clubs to midnight street food and illuminated monuments.",
+    introduction: "When the sun dips below the horizon, Cairo transforms into a different world. This experience is designed for the modern traveler seeking the city's pulse through its music, art, and legendary nightlife.",
+    heroImage: partyImg,
+    whatsappMessage: "I am interested in the Cairo After Dark experience",
+    highlights: [
+      "Private midnight tour of Islamic Cairo",
+      "VIP access to Zamalek's hidden jazz and art bars",
+      "Gourmet street food crawl with a local expert",
+      "Late-night Nile felucca party with live music",
+    ],
+    included: [
+      "3 nights luxury boutique accommodation",
+      "Private nightlife host & security",
+      "All late-night transfers",
+      "Select cocktails and tasting menus",
+    ],
+    notIncluded: [
+      "International flights",
+      "Personal shopping",
+      "Travel insurance",
+    ],
+    price: {
+      amount: 1850,
+      currency: "USD",
+      perPerson: true
+    },
+    itinerary: [
+      {
+        day: 1,
+        title: "Neon Arrival",
+        description: "VIP arrival and transfer to a boutique hotel in Zamalek. Welcome cocktails at a rooftop bar overlooking the city lights.",
+        meals: "Dinner",
+        image: partyImg
+      },
+      {
+        day: 2,
+        title: "The Heart of the Night",
+        description: "Explore the historic Al-Muizz street under the stars, followed by an exclusive underground music performance.",
+        meals: "Breakfast, Late Dinner",
+        image: heroImg
+      },
+      {
+        day: 3,
+        title: "Boutique Beats",
+        description: "Gallery hopping in Downtown Cairo followed by a private Nile cruise with a curated DJ set.",
+        meals: "Breakfast, Brunch",
+        image: luxuryImg
+      },
+      {
+        day: 4,
+        title: "Morning After",
+        description: "Relaxing late brunch before private transfer to the airport.",
+        meals: "Brunch",
+        image: partyImg
+      }
+    ]
+  },
+  {
+    slug: "nile-signature",
+    title: "Nile Signature",
+    destinations: ["luxor-aswan"],
+    subtitle: "The Quintessential River Journey",
+    duration: "6 Days / 5 Nights",
+    cities: "Luxor, Aswan",
+    description: "A refined journey along the lifeblood of Egypt. Experience the majesty of the Nile on a private traditionally-styled dahabiya.",
+    introduction: "The Nile is the soul of Egypt. This signature experience focuses on the slow, majestic flow of the river, connecting you to the most powerful temples of the south in absolute privacy.",
+    heroImage: luxuryImg,
+    whatsappMessage: "I am interested in the Nile Signature experience",
+    highlights: [
+      "Private Dahabiya sailing between Luxor and Aswan",
+      "Exclusive dinner at the Temple of Philae",
+      "Sunrise hot air balloon over the Valley of the Kings",
+      "Private guided visits to Edfu and Kom Ombo",
+    ],
+    included: [
+      "5 nights on a private luxury Dahabiya",
+      "Private Egyptologist for the entire journey",
+      "All meals prepared by a private chef",
+      "All temple entry fees and permits",
+    ],
+    notIncluded: [
+      "Flights to/from Luxor/Aswan",
+      "Gratuities for the crew",
+      "Personal expenses",
+    ],
+    price: {
+      amount: 3200,
+      currency: "USD",
+      perPerson: true
+    },
+    itinerary: [
+      {
+        day: 1,
+        title: "Luxor Embarkation",
+        description: "Transfer from Luxor airport to your private Dahabiya. Afternoon visit to Karnak Temple at sunset.",
+        meals: "Lunch, Dinner",
+        image: luxuryImg
+      },
+      {
+        day: 2,
+        title: "The West Bank",
+        description: "Early morning balloon ride followed by the Valley of the Kings. Set sail southward in the afternoon.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: heroImg
+      },
+      {
+        day: 3,
+        title: "Sailing Through Time",
+        description: "A day of pure sailing and relaxation. Stop at local villages and hidden river islands.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: partyImg
+      },
+      {
+        day: 4,
+        title: "Temples of the South",
+        description: "Visit the Horus Temple in Edfu and the unique double temple of Kom Ombo as evening falls.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: luxuryImg
+      },
+      {
+        day: 5,
+        title: "Aswan Sanctuary",
+        description: "Arrive in Aswan. Visit Philae Temple followed by a farewell dinner on the river.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: heroImg
+      },
+      {
+        day: 6,
+        title: "Departure",
+        description: "Final breakfast on board before private transfer to Aswan airport.",
+        meals: "Breakfast",
+        image: partyImg
+      }
+    ]
+  },
+  {
     slug: "5-day-cairo-experience",
     title: "5-Day Cairo Experience",
+    destinations: ["cairo"],
     subtitle: "Ancient Wonders & Timeless Culture",
     duration: "5 Days / 4 Nights",
     cities: "Cairo",
@@ -81,6 +224,7 @@ export const experiences: Experience[] = [
   {
     slug: "8-day-pyramids-nile-cruise",
     title: "8-Day Pyramids & Nile Cruise Journey",
+    destinations: ["cairo", "luxor-aswan"],
     subtitle: "Legends of the Pharaohs",
     duration: "8 Days / 7 Nights",
     cities: "Cairo, Luxor, Aswan",
@@ -177,6 +321,7 @@ export const experiences: Experience[] = [
   {
     slug: "10-day-cairo-nile-red-sea-odyssey",
     title: "10-Day Cairo, Nile & Red Sea Odyssey",
+    destinations: ["cairo", "luxor-aswan", "red-sea"],
     subtitle: "From the Pyramids to the Turquoise Coast",
     duration: "10 Days / 9 Nights",
     cities: "Cairo, Aswan, Luxor, Hurghada",
@@ -288,6 +433,7 @@ export const experiences: Experience[] = [
   {
     slug: "12-day-egyptian-honeymoon-odyssey",
     title: "12-Day Egyptian Honeymoon Odyssey",
+    destinations: ["cairo", "luxor-aswan", "red-sea"],
     subtitle: "Romance, History & The Red Sea",
     duration: "12 Days / 11 Nights",
     cities: "Cairo, Aswan, Nile Cruise, Luxor, Hurghada",
