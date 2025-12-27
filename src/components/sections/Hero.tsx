@@ -23,8 +23,8 @@ export default function Hero() {
       y: 0,
       transition: {
         duration: 1.2,
-        ease: [0.22, 1, 0.36, 1], // Smoother cinematic ease (Expo Out)
-      },
+        ease: [0.22, 1, 0.36, 1],
+      } as any,
     },
   };
 
