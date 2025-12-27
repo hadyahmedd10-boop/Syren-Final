@@ -115,7 +115,10 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-10">
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href.startsWith('/#') && pathname === '/');
+              const isActive = 
+                pathname === link.href || 
+                (link.href.startsWith('/#') && pathname === '/') ||
+                (link.href === '/#destinations' && pathname.startsWith('/destinations'));
               return (
                 <li key={link.name}>
                   <Link

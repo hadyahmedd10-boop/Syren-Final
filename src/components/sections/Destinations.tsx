@@ -1,32 +1,9 @@
 import Reveal from "../motion/Reveal";
 import Image from "next/image";
 import Link from "next/link";
-import heroImg from "../../../public/Images/hero.jpg";
-import luxuryImg from "../../../public/Images/luxury.jpg";
-import partyImg from "../../../public/Images/party.jpg";
+import { destinations } from "@/data/destinations";
 
 export default function Destinations() {
-  const destinations = [
-    {
-      name: "Cairo",
-      slug: "cairo",
-      shortDescription: "The heartbeat of Egypt, where ancient pyramids meet a vibrant modern soul.",
-      image: heroImg,
-    },
-    {
-      name: "Luxor & Aswan",
-      slug: "luxor-aswan",
-      shortDescription: "A journey through the world's greatest open-air museum and serene Nile sanctuaries.",
-      image: luxuryImg,
-    },
-    {
-      name: "Red Sea",
-      slug: "red-sea",
-      shortDescription: "Crystalline turquoise shores and golden sands on the edge of the Egyptian coast.",
-      image: partyImg,
-    },
-  ] as const;
-
   return (
     <section
       id="destinations"
@@ -53,7 +30,7 @@ export default function Destinations() {
               <article className={`group relative flex flex-col ${index === 1 ? 'md:mt-8' : ''} transition-all duration-500 ease-out hover:-translate-y-0.5`}>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface border border-border transition-all duration-500 ease-out group-hover:border-primary/30">
                   <Image
-                    src={dest.image}
+                    src={dest.heroImage}
                     alt={dest.name}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -90,13 +67,13 @@ export default function Destinations() {
 
                   <div className="mt-3 h-px w-10 bg-accent-gold/20 md:w-12 transition-all duration-500 group-hover:w-16 group-hover:bg-primary/40" />
                   <p className="mt-4 font-sans text-xs leading-relaxed text-white/40 md:text-sm line-clamp-2">
-                    {dest.shortDescription}
+                    {dest.description}
                   </p>
                   
                   <div className="mt-auto pt-6">
-                    <span className="syren-btn-secondary py-2 text-[9px] w-full md:w-auto">
+                    <Link href={`/destinations/${dest.slug}`} className="syren-btn-secondary py-2 text-[9px] w-full md:w-auto text-center block">
                       Explore {dest.name}
-                    </span>
+                    </Link>
                   </div>
                 </div>
               </article>

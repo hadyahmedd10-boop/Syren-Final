@@ -4,7 +4,7 @@ export default function FinalCTA() {
   return (
     <section
       aria-labelledby="final-cta-title"
-      className="relative border-t border-border bg-gradient-to-b from-surface via-surface to-background py-12 md:py-16"
+      className="relative border-t border-border bg-gradient-to-b from-surface via-surface to-background py-24 md:py-32"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-border),transparent_60%)]" />
       
