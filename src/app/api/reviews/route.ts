@@ -1,14 +1,29 @@
 import { NextResponse } from "next/server"; 
 import { createClient } from "@supabase/supabase-js"; 
  
-const supabase = createClient( 
-  process.env.SUPABASE_URL!, 
-  process.env.SUPABASE_KEY! 
-); 
- 
-export async function POST(req: Request) { 
+const getSupabase = () => {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_KEY;
+
+  if (!url || !key) {
+    return null;
+  }
+
+  return createClient(url, key);
+};
+
+export async function POST(req: Request) {
   try {
-    const body = await req.json(); 
+    const supabase = getSupabase();
+
+    if (!supabase) {
+      return NextResponse.json(
+        { error: "Supabase configuration is missing" },
+        { status: 500 }
+      );
+    }
+
+    const body = await req.json();
   
     const { error } = await supabase.from("reviews").insert([ 
       { 

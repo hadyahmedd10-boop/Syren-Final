@@ -3,6 +3,13 @@ import { stripe } from "@/lib/stripe";
 
 export async function POST(request: Request) {
   try {
+    if (!stripe) {
+      return NextResponse.json(
+        { error: "Stripe is not configured" },
+        { status: 500 }
+      );
+    }
+
     const { amount, currency = "usd", experienceId } = await request.json();
 
     // In a production app, you would fetch the price from your database
