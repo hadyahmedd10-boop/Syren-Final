@@ -2,9 +2,9 @@
 create table testimonials ( 
    id uuid default uuid_generate_v4() primary key, 
    name text not null, 
-   country text, 
-   rating int check (rating >= 1 and rating <= 5), 
+   email text, 
    message text not null, 
+   rating int check (rating >= 1 and rating <= 5), 
    approved boolean default false, 
    created_at timestamp with time zone default now() 
  );

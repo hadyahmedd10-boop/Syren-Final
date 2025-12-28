@@ -1,56 +1,39 @@
 import ExperienceCard from "./ExperienceCard";
 import Reveal from "../motion/Reveal";
-import desertImg from "../../../public/Images/hero.jpg";
-import yachtImg from "../../../public/Images/luxury.jpg";
-import cairoImg from "../../../public/Images/party.jpg";
+import { experiences } from "@/data/experiences";
 
 export default function PopularExperiences() {
-  const items = [
-    {
-      title: "Desert & Stars",
-      description: "A private safari into the silent dunes for stargazing and authentic Bedouin hospitality.",
-      image: desertImg,
-      alt: "Private desert safari in Egypt under the stars",
-    },
-    {
-      title: "Red Sea Yacht",
-      description: "A refined celebration on the water. Private DJ sets, crystalline swim stops, and sunset horizons.",
-      image: yachtImg,
-      alt: "Luxury yacht party on the Red Sea at sunset",
-    },
-    {
-      title: "Hidden Cairo",
-      description: "The city’s best-kept secrets. Exclusive access to Cairo’s most sophisticated nightlife.",
-      image: cairoImg,
-      alt: "Exclusive nightlife and cocktail bars in downtown Cairo",
-    },
-  ] as const;
+  // Use the first 3 experiences for the home page
+  const featuredExperiences = experiences.slice(0, 3);
 
   return (
     <section
       id="experiences"
-      className="bg-background border-t border-border scroll-mt-24 py-12 md:py-16"
+      className="bg-background border-t border-border scroll-mt-24 py-24 md:py-32"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <Reveal>
-          <div className="text-center mb-8 md:mb-12">
-            <span className="block font-sans text-[9px] uppercase tracking-[0.4em] text-accent-gold mb-3">The Action</span>
+          <div className="text-center mb-16 md:mb-20">
+            <span className="block font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">The Action</span>
             <h2
               id="popular-experiences-title"
-              className="font-serif text-3xl md:text-4xl tracking-tight text-primary"
+              className="font-serif text-3xl md:text-5xl tracking-tight text-white"
             >
               Curated Experiences
             </h2>
-            <div className="mx-auto mt-6 h-px w-16 bg-accent-gold/40" />
+            <div className="mx-auto mt-8 h-px w-20 bg-accent-gold/40" />
           </div>
         </Reveal>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-10">
-          {items.map((item, index) => (
-            <Reveal key={item.title} delay={0.2 * (index + 1)}>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-12">
+          {featuredExperiences.map((experience, index) => (
+            <Reveal key={experience.slug} delay={0.1 * (index + 1)}>
               <ExperienceCard
-                title={item.title}
-                description={item.description}
-                image={item.image}
+                title={experience.title}
+                description={experience.description}
+                image={experience.heroImage}
+                duration={experience.duration}
+                cities={experience.cities}
+                href={`/experiences/${experience.slug}`}
               />
             </Reveal>
           ))}

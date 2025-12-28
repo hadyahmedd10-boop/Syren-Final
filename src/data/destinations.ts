@@ -44,4 +44,24 @@ export const destinations: Destination[] = [
     vibeKeywords: ["beach", "luxury", "relax"],
     featuredExperienceSlugs: ["10-day-cairo-nile-red-sea-odyssey"],
   },
+  {
+    slug: "siwa-oasis",
+    name: "Siwa Oasis",
+    tagline: "The desert's hidden heart.",
+    description:
+      "A remote paradise where ancient traditions meet crystalline salt lakes and endless palm groves. Siwa is Egypt’s most soul-stirring desert escape.",
+    heroImage: heroImg,
+    vibeKeywords: ["desert", "culture", "hidden gems"],
+    featuredExperienceSlugs: ["siwa-desert-retreat"],
+  },
+  {
+    slug: "alexandria",
+    name: "Alexandria",
+    tagline: "The Pearl of the Mediterranean.",
+    description:
+      "A city of grand libraries, Greco-Roman heritage, and coastal charm. Alexandria blends Mediterranean elegance with a deep, storied history.",
+    heroImage: luxuryImg,
+    vibeKeywords: ["mediterranean", "history", "elegance"],
+    featuredExperienceSlugs: ["alexandria-coastal-elegance"],
+  },
 ];

@@ -1,19 +1,9 @@
-import { createClient } from "@supabase/supabase-js";
-
-const getSupabase = () => {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !key || url === "xxxx") {
-    return null;
-  }
-
-  try {
-    return createClient(url, key);
-  } catch (error) {
-    console.error("Supabase client initialization failed:", error);
-    return null;
-  }
-};
-
-export const supabase = getSupabase();
+import { createClient } from '@supabase/supabase-js' 
+ 
+ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL 
+ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY 
+ 
+ // Safe initialization for development without keys
+ export const supabase = (supabaseUrl && supabaseUrl !== 'xxxx' && supabaseAnonKey) 
+   ? createClient(supabaseUrl, supabaseAnonKey) 
+   : null as any;

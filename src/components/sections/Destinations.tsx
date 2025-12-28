@@ -1,83 +1,128 @@
+"use client";
+
 import Reveal from "../motion/Reveal";
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { destinations } from "@/data/destinations";
 
 export default function Destinations() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === "left" 
+        ? scrollLeft - clientWidth * 0.8 
+        : scrollLeft + clientWidth * 0.8;
+      
+      scrollRef.current.scrollTo({
+        left: scrollTo,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <section
       id="destinations"
       aria-labelledby="destinations-title"
-      className="relative bg-background scroll-mt-24 py-12 md:py-16"
+      className="relative bg-background scroll-mt-24 py-12 md:py-32"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-8">
-        <div className="mb-12 text-center md:mb-16">
+        <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between md:mb-20">
           <Reveal>
-            <span className="block font-sans text-[9px] uppercase tracking-[0.4em] text-accent-gold mb-3">The Landscape</span>
-            <h2
-              id="destinations-title"
-              className="font-serif text-4xl tracking-tight text-primary md:text-5xl"
-            >
-              The Map of Syren
-            </h2>
-            <div className="mx-auto mt-6 h-px w-16 bg-accent-gold/40" />
+            <div className="text-center md:text-left">
+              <span className="block font-sans text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">The Landscape</span>
+              <h2
+                id="destinations-title"
+                className="font-serif text-2xl md:text-5xl tracking-tight text-white"
+              >
+                The Map of Syren
+              </h2>
+              <div className="mx-auto mt-6 h-px w-20 bg-accent-gold/40 md:mx-0" />
+            </div>
           </Reveal>
+
+          {/* Desktop Navigation Buttons */}
+          <div className="hidden md:flex gap-4 mt-8 md:mt-0">
+            <button
+              onClick={() => scroll("left")}
+              className="p-3 rounded-full border border-border hover:border-accent-gold hover:text-accent-gold transition-all duration-300"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="p-3 rounded-full border border-border hover:border-accent-gold hover:text-accent-gold transition-all duration-300"
+              aria-label="Scroll right"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-6 lg:gap-8">
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto pb-12 gap-6 md:gap-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:-mx-8 md:px-8"
+        >
           {destinations.map((dest, index) => (
-            <Reveal key={dest.slug} delay={0.1 * (index + 1)}>
-              <article className={`group relative flex flex-col ${index === 1 ? 'md:mt-8' : ''} transition-all duration-500 ease-out hover:-translate-y-0.5`}>
-                <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface border border-border transition-all duration-500 ease-out group-hover:border-primary/30">
-                  <Image
-                    src={dest.heroImage}
-                    alt={dest.name}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                    placeholder="blur"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
-                  
-                  {/* Subtle Label for Mobile/Quick Scan */}
-                  <div className="absolute bottom-5 left-5 right-5 md:hidden">
-                    <h3 className="font-serif text-xl font-medium tracking-tight text-accent-gold">
-                      {dest.name}
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="mt-6 flex flex-col text-center md:text-left flex-grow">
-                  <div className="relative">
-                    <span className="absolute -left-3 -top-5 font-serif text-5xl text-white/5 select-none hidden md:block group-hover:text-primary/10 transition-colors duration-500">
-                      0{index + 1}
-                    </span>
-                    <h3 className="hidden md:block font-serif text-2xl font-medium tracking-tight text-accent-gold relative z-10 transition-colors duration-500">
-                      <Link href={`/destinations/${dest.slug}`} className="focus:outline-none">
-                        <span className="absolute inset-0 z-20" aria-hidden="true" />
+            <div key={dest.slug} className="min-w-[85%] md:min-w-[45%] lg:min-w-[30%] snap-center">
+              <Reveal delay={0.1 * (index + 1)}>
+                <article className="group relative flex flex-col transition-all duration-500 ease-out hover:-translate-y-0.5 h-full">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface border border-border transition-all duration-500 ease-out group-hover:border-primary/30">
+                    <Image
+                      src={dest.heroImage}
+                      alt={dest.name}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      placeholder="blur"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
+                    
+                    {/* Subtle Label for Mobile/Quick Scan */}
+                    <div className="absolute bottom-5 left-5 right-5 md:hidden">
+                      <h3 className="font-serif text-lg font-medium tracking-tight text-accent-gold">
                         {dest.name}
-                      </Link>
-                    </h3>
+                      </h3>
+                    </div>
                   </div>
-                  
-                  {/* Mobile Link Overlay */}
-                  <Link href={`/destinations/${dest.slug}`} className="absolute inset-0 z-20 md:hidden" aria-label={`View ${dest.name}`}>
-                    <span className="sr-only">View {dest.name}</span>
-                  </Link>
 
-                  <div className="mt-3 h-px w-10 bg-accent-gold/20 md:w-12 transition-all duration-500 group-hover:w-16 group-hover:bg-primary/40" />
-                  <p className="mt-4 font-sans text-xs leading-relaxed text-white/40 md:text-sm line-clamp-2">
-                    {dest.description}
-                  </p>
-                  
-                  <div className="mt-auto pt-6">
-                    <Link href={`/destinations/${dest.slug}`} className="syren-btn-secondary py-2 text-[9px] w-full md:w-auto text-center block">
-                      Explore {dest.name}
+                  <div className="mt-6 flex flex-col text-center md:text-left flex-grow">
+                    <div className="relative">
+                      <span className="absolute -left-3 -top-5 font-serif text-5xl text-white/5 select-none hidden md:block group-hover:text-primary/10 transition-colors duration-500">
+                        0{index + 1}
+                      </span>
+                      <h3 className="hidden md:block font-serif text-2xl font-medium tracking-tight text-accent-gold relative z-10 transition-colors duration-500">
+                        <Link href={`/destinations/${dest.slug}`} className="focus:outline-none">
+                          <span className="absolute inset-0 z-20" aria-hidden="true" />
+                          {dest.name}
+                        </Link>
+                      </h3>
+                    </div>
+                    
+                    {/* Mobile Link Overlay */}
+                    <Link href={`/destinations/${dest.slug}`} className="absolute inset-0 z-20 md:hidden" aria-label={`View ${dest.name}`}>
+                      <span className="sr-only">View {dest.name}</span>
                     </Link>
+
+                    <div className="mt-2 h-px w-10 bg-accent-gold/20 md:w-12 mx-auto md:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-primary/40" />
+                    <p className="mt-3 font-sans text-[11px] leading-relaxed text-white/40 md:text-sm line-clamp-2">
+                      {dest.description}
+                    </p>
+                    
+                    <div className="mt-auto pt-6">
+                      <Link href={`/destinations/${dest.slug}`} className="syren-btn-secondary py-2 text-[9px] w-full md:w-auto text-center block">
+                        Explore {dest.name}
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </article>
-            </Reveal>
+                </article>
+              </Reveal>
+            </div>
           ))}
         </div>
       </div>

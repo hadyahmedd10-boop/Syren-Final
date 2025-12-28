@@ -438,111 +438,244 @@ export const experiences: Experience[] = [
     duration: "12 Days / 11 Nights",
     cities: "Cairo, Aswan, Nile Cruise, Luxor, Hurghada",
     description: "An enchanting 12-day honeymoon blending the ancient wonders of Cairo and the Nile with the romantic serenity of the Red Sea.",
-    introduction: "Your honeymoon journey begins the moment you arrive in the enchanting land of Egypt. Designed for couples seeking a perfect balance of discovery and intimacy, this 12-day odyssey takes you from the shadows of the Great Pyramids to the crystalline shores of Hurghada. Every detail—from private guided tours to sunset sails on the Nile—is curated to ensure your first journey together is truly unforgettable.",
+    introduction: "Your love story deserves a backdrop as timeless as the pyramids and as beautiful as the Red Sea. This 12-day odyssey is crafted for couples seeking the perfect balance of adventure, history, and absolute luxury. From private candlelit dinners in the shadow of ancient temples to sunset cruises on the Nile and days of pure relaxation in Hurghada, every moment is designed to be unforgettable.",
     heroImage: luxuryImg,
     whatsappMessage: "I am interested in the 12-Day Egyptian Honeymoon Odyssey",
+    highlights: [
+      "Private candlelit dinner at the foot of the Giza Pyramids",
+      "Romantic sunset Felucca cruise with private musician",
+      "Exclusive hot air balloon ride over the Valley of the Kings",
+      "Couples' spa treatments and private beach dinners in Hurghada",
+      "Luxury suite upgrades throughout the entire journey"
+    ],
     included: [
-      "Personal meet & greet at Cairo International Airport",
-      "Domestic flights (Cairo-Aswan & Hurghada-Cairo)",
-      "4 nights luxury hotel in Cairo",
-      "1 night luxury hotel in Aswan",
-      "3 nights 5-star Nile Cruise",
-      "3 nights 5-star beach resort in Hurghada",
-      "Private guided tours with expert Egyptologists",
-      "All transfers in private A/C vehicles",
-      "Entrance fees to all mentioned historical sites",
-      "24/7 dedicated local support & concierge"
+      "9 nights in luxury hotels & 2 nights on a private Dahabiya",
+      "All domestic flights and private luxury transfers",
+      "Special honeymoon amenities and surprises",
+      "Private Egyptologist for all historical site visits",
+      "Select romantic dining experiences",
+      "24/7 dedicated concierge service"
     ],
     notIncluded: [
       "International airfare",
       "Entry visa to Egypt",
-      "Optional activities (Diving, Snorkeling, etc.)",
-      "Personal expenses and gratuities"
+      "Personal shopping and gratuities",
+      "Optional excursions not mentioned"
     ],
+    price: {
+      amount: 5800,
+      currency: "USD",
+      perPerson: true
+    },
     itinerary: [
       {
         day: 1,
-        title: "Arrival & Romantic Welcome",
-        description: "Your journey begins with a warm welcome at Cairo Airport. Whisked away in a private vehicle to your luxury hotel, enjoy a briefing on your romantic itinerary before spending the evening at leisure in Cairo's vibrant atmosphere.",
-        meals: "Welcome Briefing",
+        title: "Arrival in Cairo",
+        description: "Welcome to Egypt. Private VIP transfer to your luxury hotel overlooking the Nile. Enjoy a special welcome amenity and evening at leisure.",
+        meals: "Welcome Drink",
         image: luxuryImg
       },
       {
         day: 2,
-        title: "Romance at the Giza Pyramids",
-        description: "Explore the Giza Plateau, the Great Sphinx, and the Valley Temple with your private guide. Later, visit the newly inaugurated Grand Egyptian Museum (GEM) before a relaxing evening together.",
-        meals: "Breakfast, Lunch",
+        title: "Pyramids & Romantic Dinner",
+        description: "Explore the Giza Plateau by day. As evening falls, enjoy an exclusive, private dinner with the Pyramids as your backdrop.",
+        meals: "Breakfast, Dinner",
         image: heroImg
       },
       {
         day: 3,
-        title: "National Museum & Old Cairo",
-        description: "Visit the National Museum of Egyptian Civilization to see the royal mummies. Explore the historic churches of Old Cairo and the magnificent Salah El-Din Citadel with panoramic city views.",
+        title: "Cairo's Hidden Gems",
+        description: "Visit the Grand Egyptian Museum and the charming streets of Old Cairo. Afternoon tea at a historic mansion.",
         meals: "Breakfast, Lunch",
         image: partyImg
       },
       {
         day: 4,
-        title: "Aswan’s Wonders Await",
-        description: "Fly to Aswan and visit the romantic Temple of Philae, dedicated to Isis and Hathor, followed by the Unfinished Obelisk. Relax in your Aswan hotel overlooking the Nile.",
-        meals: "Breakfast",
+        title: "Fly to Aswan & Embarkation",
+        description: "Fly to Aswan and board your private Dahabiya. Afternoon visit to the romantic Temple of Philae.",
+        meals: "Breakfast, Lunch, Dinner",
         image: luxuryImg
       },
       {
         day: 5,
-        title: "Abu Simbel & Embarkation",
-        description: "Visit the awe-inspiring Abu Simbel Temples, built for Ramses II and Queen Nefertari. Return to Aswan to embark on your luxury Nile cruise for a sunset dinner.",
+        title: "Sailing the Nile",
+        description: "A day of pure romance and relaxation as you sail north. Enjoy the changing landscapes from the deck.",
         meals: "Breakfast, Lunch, Dinner",
         image: heroImg
       },
       {
         day: 6,
-        title: "Temples of Kom Ombo & Edfu",
-        description: "Sail to the unique double temple of Kom Ombo, then continue to Edfu to explore the well-preserved Temple of Horus. Enjoy afternoon tea as you sail toward Esna.",
+        title: "Temples & Sunset",
+        description: "Visit the temples of Kom Ombo and Edfu. A private dinner on a river island under the stars.",
         meals: "Breakfast, Lunch, Dinner",
         image: partyImg
       },
       {
         day: 7,
-        title: "Luxor’s West Bank",
-        description: "Explore the Valley of the Kings and the Mortuary Temple of Queen Hatshepsut. A profound journey through the tombs of Egypt's ancient rulers.",
+        title: "Arrival in Luxor",
+        description: "Arrive in Luxor. Afternoon visit to the illuminated Luxor Temple followed by a private cocktail hour.",
         meals: "Breakfast, Lunch, Dinner",
         image: luxuryImg
       },
       {
         day: 8,
-        title: "Luxor’s East Bank & Red Sea",
-        description: "Visit Karnak and Luxor Temples before a private drive to the Red Sea resort of Hurghada. Check in to your luxury 5-star coastal hotel.",
+        title: "Sunrise over the Valley",
+        description: "Private hot air balloon ride at sunrise followed by exploration of the Valley of the Kings.",
         meals: "Breakfast, Lunch",
         image: heroImg
       },
       {
         day: 9,
-        title: "Hurghada Relaxation",
-        description: "A day dedicated to relaxation. Enjoy the resort's amenities, swim in the turquoise waters, or choose an optional diving or snorkeling excursion.",
-        meals: "Breakfast",
-        image: luxuryImg
-      },
-      {
-        day: 10,
-        title: "Coastal Bliss",
-        description: "Cherish another day of coastal beauty. Whether sailing, fishing, or simply enjoying the beach, these moments are yours to enjoy together.",
-        meals: "Breakfast",
+        title: "Fly to Hurghada",
+        description: "Transfer to the Red Sea. Settle into your luxury coastal suite with private pool.",
+        meals: "Breakfast, Dinner",
         image: partyImg
       },
       {
-        day: 11,
-        title: "Return to Cairo",
-        description: "Free time in Hurghada before flying back to Cairo. Settle into a luxury hotel for your final night, with freedom to explore or relax.",
-        meals: "Breakfast",
+        day: 10,
+        title: "Red Sea Bliss",
+        description: "A day for relaxation. Enjoy a couples' spa treatment and a private sunset cruise.",
+        meals: "Breakfast, Lunch",
         image: luxuryImg
       },
       {
+        day: 11,
+        title: "Private Beach Day",
+        description: "Enjoy a private cabana on the beach. Farewell beach dinner with live music.",
+        meals: "Breakfast, Dinner",
+        image: heroImg
+      },
+      {
         day: 12,
-        title: "Farewell to Egypt",
-        description: "Enjoy your final Egyptian breakfast before your private transfer to the airport. Depart with memories of a lifetime from the land of the Pharaohs.",
+        title: "Farewell Egypt",
+        description: "Final breakfast before your private transfer to the airport for your departure.",
+        meals: "Breakfast",
+        image: partyImg
+      }
+    ]
+  },
+  {
+    slug: "siwa-desert-retreat",
+    title: "Siwa Desert Retreat",
+    destinations: ["siwa-oasis"],
+    subtitle: "Eco-Luxury & Ancient Soul",
+    duration: "4 Days / 3 Nights",
+    cities: "Siwa",
+    description: "A journey into the heart of the Sahara. Experience the unique culture, salt lakes, and eco-luxury of Egypt's most remote oasis.",
+    introduction: "Siwa is a place out of time. This retreat is designed for those seeking deep connection with nature and ancient traditions. From floating in crystalline salt lakes to sunset over the Great Sand Sea, Siwa offers a desert experience unlike any other.",
+    heroImage: heroImg,
+    whatsappMessage: "I am interested in the Siwa Desert Retreat",
+    highlights: [
+      "Float in the famous turquoise salt lakes",
+      "Sunset over the Great Sand Sea with private desert camp",
+      "Visit the Oracle Temple where Alexander the Great sought guidance",
+      "Stay at a world-renowned eco-lodge built from salt and mud-brick",
+      "Private dinner in a palm grove under the stars"
+    ],
+    included: [
+      "3 nights in luxury eco-lodge accommodation",
+      "Private 4x4 desert expeditions",
+      "All meals featuring authentic Siwi cuisine",
+      "Private local guide and storyteller",
+      "All transfers to and from Siwa"
+    ],
+    notIncluded: [
+      "Flights to/from Cairo",
+      "Personal shopping",
+      "Travel insurance"
+    ],
+    price: {
+      amount: 1650,
+      currency: "USD",
+      perPerson: true
+    },
+    itinerary: [
+      {
+        day: 1,
+        title: "The Long Road to Paradise",
+        description: "Private transfer from Cairo to Siwa. Arrive at your eco-lodge in time for a traditional Siwi dinner.",
+        meals: "Dinner",
+        image: heroImg
+      },
+      {
+        day: 2,
+        title: "Salt Lakes & Oracle's Wisdom",
+        description: "Morning float in the salt lakes followed by a visit to the Temple of the Oracle and Cleopatra's Bath.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: luxuryImg
+      },
+      {
+        day: 3,
+        title: "The Great Sand Sea",
+        description: "Explore the ancient fortress of Shali. In the afternoon, venture into the Great Sand Sea for a sunset you'll never forget.",
+        meals: "Breakfast, Lunch, Dinner",
+        image: partyImg
+      },
+      {
+        day: 4,
+        title: "Farewell Oasis",
+        description: "Final breakfast and a visit to the Mountain of the Dead before your private transfer back to Cairo.",
         meals: "Breakfast",
         image: heroImg
+      }
+    ]
+  },
+  {
+    slug: "alexandria-coastal-elegance",
+    title: "Alexandria Coastal Elegance",
+    destinations: ["alexandria"],
+    subtitle: "Mediterranean Heritage & Royal Charm",
+    duration: "3 Days / 2 Nights",
+    cities: "Alexandria",
+    description: "Rediscover the Pearl of the Mediterranean. A curated journey through Alexandria's Greco-Roman history and Belle Époque elegance.",
+    introduction: "Alexandria is a city of layers, where Mediterranean breezes carry the scent of history. This experience invites you to explore its grand libraries, ancient catacombs, and royal gardens, all while staying in the city's most iconic historic hotel.",
+    heroImage: luxuryImg,
+    whatsappMessage: "I am interested in the Alexandria Coastal Elegance experience",
+    highlights: [
+      "Private tour of the Bibliotheca Alexandrina",
+      "Exploration of the Catacombs of Kom El Shoqafa",
+      "Sunset at the Citadel of Qaitbay, built on the site of the Lighthouse",
+      "Guided walk through the royal gardens of Montaza Palace",
+      "Gourmet seafood lunch overlooking the Mediterranean"
+    ],
+    included: [
+      "2 nights in a historic luxury hotel",
+      "Private guided tours with local historians",
+      "All transfers in private A/C vehicles",
+      "Daily breakfast and select gourmet lunches",
+      "Entry fees to all historical sites"
+    ],
+    notIncluded: [
+      "International flights",
+      "Personal expenses",
+      "Dinner (allowing for local exploration)"
+    ],
+    price: {
+      amount: 950,
+      currency: "USD",
+      perPerson: true
+    },
+    itinerary: [
+      {
+        day: 1,
+        title: "Mediterranean Arrival",
+        description: "Private transfer from Cairo to Alexandria. Check into your historic hotel and enjoy a sunset walk along the Corniche.",
+        meals: "Lunch",
+        image: luxuryImg
+      },
+      {
+        day: 2,
+        title: "Libraries & Catacombs",
+        description: "Visit the modern Bibliotheca Alexandrina and the ancient Catacombs. Afternoon at the Citadel of Qaitbay.",
+        meals: "Breakfast, Lunch",
+        image: heroImg
+      },
+      {
+        day: 3,
+        title: "Royal Gardens & Departure",
+        description: "Explore the lush Montaza Palace gardens. Enjoy a final seafood feast before your transfer back to Cairo.",
+        meals: "Breakfast, Lunch",
+        image: partyImg
       }
     ]
   }

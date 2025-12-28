@@ -64,19 +64,19 @@ export default function ExperienceCard({
         )}
       </div>
       
-      <div className="flex flex-1 flex-col p-6 md:p-8">
+      <div className="flex flex-1 flex-col p-4 md:p-8">
         <div className="mb-3 flex flex-col gap-1">
           {cities && (
-            <span className="font-sans text-[9px] font-bold uppercase tracking-[0.3em] text-text-secondary">
+            <span className="font-sans text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] text-text-secondary">
               {cities}
             </span>
           )}
-          <h3 className="font-serif text-2xl tracking-tight text-text-primary lg:text-3xl transition-colors duration-500">
+          <h3 className="font-serif text-xl md:text-2xl lg:text-3xl tracking-tight text-text-primary transition-colors duration-500">
             {title}
           </h3>
         </div>
 
-        <p className="mb-8 flex-1 font-sans text-[13px] leading-relaxed text-white/60">
+        <p className="mb-6 flex-1 font-sans text-[12px] md:text-[13px] leading-relaxed text-white/60">
           {description}
         </p>
         

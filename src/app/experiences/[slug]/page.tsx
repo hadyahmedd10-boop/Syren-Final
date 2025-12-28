@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/motion/Reveal";
 import { experiences } from "@/data/experiences";
 import { CheckCircle2, Star, ShieldCheck, ArrowRight, MessageSquare, CreditCard, Sparkles } from "lucide-react";
+import Script from "next/script";
+import ExperienceTracker from "@/components/ExperienceTracker";
+import BookingButton from "@/components/BookingButton";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -21,11 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!experience) {
     return {
-      title: "Experience Not Found | Syren",
+      title: "Experience Not Found",
     };
   }
 
-  const title = `${experience.title} | Syren - ${experience.subtitle || "Curated Egyptian Journeys"}`;
+  const title = `${experience.title} | ${experience.subtitle || "Curated Egyptian Journeys"}`;
   const description = experience.description;
 
   return {
@@ -35,6 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: `https://syren.com/experiences/${slug}`,
+      siteName: "Syren Egypt",
       type: "article",
       images: [
         {
@@ -62,12 +66,40 @@ export default async function ExperienceDetailPage({ params }: Props) {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": experience.title,
+    "image": typeof experience.heroImage === 'string' ? experience.heroImage : experience.heroImage.src,
+    "description": experience.description,
+    "brand": {
+      "@type": "Brand",
+      "name": "Syren"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `https://syren.com/experiences/${slug}`,
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/PreOrder",
+      "seller": {
+        "@type": "Organization",
+        "name": "Syren"
+      }
+    }
+  };
+
   const whatsappLink = `https://wa.me/201000000000?text=${encodeURIComponent(
     `I want to plan my ${experience.title} journey with Syren`
   )}`;
 
   return (
     <main className="min-h-screen bg-background">
+      <ExperienceTracker experienceTitle={experience.title} experienceSlug={slug} />
+      <Script
+        id={`experience-${slug}-json-ld`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* 1. Cinematic Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
         <Image
@@ -352,11 +384,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
                   </div>
                 </div>
 
-                <button className="syren-btn w-full py-6 flex items-center justify-center gap-4 group">
-                  <CreditCard size={20} />
-                  PROCEED TO SECURE BOOKING
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </button>
+                <BookingButton experienceTitle={experience.title} experienceSlug={slug} />
                 
                 <p className="text-center font-sans text-[9px] uppercase tracking-[0.2em] text-text-secondary/30">
                   By proceeding, you agree to our <a href="#" className="underline hover:text-accent-gold transition-colors">Terms of Service</a> and <a href="#" className="underline hover:text-accent-gold transition-colors">Privacy Policy</a>.

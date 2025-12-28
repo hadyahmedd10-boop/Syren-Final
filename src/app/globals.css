@@ -195,43 +195,49 @@ p, span, a, li, button, input, textarea {
       items-center
       justify-center
       rounded-full 
-      px-8 py-4 
-      text-[11px] 
+      px-4 py-2.5 md:px-8 md:py-4 
+      text-[9px] md:text-[11px] 
       uppercase 
-      tracking-[0.4em] 
-      font-medium 
-      border 
-      border-white/40 
-      text-white 
-      bg-transparent
+      tracking-[0.2em] 
+      font-sans 
+      font-semibold 
       transition-all 
       duration-500 
-      hover:bg-gold 
-      hover:border-gold 
-      hover:text-blackbase; 
-  }
-
-  /* === Syren Secondary Button === */
-  .syren-btn-secondary { 
+      relative 
+      overflow-hidden
+      bg-primary
+      text-text-dark
+      hover:bg-primary-dark
+      hover:scale-[1.02]
+      active:scale-[0.98]
+      shadow-lg
+      shadow-primary/10;
+ } 
+ 
+ .syren-btn-secondary { 
     @apply 
       inline-flex
       items-center
       justify-center
       rounded-full 
-      px-8 py-4 
-      text-[11px] 
+      px-4 py-2.5 md:px-8 md:py-4 
+      text-[9px] md:text-[11px] 
       uppercase 
-      tracking-[0.4em] 
-      text-white 
-      bg-transparent
-      border 
-      border-white/20 
-      hover:bg-gold 
-      hover:border-gold 
-      hover:text-blackbase 
+      tracking-[0.2em] 
+      font-sans 
+      font-semibold 
       transition-all 
-      duration-500; 
-  }
+      duration-500 
+      relative 
+      overflow-hidden
+      bg-transparent
+      text-white
+      border border-white/20
+      hover:bg-white/5
+      hover:border-white/40
+      hover:scale-[1.02]
+      active:scale-[0.98];
+ } 
 
   /* === Syren Primary Button === */
   .syren-btn-primary { 
@@ -272,6 +278,24 @@ p, span, a, li, button, input, textarea {
       focus:border-primary
       transition-all
       duration-300;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .section-fade { 
+    background: linear-gradient( 
+      to bottom, 
+      transparent, 
+      rgba(0,0,0,0.6), 
+      transparent 
+    ); 
   }
 
 

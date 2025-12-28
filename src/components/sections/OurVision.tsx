@@ -12,19 +12,19 @@ export default function OurVision() {
     <section 
       id="vision" 
       aria-labelledby="vision-title" 
-      className="bg-background pt-12 md:pt-16 pb-0 scroll-mt-24"
+      className="bg-background pt-24 md:pt-32 pb-0 scroll-mt-24"
     >
-      <div className="mx-auto max-w-4xl px-6 md:px-8 pb-8 md:pb-10">
+      <div className="mx-auto max-w-4xl px-6 md:px-8 pb-16 md:pb-20">
         <Reveal>
-          <div className="text-center mb-10 md:mb-12">
-            <span className="block font-sans text-[9px] uppercase tracking-[0.4em] text-accent-gold mb-3">The Soul</span>
+          <div className="text-center mb-16 md:mb-20">
+            <span className="block font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">The Soul</span>
             <h2
               id="vision-title"
-              className="font-serif text-3xl md:text-4xl tracking-tight text-primary"
+              className="font-serif text-3xl md:text-5xl tracking-tight text-white"
             >
               The Vision of Syren
             </h2>
-            <div className="mx-auto mt-6 h-px w-16 bg-accent-gold/40" />
+            <div className="mx-auto mt-8 h-px w-20 bg-accent-gold/40" />
           </div>
         </Reveal>
         

@@ -2,6 +2,7 @@
   import Image from "next/image";
   import ExperienceCard from "@/components/sections/ExperienceCard";
   import Reveal from "@/components/motion/Reveal";
+  import Script from "next/script";
 
   // Import images (using the ones we have for now)
   import heroImg from "../../../public/Images/hero.jpg";
@@ -11,24 +12,42 @@
   import { experiences } from "@/data/experiences";
 
   export const metadata: Metadata = {
-    title: "Experiences | Syren - Curated Egyptian Journeys",
+    title: "Experiences",
     description: "Discover our collection of ultra-private, expertly curated Egyptian experiences. From desert expeditions to private yacht charters.",
     openGraph: {
-      title: "Experiences | Syren - Curated Egyptian Journeys",
+      title: "Our Experiences | Syren Egypt",
       description: "Discover our collection of ultra-private, expertly curated Egyptian experiences.",
       url: "https://syren.com/experiences",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Experiences | Syren - Curated Egyptian Journeys",
+      title: "Our Experiences | Syren Egypt",
       description: "Discover our collection of ultra-private, expertly curated Egyptian experiences.",
     },
   };
 
   export default function ExperiencesPage() {
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": experiences.map((exp, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `https://syren.com/experiences/${exp.slug}`,
+        "name": exp.title,
+        "description": exp.description,
+        "image": typeof exp.heroImage === 'string' ? exp.heroImage : exp.heroImage.src
+      }))
+    };
+
     return (
       <main className="min-h-screen bg-background">
+        <Script
+          id="experiences-json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {/* Cinematic Hero Section */}
         <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
           <Image

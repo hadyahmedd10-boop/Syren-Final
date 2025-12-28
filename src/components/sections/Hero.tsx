@@ -78,13 +78,13 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a
               href="#destinations"
-              className="syren-btn min-w-[220px]"
+              className="syren-btn min-w-[180px] sm:min-w-[220px]"
             >
               Begin Your Journey
             </a>
             <a
               href="/experiences"
-              className="syren-btn-secondary min-w-[220px]"
+              className="syren-btn-secondary min-w-[180px] sm:min-w-[220px]"
             >
               View Experiences
             </a>

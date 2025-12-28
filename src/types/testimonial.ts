@@ -1,11 +1,11 @@
 export type Testimonial = {
   id: string;
   name: string;
-  email?: string; // Kept for the form, though not in the SQL provided
-  country: string;
-  experience?: string; // Optional as it's not in the new SQL
+  email?: string;
+  experience?: string;
+  experience_slug?: string;
   rating: number;
-  message: string; // Changed from review to match SQL
+  message: string;
   approved?: boolean;
   created_at?: string;
 };
