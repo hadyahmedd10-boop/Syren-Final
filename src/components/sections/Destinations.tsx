@@ -28,10 +28,10 @@ export default function Destinations() {
     <section
       id="destinations"
       aria-labelledby="destinations-title"
-      className="relative bg-background scroll-mt-24 py-12 md:py-32"
+      className="relative bg-background scroll-mt-24 section section-merge-bottom"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-8">
-        <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between md:mb-20">
+        <div className="mb-4 flex flex-col md:flex-row md:items-end md:justify-between md:mb-6">
           <Reveal>
             <div className="text-center md:text-left">
               <span className="block font-sans text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">The Landscape</span>
@@ -66,7 +66,7 @@ export default function Destinations() {
 
         <div 
           ref={scrollRef}
-          className="flex overflow-x-auto pb-12 gap-6 md:gap-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:-mx-8 md:px-8"
+          className="flex overflow-x-auto pb-6 gap-6 md:gap-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:-mx-8 md:px-8"
         >
           {destinations.map((dest, index) => (
             <div key={dest.slug} className="min-w-[85%] md:min-w-[45%] lg:min-w-[30%] snap-center">

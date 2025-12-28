@@ -12,11 +12,11 @@ export default function OurVision() {
     <section 
       id="vision" 
       aria-labelledby="vision-title" 
-      className="bg-background pt-24 md:pt-32 pb-0 scroll-mt-24"
+      className="bg-background section scroll-mt-24"
     >
-      <div className="mx-auto max-w-4xl px-6 md:px-8 pb-16 md:pb-20">
+      <div className="mx-auto max-w-4xl px-6 md:px-8">
         <Reveal>
-          <div className="text-center mb-16 md:mb-20">
+          <div className="text-center mb-8 md:mb-12">
             <span className="block font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">The Soul</span>
             <h2
               id="vision-title"
@@ -28,7 +28,7 @@ export default function OurVision() {
           </div>
         </Reveal>
         
-        <div className="space-y-8 max-w-2xl mx-auto">
+        <div className="space-y-6 max-w-2xl mx-auto">
           <Reveal delay={0.2}>
             <p className="font-serif text-xl md:text-2xl leading-[1.4] text-white text-center italic mb-8">
               &ldquo;We believe that travel is most profound when it feels like a homecoming—a connection that goes beyond the surface to the ancient soul of our home.&rdquo;
@@ -50,7 +50,7 @@ export default function OurVision() {
       </div>
 
       {/* Statistics Block */}
-      <div className="w-full bg-background py-8 md:py-12 border-y border-white/[0.04] relative overflow-hidden">
+      <div className="w-full bg-background section-tight border-y border-white/[0.04] relative overflow-hidden">
         {/* Subtle Decorative Background Element */}
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-accent/20 to-transparent md:hidden" />

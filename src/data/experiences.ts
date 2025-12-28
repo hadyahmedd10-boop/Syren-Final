@@ -1,7 +1,7 @@
 import { Experience } from "@/types/experience";
-import heroImg from "../../public/Images/hero.jpg";
-import luxuryImg from "../../public/Images/luxury.jpg";
-import partyImg from "../../public/Images/party.jpg";
+import cairoImg from "../../public/images/hero/cairo.jpg";
+import luxuryImg from "../../public/images/hero/luxury.jpg";
+import partyImg from "../../public/images/experiences/party.jpg";
 
 export const experiences: Experience[] = [
   {
@@ -50,7 +50,7 @@ export const experiences: Experience[] = [
         title: "The Heart of the Night",
         description: "Explore the historic Al-Muizz street under the stars, followed by an exclusive underground music performance.",
         meals: "Breakfast, Late Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 3,
@@ -114,7 +114,7 @@ export const experiences: Experience[] = [
         title: "The West Bank",
         description: "Early morning balloon ride followed by the Valley of the Kings. Set sail southward in the afternoon.",
         meals: "Breakfast, Lunch, Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 3,
@@ -135,7 +135,7 @@ export const experiences: Experience[] = [
         title: "Aswan Sanctuary",
         description: "Arrive in Aswan. Visit Philae Temple followed by a farewell dinner on the river.",
         meals: "Breakfast, Lunch, Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 6,
@@ -155,7 +155,7 @@ export const experiences: Experience[] = [
     cities: "Cairo",
     description: "A deep cultural journey through Egypt’s ancient landmarks, museums, and historic neighborhoods — designed for comfort, insight, and authentic discovery.",
     introduction: "Cairo is more than a city; it is a living chronicle of human civilization. Our 5-day curated experience invites you to step beyond the veil of time, offering exclusive access to the monuments and moments that have shaped the world, all while enveloped in the refined comfort of modern luxury.",
-    heroImage: heroImg,
+    heroImage: cairoImg,
     whatsappMessage: "I am interested in the 5-Day Cairo Experience",
     highlights: [
       "After-hours private access to the Grand Egyptian Museum",
@@ -196,7 +196,7 @@ export const experiences: Experience[] = [
         title: "Giza Plateau & The Sphinx",
         description: "Experience the Great Pyramids like never before. Start with a sunrise meditation at the base of Khufu's pyramid, followed by exclusive access to the Sphinx enclosure. Enjoy a gourmet picnic lunch on the plateau before exploring the Solar Boat Museum. The evening is yours to relax or enjoy a private jazz performance.",
         meals: "Breakfast, Lunch",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 3,
@@ -265,7 +265,7 @@ export const experiences: Experience[] = [
         title: "Arrival in Cairo",
         description: "Your Egyptian story begins with a private greeting at the airport and transfer to your luxury hotel with Pyramids views.",
         meals: "Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 2,
@@ -293,7 +293,7 @@ export const experiences: Experience[] = [
         title: "Edfu & Kom Ombo Temples",
         description: "Sail south to Edfu to visit the Temple of Horus, then continue to the unique double temple of Kom Ombo at sunset.",
         meals: "Breakfast, Lunch, Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 6,
@@ -314,7 +314,7 @@ export const experiences: Experience[] = [
         title: "Final Departure",
         description: "Enjoy a final Egyptian breakfast before your private transfer to Cairo International Airport.",
         meals: "Breakfast",
-        image: heroImg
+        image: cairoImg
       }
     ]
   },
@@ -327,7 +327,7 @@ export const experiences: Experience[] = [
     cities: "Cairo, Aswan, Luxor, Hurghada",
     description: "A comprehensive 10-day journey across Egypt's most iconic landscapes—from the ancient majesty of Cairo and the Nile to the sun-drenched shores of the Red Sea.",
     introduction: "Egypt is a land of contrasts, where the echoes of ancient civilizations meet the serene beauty of the coast. This 10-day odyssey is thoughtfully designed to offer a complete immersion into the heart of Egypt. You will stand before the Great Pyramids, sail the timeless Nile, explore the legendary temples of the south, and finally, find sanctuary on the crystalline shores of Hurghada. Every detail, from the VIP meet-and-greet to the private transfers, is handled with the care and soul that defines Syren.",
-    heroImage: heroImg,
+    heroImage: cairoImg,
     whatsappMessage: "I am interested in the 10-Day Cairo, Nile & Red Sea Odyssey",
     highlights: [
       "Full spectrum of Egypt: History, Nile, and Red Sea",
@@ -370,7 +370,7 @@ export const experiences: Experience[] = [
         title: "The Giza Plateau & Sleeper Train",
         description: "Begin with the Giza Plateau, home to the Great Pyramids and the Sphinx. After an authentic Egyptian lunch, explore the New Grand Egyptian Museum in a special preview experience. As evening falls, board your overnight sleeper train to Aswan, enjoying dinner as the landscapes of the Nile valley pass by.",
         meals: "Breakfast, Lunch, Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 3,
@@ -391,7 +391,7 @@ export const experiences: Experience[] = [
         title: "The Valley of the Kings",
         description: "Journey to Luxor, the world's greatest open-air museum. Explore the notorious Valley of the Kings, the Temple of Hatshepsut, and the Colossi of Memnon. Each site tells a story of power, faith, and the eternal quest for immortality. Transfer to your Luxor hotel for the night.",
         meals: "Breakfast, Lunch",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 6,
@@ -412,7 +412,7 @@ export const experiences: Experience[] = [
         title: "Sun, Sand & Sailing",
         description: "Another day of coastal bliss. Take advantage of Hurghada's world-class sailing or deep-sea fishing, or simply enjoy the refined amenities of your resort. Another evening to watch the sun set over the crystalline horizon.",
         meals: "Breakfast",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 9,
@@ -480,7 +480,7 @@ export const experiences: Experience[] = [
         title: "Pyramids & Romantic Dinner",
         description: "Explore the Giza Plateau by day. As evening falls, enjoy an exclusive, private dinner with the Pyramids as your backdrop.",
         meals: "Breakfast, Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 3,
@@ -501,7 +501,7 @@ export const experiences: Experience[] = [
         title: "Sailing the Nile",
         description: "A day of pure romance and relaxation as you sail north. Enjoy the changing landscapes from the deck.",
         meals: "Breakfast, Lunch, Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 6,
@@ -522,7 +522,7 @@ export const experiences: Experience[] = [
         title: "Sunrise over the Valley",
         description: "Private hot air balloon ride at sunrise followed by exploration of the Valley of the Kings.",
         meals: "Breakfast, Lunch",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 9,
@@ -543,7 +543,7 @@ export const experiences: Experience[] = [
         title: "Private Beach Day",
         description: "Enjoy a private cabana on the beach. Farewell beach dinner with live music.",
         meals: "Breakfast, Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 12,
@@ -551,6 +551,85 @@ export const experiences: Experience[] = [
         description: "Final breakfast before your private transfer to the airport for your departure.",
         meals: "Breakfast",
         image: partyImg
+      }
+    ]
+  },
+  {
+    slug: "family-adventure",
+    title: "Family Adventure",
+    destinations: ["cairo", "luxor-aswan", "red-sea"],
+    subtitle: "Discovery for All Ages",
+    duration: "10 Days / 9 Nights",
+    cities: "Cairo, Luxor, Aswan, El Gouna",
+    description: "A fun and educational journey through Egypt’s history and natural beauty, designed specifically for families with children of all ages.",
+    introduction: "Introduce your family to the wonders of the ancient world. This 10-day adventure is packed with interactive experiences, from scavenger hunts at the pyramids to camel rides and snorkeling in the Red Sea.",
+    heroImage: cairoImg,
+    whatsappMessage: "I am interested in the Family Adventure experience",
+    highlights: [
+      "Junior Egyptologist scavenger hunt at the Giza Pyramids",
+      "Private camel ride and desert picnic",
+      "Interactive workshop at a local pottery village",
+      "Private boat trip for snorkeling and dolphin watching in El Gouna",
+    ],
+    included: [
+      "9 nights in family-friendly luxury hotels",
+      "All domestic flights and private transfers",
+      "Kid-friendly guides and interactive activities",
+      "All entrance fees and activity costs",
+      "24/7 dedicated family support",
+    ],
+    notIncluded: [
+      "International airfare",
+      "Entry visa to Egypt",
+      "Personal expenses and gratuities",
+    ],
+    price: {
+      amount: 4500,
+      currency: "USD",
+      perPerson: true
+    },
+    itinerary: [
+      {
+        day: 1,
+        title: "Family Arrival",
+        description: "VIP greeting and transfer to your family-friendly hotel. Welcome dinner with traditional Egyptian entertainment.",
+        meals: "Dinner",
+        image: partyImg
+      },
+      {
+        day: 2,
+        title: "Pyramid Explorers",
+        description: "Scavenger hunt at the Giza Plateau followed by a private camel ride and desert picnic.",
+        meals: "Breakfast, Picnic Lunch",
+        image: cairoImg
+      },
+      {
+        day: 3,
+        title: "Museum Wonders",
+        description: "Interactive tour of the Grand Egyptian Museum’s children’s section and a pottery workshop.",
+        meals: "Breakfast, Lunch",
+        image: cairoImg
+      },
+      {
+        day: 4,
+        title: "Fly to Luxor",
+        description: "Morning flight to Luxor. Visit the Valley of the Kings with a guide who specializes in engaging children.",
+        meals: "Breakfast, Lunch",
+        image: luxuryImg
+      },
+      {
+        day: 5,
+        title: "Temple Detectives",
+        description: "Explore Karnak Temple with a custom activity book. Afternoon Felucca ride on the Nile.",
+        meals: "Breakfast, Lunch",
+        image: partyImg
+      },
+      {
+        day: 6,
+        title: "Drive to El Gouna",
+        description: "Private transfer to the Red Sea. Check-in at your beachfront resort and evening at leisure.",
+        meals: "Breakfast, Dinner",
+        image: cairoImg
       }
     ]
   },
@@ -563,7 +642,7 @@ export const experiences: Experience[] = [
     cities: "Siwa",
     description: "A journey into the heart of the Sahara. Experience the unique culture, salt lakes, and eco-luxury of Egypt's most remote oasis.",
     introduction: "Siwa is a place out of time. This retreat is designed for those seeking deep connection with nature and ancient traditions. From floating in crystalline salt lakes to sunset over the Great Sand Sea, Siwa offers a desert experience unlike any other.",
-    heroImage: heroImg,
+    heroImage: cairoImg,
     whatsappMessage: "I am interested in the Siwa Desert Retreat",
     highlights: [
       "Float in the famous turquoise salt lakes",
@@ -595,7 +674,7 @@ export const experiences: Experience[] = [
         title: "The Long Road to Paradise",
         description: "Private transfer from Cairo to Siwa. Arrive at your eco-lodge in time for a traditional Siwi dinner.",
         meals: "Dinner",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 2,
@@ -616,7 +695,7 @@ export const experiences: Experience[] = [
         title: "Farewell Oasis",
         description: "Final breakfast and a visit to the Mountain of the Dead before your private transfer back to Cairo.",
         meals: "Breakfast",
-        image: heroImg
+        image: cairoImg
       }
     ]
   },
@@ -668,7 +747,7 @@ export const experiences: Experience[] = [
         title: "Libraries & Catacombs",
         description: "Visit the modern Bibliotheca Alexandrina and the ancient Catacombs. Afternoon at the Citadel of Qaitbay.",
         meals: "Breakfast, Lunch",
-        image: heroImg
+        image: cairoImg
       },
       {
         day: 3,

@@ -1,10 +1,11 @@
 import Reveal from "../motion/Reveal";
+import Link from "next/link";
 
 export default function FinalCTA() {
   return (
     <section
       aria-labelledby="final-cta-title"
-      className="relative border-t border-border bg-gradient-to-b from-surface via-surface to-background py-24 md:py-32"
+      className="relative border-t border-border bg-gradient-to-b from-surface via-surface to-background section"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-border),transparent_60%)]" />
       
@@ -25,7 +26,7 @@ export default function FinalCTA() {
               Let us design your personal odyssey.
             </p>
             
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto mb-12">
               <a 
                 href="https://wa.me/201000000000?text=I%20want%20to%20plan%20my%20journey%20with%20Syren"
                 target="_blank"
@@ -34,12 +35,20 @@ export default function FinalCTA() {
               >
                 PLAN YOUR JOURNEY
               </a>
-              <a 
+              <Link 
                 href="/experiences"
                 className="syren-btn-secondary w-full sm:min-w-[240px]"
               >
                 View Experiences
-              </a>
+              </Link>
+            </div>
+
+            <div className="w-full max-w-md mx-auto pt-12 border-t border-white/5">
+              <p className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">Stay inspired</p>
+              <form action="https://formsubmit.co/you@email.com" method="POST" className="flex flex-col sm:flex-row gap-3"> 
+                <input placeholder="Email" name="email" className="input flex-grow" required /> 
+                <button type="submit" className="btn-secondary whitespace-nowrap">Join Updates</button> 
+              </form>
             </div>
           </div>
         </Reveal>

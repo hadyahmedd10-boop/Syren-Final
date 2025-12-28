@@ -1,34 +1,5 @@
 @import "tailwindcss";
-
-:root {
-  --background: var(--color-background);
-  --foreground: var(--color-text-primary);
-
-  /* Backgrounds */ 
-  --color-background: #0B0F12;          /* Deep night */ 
-  --color-background-light: #12171C;    /* Section separation */ 
-  --color-surface: #151B21;             /* Cards */ 
- 
-  /* Text */ 
-  --color-text-primary: #EAEAEA;        /* Main text */ 
-  --color-text-secondary: #9CA3AF;      /* Muted text */ 
- 
-  /* Brand */ 
-  --color-primary: #CFAE70;              /* Soft gold */ 
-  --color-primary-dark: #B89B5F; 
- 
-  /* Accents */ 
-  --color-accent-gold: #CFAE70; 
-  --color-border: rgba(255,255,255,0.08); 
- 
-  /* Footer */ 
-  --color-footer: #080C0E; 
-
-  /* Functional mappings */
-  --color-text-dark: #0E1A1F;
-  --color-accent: var(--color-primary);
-  --color-accent-hover: var(--color-primary-dark);
-}
+@import "./styles/spacing.css";
 
 @theme inline {
   --color-background: var(--color-background);
@@ -43,7 +14,7 @@
   --color-primary-dark: var(--color-primary-dark);
   --color-accent-gold: var(--color-accent-gold);
   --color-gold: var(--color-accent-gold);
-  --color-golddark: #B89B5F;
+  --color-golddark: var(--color-primary-dark);
   --color-accent: var(--color-accent);
   --color-accent-hover: var(--color-accent-hover);
   --color-border: var(--color-border);
@@ -59,37 +30,27 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0B0F12; 
-    --color-surface: #151B21; 
-    --color-footer: #080C0E; 
- 
-    --color-text-primary: #EAEAEA; 
-    --color-text-secondary: #9CA3AF; 
- 
-    --color-primary: #CFAE70; 
-    --color-primary-dark: #B89B5F; 
- 
-    --color-accent-gold: #CFAE70; 
-    --color-border: rgba(255, 255, 255, 0.08); 
-  }
-}
-
-.dark {
-  /* DARK MODE */ 
+:root {
+  /* DARK MODE BY DEFAULT - SYREN BRAND IDENTITY */ 
   --color-background: #0B0F12; 
   --color-surface: #151B21; 
   --color-footer: #080C0E; 
- 
+  --color-background-light: #12171C;
+
   --color-text-primary: #EAEAEA; 
   --color-text-secondary: #9CA3AF; 
- 
+  --color-text-dark: #0E1A1F;
+
   --color-primary: #CFAE70; 
   --color-primary-dark: #B89B5F; 
- 
+
   --color-accent-gold: #CFAE70; 
   --color-border: rgba(255, 255, 255, 0.08); 
+  
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
+  --color-accent: var(--color-primary);
+  --color-accent-hover: var(--color-primary-dark);
 }
 
 html {
@@ -249,35 +210,95 @@ p, span, a, li, button, input, textarea {
       px-8 py-3 
       text-[11px] 
       uppercase 
-      tracking-[0.4em] 
-      font-medium
-      text-black
-      bg-white
-      border 
-      border-white
-      hover:bg-accent-gold 
-      hover:border-accent-gold
-      hover:text-black 
+      tracking-[0.2em] 
+      font-sans 
+      font-semibold 
       transition-all 
-      duration-500; 
+      duration-500 
+      relative 
+      overflow-hidden
+      bg-accent-gold
+      text-blackbase
+      hover:bg-golddark
+      hover:scale-[1.02]
+      active:scale-[0.98]
+      shadow-lg
+      shadow-accent-gold/10;
   }
 
+/* GLOBAL SECTION SPACING */ 
+ .section { 
+   padding-top: 7rem; 
+   padding-bottom: 7rem; 
+ } 
+ 
+ @media (min-width: 768px) { 
+   .section { 
+     padding-top: 9rem; 
+     padding-bottom: 9rem; 
+   } 
+ } 
+ 
+ @media (min-width: 1024px) { 
+   .section { 
+     padding-top: 11rem; 
+     padding-bottom: 11rem; 
+   } 
+ } 
+ 
+ /* TIGHTER SECTIONS (stats, dividers) */ 
+ .section-tight { 
+   padding-top: 4rem; 
+   padding-bottom: 4rem; 
+ } 
+ 
+ /* VISUAL MERGE HELPERS */ 
+ .section-merge-top { 
+   margin-top: -4rem; 
+ } 
+ 
+ .section-merge-bottom { 
+   margin-bottom: -4rem; 
+ }
+
   /* === Syren Input === */
+  .input { 
+    width: 100%; 
+    background: transparent; 
+    border: 1px solid var(--color-border); 
+    padding: 0.9rem 1rem; 
+    border-radius: 0.75rem; 
+    color: white; 
+  }
+  
   .syren-input {
-    @apply
-      w-full
-      bg-surface
-      border
-      border-border
-      rounded-lg
-      px-4 py-3
-      text-sm
+    width: 100%; 
+    background: transparent; 
+    border: 1px solid var(--color-border); 
+    padding: 0.9rem 1rem; 
+    border-radius: 0.75rem; 
+    color: white; 
+  }
+
+  .btn-secondary {
+    @apply 
+      inline-flex
+      items-center
+      justify-center
+      rounded-full 
+      px-6 py-3
+      text-[11px] 
+      uppercase 
+      tracking-[0.2em] 
+      font-sans 
+      font-semibold 
+      transition-all 
+      duration-500 
+      bg-transparent
       text-white
-      placeholder:text-white/20
-      focus:outline-none
-      focus:border-primary
-      transition-all
-      duration-300;
+      border border-white/20
+      hover:bg-white/5
+      hover:border-white/40;
   }
 
   .scrollbar-hide::-webkit-scrollbar {
@@ -296,6 +317,10 @@ p, span, a, li, button, input, textarea {
       rgba(0,0,0,0.6), 
       transparent 
     ); 
+  }
+
+  .mobile-nav-link {
+    @apply font-serif text-3xl text-white tracking-wide hover:text-accent-gold transition-colors block text-center py-2;
   }
 
 

@@ -2,35 +2,24 @@
 
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { EASE_REVEAL, fadeInUp } from "@/lib/animations";
 
 interface RevealProps {
   children: ReactNode;
   delay?: number;
   duration?: number;
-  y?: number;
-  x?: number;
   className?: string;
 }
 
-export default function Reveal({ 
-  children, 
-  delay = 0, 
-  duration = 0.6, 
-  y = 30,
-  x = 0,
-  className = ""
-}: RevealProps) {
+export default function Reveal({ children, delay = 0, duration = 0.6, className = "" }: RevealProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y, x }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      variants={fadeInUp}
+      initial="hidden"
+      whileInView="visible"
+      custom={{ duration, delay, ease: EASE_REVEAL }}
       viewport={{ once: true, margin: "-10% 0px" }}
       className={className}
-      transition={{
-        duration,
-        delay,
-        ease: [0.21, 0.47, 0.32, 0.98] as const,
-      }}
     >
       {children}
     </motion.div>

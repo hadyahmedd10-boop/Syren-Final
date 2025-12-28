@@ -5,24 +5,25 @@
   import Script from "next/script";
 
   // Import images (using the ones we have for now)
-  import heroImg from "../../../public/Images/hero.jpg";
-  import luxuryImg from "../../../public/Images/luxury.jpg";
-  import partyImg from "../../../public/Images/party.jpg";
+  import cairoImg from "../../../public/images/hero/cairo.jpg";
 
   import { experiences } from "@/data/experiences";
 
   export const metadata: Metadata = {
     title: "Experiences",
     description: "Discover our collection of ultra-private, expertly curated Egyptian experiences. From desert expeditions to private yacht charters.",
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/experiences`,
+    },
     openGraph: {
-      title: "Our Experiences | Syren Egypt",
+      title: "Our Experiences | Syren Travel",
       description: "Discover our collection of ultra-private, expertly curated Egyptian experiences.",
-      url: "https://syren.com/experiences",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/experiences`,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Our Experiences | Syren Egypt",
+      title: "Our Experiences | Syren Travel",
       description: "Discover our collection of ultra-private, expertly curated Egyptian experiences.",
     },
   };
@@ -34,7 +35,7 @@
       "itemListElement": experiences.map((exp, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "url": `https://syren.com/experiences/${exp.slug}`,
+        "url": `${process.env.NEXT_PUBLIC_SITE_URL}/experiences/${exp.slug}`,
         "name": exp.title,
         "description": exp.description,
         "image": typeof exp.heroImage === 'string' ? exp.heroImage : exp.heroImage.src
@@ -51,7 +52,7 @@
         {/* Cinematic Hero Section */}
         <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
           <Image
-            src={heroImg}
+            src={cairoImg}
             alt="Luxury travel experience in Egypt"
             fill
             priority
@@ -77,11 +78,10 @@
           </div>
         </section>
 
-        {/* Introduction */}
-        <section className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-28">
+        <section className="mx-auto max-w-7xl px-6 md:px-8 py-4 md:py-6">
           <Reveal>
             <div className="text-center">
-              <h2 className="mb-8 font-serif text-3xl italic tracking-tight text-primary md:text-4xl">
+              <h2 className="mb-4 font-serif text-3xl italic tracking-tight text-primary md:text-4xl">
                 Crafting your narrative
               </h2>
               <p className="mx-auto max-w-2xl font-sans text-base leading-relaxed text-text-secondary">
@@ -89,13 +89,13 @@
                 From the silent majesty of the desert to the rhythmic pulse of the Nile, 
                 we unveil the Egypt that remains hidden to the casual traveler.
               </p>
-              <div className="mx-auto mt-12 h-px w-24 bg-accent-gold/30" />
+              <div className="mx-auto mt-4 h-px w-24 bg-accent-gold/30" />
             </div>
           </Reveal>
         </section>
 
         {/* Experiences Grid */}
-        <section className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-28">
+        <section className="mx-auto max-w-7xl px-6 md:px-8 py-4 md:py-6">
           <div className="grid grid-cols-1 gap-16 md:grid-cols-2 lg:gap-24">
             {experiences.map((experience, index) => (
               <Reveal key={experience.slug} delay={0.1 * index}>
@@ -115,7 +115,7 @@
         </section>
 
         {/* Contact CTA */}
-        <section className="relative overflow-hidden bg-background py-20 md:py-28">
+        <section className="relative overflow-hidden bg-background py-4 md:py-6">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <Reveal>
               <div className="rounded-2xl border border-border bg-surface p-12 text-center md:p-20">

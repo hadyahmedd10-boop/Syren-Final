@@ -1,13 +1,5 @@
-import Stripe from "stripe";
-
-const getStripe = () => {
-  const key = process.env.STRIPE_SECRET_KEY;
-  if (!key) return null;
-  
-  return new Stripe(key, {
-    apiVersion: "2025-12-15.clover" as any,
-    typescript: true,
-  });
-};
-
-export const stripe = getStripe();
+import Stripe from "stripe" 
+ 
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { 
+  apiVersion: "2025-12-15.clover" as Stripe.StripeConfig["apiVersion"], 
+})

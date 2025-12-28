@@ -5,23 +5,29 @@ import ExperienceCard from "../ExperienceCard";
 import { experiences } from "@/data/experiences";
 import Link from "next/link";
 
+import { Experience } from "@/types/experience";
+
 interface DestinationExperiencesProps {
-  destinationName: string;
-  destinationSlug: string;
+  destinationName?: string;
+  destinationSlug?: string;
+  experiences?: Experience[];
 }
 
-export default function DestinationExperiences({ destinationName, destinationSlug }: DestinationExperiencesProps) {
+export default function DestinationExperiences({ 
+  destinationSlug,
+  experiences: providedExperiences 
+}: DestinationExperiencesProps) {
   // Filter experiences by matching the current destination slug in their destinations array
-  const filteredExperiences = experiences.filter(exp => 
-    exp.destinations.includes(destinationSlug)
+  const filteredExperiences = providedExperiences || experiences.filter(exp => 
+    destinationSlug && exp.destinations.includes(destinationSlug)
   ).slice(0, 3);
 
   if (filteredExperiences.length === 0) return null;
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="section bg-background">
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal className="mb-16 md:mb-24 text-center">
+        <Reveal className="mb-4 md:mb-6 text-center">
           <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">Curated Journeys</span>
           <h2 className="font-serif text-white text-3xl md:text-5xl tracking-tight">
             Journeys That Belong Here
@@ -43,7 +49,7 @@ export default function DestinationExperiences({ destinationName, destinationSlu
           ))}
         </div>
 
-        <Reveal delay={0.4} className="mt-20 text-center">
+        <Reveal delay={0.4} className="mt-10 text-center">
           <Link 
             href="/experiences" 
             className="group inline-flex flex-col items-center gap-4"

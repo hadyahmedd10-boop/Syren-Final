@@ -14,7 +14,7 @@ export default function DestinationIntro({ description, vibeKeywords }: Destinat
   const supportingParagraph = sentences.slice(1).join(" ").trim();
 
   return (
-    <section className="py-24 md:py-32 bg-background border-y border-white/5">
+    <section className="section bg-background border-y border-white/5">
       <div className="mx-auto max-w-2xl px-6 text-center">
         <Reveal>
           <div className="space-y-12">

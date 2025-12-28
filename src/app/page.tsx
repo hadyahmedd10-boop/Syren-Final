@@ -8,12 +8,17 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Syren | Experience Egypt Beyond the Expected",
-  description: "Ultra-private, expertly curated Egyptian journeys. From desert expeditions to private yacht charters, discover the soul of Egypt through local eyes.",
+  title: "Syren — Luxury Travel Experiences in Egypt",
+  description:
+    "Private luxury journeys through Egypt. Discover Cairo, the Nile, the Red Sea, and hidden sanctuaries — curated with soul.",
   openGraph: {
-    title: "Syren | Experience Egypt Beyond the Expected",
-    description: "Ultra-private, expertly curated Egyptian journeys. From desert expeditions to private yacht charters, discover the soul of Egypt through local eyes.",
-    url: "https://syren.com",
+    title: "Syren Travel",
+    description: "Luxury travel, designed with soul.",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
+    siteName: "Syren",
+    images: [{ url: "/og.jpg", width: 1200, height: 630 }],
+    locale: "en_US",
+    type: "website",
   },
 };
 
@@ -22,9 +27,9 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     "name": "Syren",
-    "image": "https://syren.com/og-image.jpg",
-    "@id": "https://syren.com",
-    "url": "https://syren.com",
+    "image": `${process.env.NEXT_PUBLIC_SITE_URL}/og.jpg`,
+    "@id": process.env.NEXT_PUBLIC_SITE_URL,
+    "url": process.env.NEXT_PUBLIC_SITE_URL,
     "telephone": "+201000000000",
     "address": {
       "@type": "PostalAddress",
@@ -65,15 +70,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Hero />
-      <div className="section-fade h-32" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent my-24" />
       <Destinations />
-      <div className="section-fade h-32" />
       <OurVision />
-      <div className="section-fade h-32" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent my-24" />
       <PopularExperiences />
-      <div className="section-fade h-32" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent my-24" />
       <Testimonials />
-      <div className="section-fade h-32" />
       <FinalCTA />
     </>
   );

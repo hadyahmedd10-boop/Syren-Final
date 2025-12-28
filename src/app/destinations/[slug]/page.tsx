@@ -32,13 +32,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = destination.description;
 
   return {
-    title,
+    title: destination.name,
     description,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/destinations/${slug}`,
+    },
     openGraph: {
       title,
       description,
-      url: `https://syren.com/destinations/${slug}`,
-      siteName: "Syren Egypt",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/destinations/${slug}`,
+      siteName: "Syren",
       images: [
         {
           url: typeof destination.heroImage === "string" ? destination.heroImage : destination.heroImage.src,
@@ -71,7 +74,7 @@ export default async function DestinationPage({ params }: Props) {
     "name": destination.name,
     "description": destination.description,
     "image": typeof destination.heroImage === 'string' ? destination.heroImage : destination.heroImage.src,
-    "url": `https://syren.com/destinations/${slug}`,
+    "url": `${process.env.NEXT_PUBLIC_SITE_URL}/destinations/${slug}`,
     "touristType": ["Luxury Traveler", "Adventure Seeker", "Cultural Enthusiast"],
     "address": {
       "@type": "PostalAddress",

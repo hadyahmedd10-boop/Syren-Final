@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
-import heroImg from "../../public/Images/hero.jpg";
-import luxuryImg from "../../public/Images/luxury.jpg";
-import partyImg from "../../public/Images/party.jpg";
+import cairoImg from "../../public/images/hero/cairo.jpg";
+import luxuryImg from "../../public/images/hero/luxury.jpg";
+import partyImg from "../../public/images/experiences/party.jpg";
 
 export interface Destination {
   slug: string;
@@ -20,7 +20,7 @@ export const destinations: Destination[] = [
     tagline: "Timeless. Electric. Alive.",
     description:
       "Cairo is where ancient wonders meet a living, breathing city. Beyond the pyramids lies art, food, music, and neighborhoods full of soul.",
-    heroImage: heroImg,
+    heroImage: cairoImg,
     vibeKeywords: ["culture", "history", "nightlife"],
     featuredExperienceSlugs: ["cairo-after-dark", "5-day-cairo-experience"],
   },
@@ -50,7 +50,7 @@ export const destinations: Destination[] = [
     tagline: "The desert's hidden heart.",
     description:
       "A remote paradise where ancient traditions meet crystalline salt lakes and endless palm groves. Siwa is Egypt’s most soul-stirring desert escape.",
-    heroImage: heroImg,
+    heroImage: cairoImg,
     vibeKeywords: ["desert", "culture", "hidden gems"],
     featuredExperienceSlugs: ["siwa-desert-retreat"],
   },

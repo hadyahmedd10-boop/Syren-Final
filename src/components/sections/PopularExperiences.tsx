@@ -9,11 +9,11 @@ export default function PopularExperiences() {
   return (
     <section
       id="experiences"
-      className="bg-background border-t border-border scroll-mt-24 py-24 md:py-32"
+      className="bg-background scroll-mt-24 section"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <Reveal>
-          <div className="text-center mb-16 md:mb-20">
+          <div className="text-center mb-6 md:mb-8">
             <span className="block font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">The Action</span>
             <h2
               id="popular-experiences-title"

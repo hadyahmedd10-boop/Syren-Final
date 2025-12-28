@@ -1,12 +1,14 @@
 export default function Section({ 
   children, 
-  dark = false 
+  dark = false,
+  className = ""
 }: { 
   children: React.ReactNode 
-  dark?: boolean 
+  dark?: boolean
+  className?: string
 }) { 
   return ( 
-    <section className={`py-28 ${dark ? 'bg-black' : 'bg-neutral-950'}`}> 
+    <section className={`section ${dark ? 'bg-black' : 'bg-background'} ${className}`}> 
       {children} 
     </section> 
   ) 

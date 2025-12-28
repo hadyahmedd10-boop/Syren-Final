@@ -3,13 +3,14 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/motion/Reveal";
 import { experiences } from "@/data/experiences";
-import { CheckCircle2, Star, ShieldCheck, ArrowRight, MessageSquare, CreditCard, Sparkles } from "lucide-react";
+import { CheckCircle2, Star, ShieldCheck, ArrowRight, MessageSquare, Sparkles } from "lucide-react";
 import Script from "next/script";
 import ExperienceTracker from "@/components/ExperienceTracker";
 import BookingButton from "@/components/BookingButton";
 
 interface Props {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ success?: string; canceled?: string }>;
 }
 
 export async function generateStaticParams() {
@@ -32,13 +33,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = experience.description;
 
   return {
-    title,
+    title: experience.title,
     description,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/experiences/${slug}`,
+    },
     openGraph: {
       title,
       description,
-      url: `https://syren.com/experiences/${slug}`,
-      siteName: "Syren Egypt",
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/experiences/${slug}`,
+      siteName: "Syren",
       type: "article",
       images: [
         {
@@ -58,8 +62,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ExperienceDetailPage({ params }: Props) {
+export default async function ExperienceDetailPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const { success, canceled } = await searchParams;
   const experience = experiences.find((exp) => exp.slug === slug);
 
   if (!experience) {
@@ -78,7 +83,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://syren.com/experiences/${slug}`,
+      "url": `${process.env.NEXT_PUBLIC_SITE_URL}/experiences/${slug}`,
       "priceCurrency": "USD",
       "availability": "https://schema.org/PreOrder",
       "seller": {
@@ -100,6 +105,26 @@ export default async function ExperienceDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
+      {/* Payment Notifications */}
+      {success === "true" && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4">
+          <div className="bg-green-500/10 border border-green-500/20 backdrop-blur-md p-6 rounded-2xl text-center">
+            <CheckCircle2 className="mx-auto text-green-500 mb-4" size={32} />
+            <h3 className="text-white font-serif text-xl mb-2">Booking Confirmed!</h3>
+            <p className="text-white/70 text-sm">Thank you for choosing Syren. Our curators will contact you within 24 hours to finalize your itinerary.</p>
+          </div>
+        </div>
+      )}
+
+      {canceled === "true" && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4">
+          <div className="bg-red-500/10 border border-red-500/20 backdrop-blur-md p-6 rounded-2xl text-center">
+            <h3 className="text-white font-serif text-xl mb-2">Booking Canceled</h3>
+            <p className="text-white/70 text-sm">Your payment was not processed. Feel free to contact us if you have any questions.</p>
+          </div>
+        </div>
+      )}
       {/* 1. Cinematic Hero Section */}
       <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
         <Image
@@ -135,22 +160,22 @@ export default async function ExperienceDetailPage({ params }: Props) {
       </section>
 
       {/* 2. Introduction Section */}
-      <section className="mx-auto max-w-4xl px-6 text-center py-20 md:py-28">
+      <section className="mx-auto max-w-4xl px-6 text-center section bg-background">
         <Reveal>
-          <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">The Soul of the Journey</span>
-          <h2 className="mb-8 font-serif text-3xl tracking-tight text-primary md:text-4xl">
+          <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-2 block">The Soul of the Journey</span>
+          <h2 className="mb-2 font-serif text-3xl tracking-tight text-primary md:text-4xl">
             Experience Overview
           </h2>
           <p className="mx-auto max-w-3xl font-sans text-lg leading-relaxed tracking-wide text-text-secondary md:text-xl md:leading-loose italic">
             &ldquo;{experience.introduction}&rdquo;
           </p>
-          <div className="mx-auto mt-12 h-px w-24 bg-accent-gold/30" />
+          <div className="mx-auto mt-4 h-px w-24 bg-accent-gold/30" />
         </Reveal>
       </section>
 
       {/* 3. Key Experience Highlights */}
       {experience.highlights && (
-        <section className="bg-surface py-16 border-y border-white/5">
+        <section className="bg-surface section border-y border-white/5">
           <div className="mx-auto max-w-6xl px-6 md:px-8">
             <Reveal>
               <div className="mb-12 text-center">
@@ -177,9 +202,9 @@ export default async function ExperienceDetailPage({ params }: Props) {
       )}
 
       {/* 4. Itinerary (day by day) */}
-      <section className="bg-surface py-16 md:py-24">
+      <section className="bg-surface section">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
-          <div className="space-y-16 md:space-y-20">
+          <div className="space-y-8 md:space-y-12">
             {experience.itinerary.map((item, index) => (
               <Reveal key={item.day} delay={0.1 * index}>
                 <div className={`grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center ${index % 2 !== 0 ? 'lg:direction-rtl' : ''}`}>
@@ -222,7 +247,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
       </section>
 
       {/* 5. What’s Included / Not Included */}
-      <section className="bg-surface py-20 md:py-28 border-t border-white/5">
+      <section className="bg-surface section border-t border-white/5">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <Reveal>
             <div className="rounded-2xl border border-white/5 bg-background/30 p-8 md:p-16 shadow-2xl relative overflow-hidden">
@@ -274,7 +299,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
       </section>
 
       {/* 6. Testimonials (experience-specific) */}
-      <section className="py-20 md:py-28 bg-background">
+      <section className="section bg-background">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <Reveal>
             <div className="mb-16 text-center">
@@ -310,7 +335,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
       </section>
 
       {/* 7. Soft Conversion Section (inquiry / interest) */}
-      <section className="relative overflow-hidden bg-surface py-20 md:py-28 border-y border-white/5">
+      <section className="relative overflow-hidden bg-surface section border-y border-white/5">
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <Reveal>
             <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-6 block">Personal Curation</span>
@@ -340,60 +365,66 @@ export default async function ExperienceDetailPage({ params }: Props) {
       </section>
 
       {/* 8. Stripe Payment Readiness */}
-      <section className="py-20 md:py-32 bg-background relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold rounded-full blur-[120px]" />
-        </div>
-        
-        <div className="mx-auto max-w-3xl px-6">
-          <Reveal>
-            <div className="p-8 md:p-16 border border-accent-gold/20 bg-surface/50 backdrop-blur-sm relative shadow-2xl">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-background border border-accent-gold/20 px-6 py-2">
-                <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold font-bold">Secure Booking</span>
-              </div>
-              
-              <div className="text-center mb-12">
-                <h2 className="font-serif text-3xl text-primary mb-4">Finalize Your Reservation</h2>
-                <div className="flex items-center justify-center gap-3 text-text-secondary/60">
-                  <ShieldCheck size={16} />
-                  <span className="font-sans text-[10px] uppercase tracking-[0.2em]">Secured by Stripe</span>
+      {experience.price && (
+        <section className="py-4 md:py-6 bg-background relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold rounded-full blur-[120px]" />
+          </div>
+          
+          <div className="mx-auto max-w-3xl px-6">
+            <Reveal>
+              <div className="p-8 md:p-16 border border-accent-gold/20 bg-surface/50 backdrop-blur-sm relative shadow-2xl">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-background border border-accent-gold/20 px-6 py-2">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold font-bold">Secure Booking</span>
                 </div>
-              </div>
-
-              <div className="space-y-8">
-                <div className="flex justify-between items-end border-b border-white/10 pb-6">
-                  <div>
-                    <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary/40 mb-1">Estimated Price</p>
-                    <p className="font-serif text-4xl text-accent-gold">
-                      ${experience.price?.amount.toLocaleString()}
-                      <span className="text-sm font-sans text-text-secondary/40 ml-2 uppercase tracking-widest font-normal">
-                        {experience.price?.currency} {experience.price?.perPerson ? "/ Person" : ""}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 size={14} className="text-accent-gold mt-1" />
-                    <p className="font-sans text-[10px] text-text-secondary/60 uppercase tracking-[0.1em] leading-relaxed">Fully refundable up to 30 days before arrival</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 size={14} className="text-accent-gold mt-1" />
-                    <p className="font-sans text-[10px] text-text-secondary/60 uppercase tracking-[0.1em] leading-relaxed">Secure credit card & bank transfer options</p>
-                  </div>
-                </div>
-
-                <BookingButton experienceTitle={experience.title} experienceSlug={slug} />
                 
-                <p className="text-center font-sans text-[9px] uppercase tracking-[0.2em] text-text-secondary/30">
-                  By proceeding, you agree to our <a href="#" className="underline hover:text-accent-gold transition-colors">Terms of Service</a> and <a href="#" className="underline hover:text-accent-gold transition-colors">Privacy Policy</a>.
-                </p>
+                <div className="text-center mb-12">
+                  <h2 className="font-serif text-3xl text-primary mb-4">Finalize Your Reservation</h2>
+                  <div className="flex items-center justify-center gap-3 text-text-secondary/60">
+                    <ShieldCheck size={16} />
+                    <span className="font-sans text-[10px] uppercase tracking-[0.2em]">Secured by Stripe</span>
+                  </div>
+                </div>
+
+                <div className="space-y-8">
+                  <div className="flex justify-between items-end border-b border-white/10 pb-6">
+                    <div>
+                      <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary/40 mb-1">Estimated Price</p>
+                      <p className="font-serif text-4xl text-accent-gold">
+                        ${experience.price.amount.toLocaleString()}
+                        <span className="text-sm font-sans text-text-secondary/40 ml-2 uppercase tracking-widest font-normal">
+                          {experience.price.currency} {experience.price.perPerson ? "/ Person" : ""}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 size={14} className="text-accent-gold mt-1" />
+                      <p className="font-sans text-[10px] text-text-secondary/60 uppercase tracking-[0.1em] leading-relaxed">Fully refundable up to 30 days before arrival</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 size={14} className="text-accent-gold mt-1" />
+                      <p className="font-sans text-[10px] text-text-secondary/60 uppercase tracking-[0.1em] leading-relaxed">Secure credit card & bank transfer options</p>
+                    </div>
+                  </div>
+
+                  <BookingButton 
+                    experienceTitle={experience.title} 
+                    experienceSlug={slug} 
+                    price={experience.price.amount}
+                  />
+                  
+                  <p className="text-center font-sans text-[9px] uppercase tracking-[0.2em] text-text-secondary/30">
+                    By proceeding, you agree to our <a href="#" className="underline hover:text-accent-gold transition-colors">Terms of Service</a> and <a href="#" className="underline hover:text-accent-gold transition-colors">Privacy Policy</a>.
+                  </p>
+                </div>
               </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+            </Reveal>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

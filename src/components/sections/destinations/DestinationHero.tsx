@@ -29,7 +29,7 @@ export default function DestinationHero({ name, tagline, image }: DestinationHer
       transition: {
         duration: 1.2,
         ease: [0.22, 1, 0.36, 1],
-      } as any,
+      },
     },
   };
 

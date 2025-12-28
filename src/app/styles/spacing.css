@@ -1,0 +1,34 @@
+/* GLOBAL SECTION SPACING */ 
+ .section { 
+   padding-top: 7rem; 
+   padding-bottom: 7rem; 
+ } 
+ 
+ @media (min-width: 768px) { 
+   .section { 
+     padding-top: 9rem; 
+     padding-bottom: 9rem; 
+   } 
+ } 
+ 
+ @media (min-width: 1024px) { 
+   .section { 
+     padding-top: 11rem; 
+     padding-bottom: 11rem; 
+   } 
+ } 
+ 
+ /* TIGHTER SECTIONS (stats, dividers) */ 
+ .section-tight { 
+   padding-top: 4rem; 
+   padding-bottom: 4rem; 
+ } 
+ 
+ /* VISUAL MERGE HELPERS */ 
+ .section-merge-top { 
+   margin-top: -4rem; 
+ } 
+ 
+ .section-merge-bottom { 
+   margin-bottom: -4rem; 
+ }

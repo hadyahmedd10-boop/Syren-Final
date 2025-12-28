@@ -27,9 +27,9 @@ const features = [
 
 export default function DestinationWhySyren({ destinationName }: DestinationWhySyrenProps) {
   return (
-    <section className="py-24 md:py-32 bg-background border-b border-white/5">
+    <section className="section bg-background border-b border-white/5">
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal className="mb-16 md:mb-24 text-center">
+        <Reveal className="mb-4 md:mb-6 text-center">
           <h2 className="font-serif text-3xl md:text-5xl text-white">
             Why Experience {destinationName} with Syren
           </h2>

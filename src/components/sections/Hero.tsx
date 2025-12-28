@@ -1,33 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
-import luxuryImg from "../../../public/Images/luxury.jpg";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeInContainer, fadeInUp } from "@/lib/animations";
+import luxuryImg from "../../../public/images/hero/luxury.jpg";
 
 export default function Hero() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1.2,
-        ease: [0.22, 1, 0.36, 1],
-      } as any,
-    },
-  };
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center">
       <Image
@@ -47,13 +26,13 @@ export default function Hero() {
       
       <div className="relative mx-auto max-w-5xl px-6 text-center w-full z-10">
         <motion.div
-          variants={containerVariants}
+          variants={fadeInContainer}
           initial="hidden"
           animate="visible"
         >
           {/* Editorial Brand Label */}
           <motion.span 
-            variants={itemVariants}
+            variants={fadeInUp}
             className="block font-serif text-accent-gold tracking-[0.5em] text-[11px] md:text-[12px] uppercase mb-6 opacity-90"
           > 
             Syren
@@ -61,7 +40,7 @@ export default function Hero() {
       
           {/* Powerful Short Headline */}
           <motion.h1 
-            variants={itemVariants}
+            variants={fadeInUp}
             className="font-serif text-white text-3xl md:text-5xl lg:text-6xl leading-[1.05] mb-8 tracking-tight"
           > 
             Experience Egypt, <br className="hidden md:block" /> like never before! 
@@ -69,31 +48,31 @@ export default function Hero() {
       
           {/* Poetic sub-line */}
           <motion.p 
-            variants={itemVariants}
+            variants={fadeInUp}
             className="text-white/70 max-w-xl mx-auto text-[14px] md:text-base font-light italic mb-12 leading-relaxed"
           > 
             Where luxury meets authenticity and every journey is curated for you
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Link
               href="#destinations"
               className="syren-btn min-w-[180px] sm:min-w-[220px]"
             >
               Begin Your Journey
-            </a>
-            <a
+            </Link>
+            <Link
               href="/experiences"
               className="syren-btn-secondary min-w-[180px] sm:min-w-[220px]"
             >
               View Experiences
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
 
       {/* Section Bridge Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-32 md:h-48 bg-gradient-to-t from-background via-background/80 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-8 md:h-12 bg-gradient-to-t from-background via-background/80 to-transparent" />
     </section>
   );
 }
