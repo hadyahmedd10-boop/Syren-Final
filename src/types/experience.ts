@@ -30,4 +30,5 @@ export interface Experience {
     perPerson: boolean;
   };
   whatsappMessage?: string;
+  category?: 'nightlife' | 'luxury' | 'adventure' | 'cultural';
 }

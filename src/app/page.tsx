@@ -63,21 +63,35 @@ export default function Home() {
   };
 
   return (
-    <>
+    <main className="min-h-screen bg-background">
       <Script
         id="json-ld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Hero />
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent my-24" />
-      <Destinations />
-      <OurVision />
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent my-24" />
-      <PopularExperiences />
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent my-24" />
-      <Testimonials />
-      <FinalCTA />
-    </>
+      <section>
+        <Hero />
+      </section>
+      
+      <section className="section">
+        <Destinations />
+      </section>
+
+      <section className="section-tight">
+        <OurVision />
+      </section>
+
+      <section className="section">
+        <PopularExperiences />
+      </section>
+
+      <section className="section">
+        <Testimonials />
+      </section>
+
+      <section className="section-tight">
+        <FinalCTA />
+      </section>
+    </main>
   );
 }

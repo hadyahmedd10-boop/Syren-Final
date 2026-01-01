@@ -34,7 +34,7 @@ export default function DestinationExperiences({
           </h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
           {filteredExperiences.map((experience, index) => (
             <Reveal key={experience.slug} delay={index * 0.1}>
               <ExperienceCard 

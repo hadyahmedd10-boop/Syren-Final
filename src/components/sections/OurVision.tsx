@@ -9,10 +9,10 @@ const stats = [
 
 export default function OurVision() {
   return (
-    <section 
+    <div 
       id="vision" 
       aria-labelledby="vision-title" 
-      className="bg-background section scroll-mt-24"
+      className="bg-background scroll-mt-24"
     >
       <div className="mx-auto max-w-4xl px-6 md:px-8">
         <Reveal>
@@ -50,7 +50,7 @@ export default function OurVision() {
       </div>
 
       {/* Statistics Block */}
-      <div className="w-full bg-background section-tight border-y border-white/[0.04] relative overflow-hidden">
+      <div className="w-full bg-background section-tight relative overflow-hidden">
         {/* Subtle Decorative Background Element */}
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-accent/20 to-transparent md:hidden" />
@@ -82,6 +82,6 @@ export default function OurVision() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

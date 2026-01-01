@@ -100,12 +100,8 @@ export default async function DestinationPage({ params }: Props) {
         description={destination.description} 
         vibeKeywords={destination.vibeKeywords} 
       />
-
-      <div className="mx-auto my-12 h-px w-24 bg-accent-gold/40" />
       
       <DestinationWhySyren destinationName={destination.name} />
-
-      <div className="mx-auto my-12 h-px w-24 bg-accent-gold/40" />
       
       <DestinationExperiences 
         destinationName={destination.name} 

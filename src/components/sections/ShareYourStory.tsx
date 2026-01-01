@@ -13,6 +13,7 @@ export default function ShareYourStory() {
   const [success, setSuccess] = useState(false) 
   const modalRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
+  const isFirstRender = useRef(true)
 
   // Escape key handling
   useEffect(() => {
@@ -55,8 +56,12 @@ export default function ShareYourStory() {
       firstElement.focus()
 
       return () => currentModalRef?.removeEventListener('keydown', handleTab)
-    } else if (!open) {
+    } else if (!open && !isFirstRender.current) {
       triggerRef.current?.focus()
+    }
+    
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
     }
   }, [open])
 

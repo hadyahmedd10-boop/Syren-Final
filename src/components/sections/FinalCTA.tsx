@@ -1,11 +1,16 @@
 import Reveal from "../motion/Reveal";
 import Link from "next/link";
 
-export default function FinalCTA() {
+interface FinalCTAProps {
+  className?: string;
+  as?: React.ElementType;
+}
+
+export default function FinalCTA({ className = "", as: Component = "div" }: FinalCTAProps) {
   return (
-    <section
+    <Component
       aria-labelledby="final-cta-title"
-      className="relative border-t border-border bg-gradient-to-b from-surface via-surface to-background section"
+      className={`relative bg-background ${className}`}
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-border),transparent_60%)]" />
       
@@ -54,7 +59,7 @@ export default function FinalCTA() {
         </Reveal>
       </div>
 
-      <div className="mt-24 h-px w-full bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
-    </section>
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
+    </Component>
   );
 }

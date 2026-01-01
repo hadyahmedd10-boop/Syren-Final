@@ -1,28 +1,25 @@
 /* GLOBAL SECTION SPACING */ 
- .section { 
-   padding-top: 7rem; 
-   padding-bottom: 7rem; 
- } 
- 
- @media (min-width: 768px) { 
-   .section { 
-     padding-top: 9rem; 
-     padding-bottom: 9rem; 
-   } 
- } 
- 
- @media (min-width: 1024px) { 
-   .section { 
-     padding-top: 11rem; 
-     padding-bottom: 11rem; 
-   } 
- } 
- 
- /* TIGHTER SECTIONS (stats, dividers) */ 
- .section-tight { 
-   padding-top: 4rem; 
-   padding-bottom: 4rem; 
- } 
+.section { 
+  padding-top: 4rem; 
+  padding-bottom: 4rem; 
+} 
+
+@media (min-width: 768px) { 
+  .section { 
+    padding-top: 5rem; 
+    padding-bottom: 5rem; 
+  } 
+} 
+
+.section-tight { 
+  padding-top: 2.5rem; 
+  padding-bottom: 2.5rem; 
+}
+
+.section-hero { 
+  padding-top: 0; 
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem); 
+} 
  
  /* VISUAL MERGE HELPERS */ 
  .section-merge-top { 

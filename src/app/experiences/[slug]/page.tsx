@@ -183,7 +183,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
                 <h2 className="font-serif text-3xl tracking-tight text-primary">Curated Highlights</h2>
               </div>
             </Reveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
               {experience.highlights.map((highlight, idx) => (
                 <Reveal key={idx} delay={0.1 * idx}>
                   <div className="p-6 border border-white/5 bg-background/50 hover:border-accent-gold/20 transition-colors duration-500 group h-full">
@@ -366,7 +366,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
 
       {/* 8. Stripe Payment Readiness */}
       {experience.price && (
-        <section className="py-4 md:py-6 bg-background relative overflow-hidden">
+        <section className="section bg-background relative overflow-hidden">
           <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold rounded-full blur-[120px]" />
           </div>

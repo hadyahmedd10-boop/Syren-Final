@@ -2,11 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeInContainer, fadeInUp } from "@/lib/animations";
 import luxuryImg from "../../../public/images/hero/luxury.jpg";
 
 export default function Hero() {
+  useEffect(() => {
+    // Force scroll to top on mount (e.g., page reload)
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center">
       <Image

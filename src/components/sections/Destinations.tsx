@@ -25,10 +25,10 @@ export default function Destinations() {
   };
 
   return (
-    <section
+    <div
       id="destinations"
       aria-labelledby="destinations-title"
-      className="relative bg-background scroll-mt-24 section section-merge-bottom"
+      className="relative bg-background scroll-mt-24"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <div className="mb-4 flex flex-col md:flex-row md:items-end md:justify-between md:mb-6">
@@ -126,6 +126,6 @@ export default function Destinations() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

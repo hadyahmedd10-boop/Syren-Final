@@ -37,6 +37,7 @@ export const experiences: Experience[] = [
       currency: "USD",
       perPerson: true
     },
+    category: "nightlife",
     itinerary: [
       {
         day: 1,
@@ -101,6 +102,7 @@ export const experiences: Experience[] = [
       currency: "USD",
       perPerson: true
     },
+    category: "luxury",
     itinerary: [
       {
         day: 1,
@@ -183,6 +185,7 @@ export const experiences: Experience[] = [
       currency: "USD",
       perPerson: true
     },
+    category: "cultural",
     itinerary: [
       {
         day: 1,
@@ -259,6 +262,7 @@ export const experiences: Experience[] = [
       currency: "USD",
       perPerson: true
     },
+    category: "luxury",
     itinerary: [
       {
         day: 1,
@@ -357,6 +361,7 @@ export const experiences: Experience[] = [
       currency: "USD",
       perPerson: true
     },
+    category: "adventure",
     itinerary: [
       {
         day: 1,

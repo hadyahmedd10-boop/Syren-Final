@@ -1,7 +1,6 @@
 import { supabase } from '@/lib/supabaseClient' 
 import { testimonials as staticTestimonials } from "@/data/testimonials";
 import ShareYourStory from './ShareYourStory'
-import Section from '../layout/Section'
 import { Quote, Star } from 'lucide-react'
 
 export default async function Testimonials() { 
@@ -24,7 +23,7 @@ export default async function Testimonials() {
   }
 
   return ( 
-    <Section dark>
+    <div className="bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center mb-8 text-center">
           <span className="text-accent-gold font-sans text-xs uppercase tracking-[0.5em] mb-3">Voices of Syren</span>
@@ -79,6 +78,6 @@ export default async function Testimonials() {
           ))} 
         </div> 
       </div>
-    </Section>
+    </div>
   ) 
 }

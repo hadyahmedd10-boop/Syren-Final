@@ -10,8 +10,9 @@ export const metadata: Metadata = {
 
 export default function ContactPage() { 
    return ( 
-     <section className="section bg-background"> 
-       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20"> 
+     <main className="min-h-screen bg-background">
+       <section className="section"> 
+         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20"> 
   
          {/* LEFT — INFO */} 
          <div> 
@@ -51,5 +52,6 @@ export default function ContactPage() {
   
        </div> 
      </section> 
+   </main>
    ) 
  }

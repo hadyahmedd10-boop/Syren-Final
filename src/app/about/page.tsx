@@ -1,4 +1,3 @@
-import Section from "@/components/layout/Section";
 import Reveal from "@/components/motion/Reveal";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +39,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-background pt-20">
+    <main className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <Image
@@ -63,7 +62,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <Section className="py-24">
+      <section className="section">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-serif text-white mb-8 leading-relaxed">
@@ -78,10 +77,10 @@ export default function AboutPage() {
             </p>
           </Reveal>
         </div>
-      </Section>
+      </section>
 
       {/* Values */}
-      <Section dark className="py-24">
+      <section className="section bg-black/40">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {values.map((value, index) => (
@@ -99,10 +98,10 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* CTA */}
-      <Section className="py-32">
+      <section className="section">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center border border-white/5 rounded-[4rem] p-16 bg-surface/30 backdrop-blur-sm">
             <h2 className="text-4xl font-serif text-white mb-8">Ready to begin your story?</h2>
@@ -119,7 +118,7 @@ export default function AboutPage() {
             </div>
           </div>
         </Reveal>
-      </Section>
+      </section>
     </main>
   );
 }
