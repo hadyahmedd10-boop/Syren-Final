@@ -1,20 +1,17 @@
 import { NextResponse } from "next/server"; 
-import { createClient } from "@/utils/supabase/server"; 
+import { getAdminUser } from "@/lib/supabaseServer"; 
+import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 export async function POST(req: Request) { 
-  const supabase = await createClient(); 
+  const user = await getAdminUser(); 
 
-  if (!supabase) {
-    return NextResponse.json({ error: "Supabase not configured" }, { status: 500 });
-  }
-
-  const { 
-    data: { session }, 
-  } = await supabase.auth.getSession(); 
-
-  if (!session) { 
+  if (!user) { 
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 }); 
   } 
+
+  if (!supabaseAdmin) {
+    return NextResponse.json({ error: "Supabase admin not configured" }, { status: 500 });
+  }
 
   try {
     const { id } = await req.json(); 
@@ -23,7 +20,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing testimonial ID" }, { status: 400 });
     }
 
-    const { error } = await supabase 
+    const { error } = await supabaseAdmin 
       .from("testimonials") 
       .update({ approved: true }) 
       .eq("id", id); 

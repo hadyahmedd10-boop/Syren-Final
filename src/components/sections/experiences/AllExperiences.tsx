@@ -1,16 +1,17 @@
 import { experiences } from "@/data/experiences";
 import ExperienceCard from "@/components/sections/ExperienceCard";
 import Reveal from "@/components/motion/Reveal";
+import SectionHeader from "@/components/layout/SectionHeader";
 
 export default function AllExperiences() {
   return (
     <div className="mx-auto max-w-7xl px-6 md:px-8">
-      <div className="mb-12 text-center md:text-left">
-        <Reveal>
-          <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">Complete Collection</span>
-          <h2 className="font-serif text-4xl tracking-tight text-primary md:text-5xl">Explore All Journeys</h2>
-        </Reveal>
-      </div>
+      <SectionHeader 
+        title="Explore All Journeys" 
+        label="Complete Collection" 
+        align="responsive"
+        className="mb-12"
+      />
       <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
         {experiences.map((experience, index) => (
           <Reveal key={experience.slug} delay={0.1 * index}>

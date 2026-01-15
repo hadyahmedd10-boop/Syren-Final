@@ -9,9 +9,7 @@ export const metadata: Metadata = {
 export default function DestinationsPage() { 
   return (
     <main className="min-h-screen bg-background">
-      <section className="section">
-        <Destinations />
-      </section>
+      <Destinations />
     </main>
   ); 
 }

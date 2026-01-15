@@ -1,19 +1,11 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
-import { createClient } from "@/utils/supabase/server";
+import { getAdminUser } from "@/lib/supabaseServer";
 
 export async function GET() {
-  const supabase = await createClient();
+  const user = await getAdminUser();
   
-  if (!supabase) {
-    return NextResponse.json({ error: "Supabase not configured" }, { status: 500 });
-  }
-
-  const { data: { user } } = await supabase.auth.getUser();
-
-  const adminEmail = process.env.ADMIN_EMAIL;
-
-  if (!user || (adminEmail && user.email !== adminEmail)) {
+  if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -34,17 +26,9 @@ export async function GET() {
 }
 
 export async function PATCH(req: Request) {
-  const supabase = await createClient();
+  const user = await getAdminUser();
 
-  if (!supabase) {
-    return NextResponse.json({ error: "Supabase not configured" }, { status: 500 });
-  }
-
-  const { data: { user } } = await supabase.auth.getUser();
-
-  const adminEmail = process.env.ADMIN_EMAIL;
-
-  if (!user || (adminEmail && user.email !== adminEmail)) {
+  if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -75,17 +59,9 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  const supabase = await createClient();
+  const user = await getAdminUser();
 
-  if (!supabase) {
-    return NextResponse.json({ error: "Supabase not configured" }, { status: 500 });
-  }
-
-  const { data: { user } } = await supabase.auth.getUser();
-
-  const adminEmail = process.env.ADMIN_EMAIL;
-
-  if (!user || (adminEmail && user.email !== adminEmail)) {
+  if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

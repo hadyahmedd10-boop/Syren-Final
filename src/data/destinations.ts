@@ -11,6 +11,7 @@ export interface Destination {
   heroImage: StaticImageData | string;
   vibeKeywords: string[];
   featuredExperienceSlugs: string[];
+  excursionSlugs?: string[];
 }
 
 export const destinations: Destination[] = [
@@ -63,5 +64,24 @@ export const destinations: Destination[] = [
     heroImage: luxuryImg,
     vibeKeywords: ["mediterranean", "history", "elegance"],
     featuredExperienceSlugs: ["alexandria-coastal-elegance"],
+  },
+  {
+    slug: "hurghada",
+    name: "Hurghada",
+    tagline: "Sun, Sea, and Desert Adventures",
+    description:
+      "A vibrant coastal escape offering world-class diving, luxury resorts, and thrilling desert safaris. The gateway to the Red Sea's most iconic experiences.",
+    heroImage: partyImg,
+    vibeKeywords: ["adventure", "diving", "resort"],
+    featuredExperienceSlugs: [],
+    excursionSlugs: [
+      "hurghada-luxor-day-trip",
+      "hurghada-cairo-day-trip",
+      "hurghada-jeep-safari",
+      "mahmya-island-snorkeling",
+      "giftun-island-snorkeling",
+      "paradise-island-snorkeling",
+      "hurghada-quad-bike",
+    ],
   },
 ];

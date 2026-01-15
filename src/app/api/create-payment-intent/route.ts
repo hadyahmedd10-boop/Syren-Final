@@ -10,7 +10,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { amount, currency = "usd", experienceId } = await request.json();
+    const { amount, currency = "usd", experienceId, addOns } = await request.json();
 
     // In a production app, you would fetch the price from your database
     // using the experienceId to prevent client-side price manipulation.
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
       currency: currency,
       metadata: {
         experienceId: experienceId || "not_specified",
+        addOns: (addOns ?? []).join(","),
       },
       automatic_payment_methods: {
         enabled: true,

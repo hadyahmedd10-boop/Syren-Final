@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -13,12 +13,14 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const supabase = createClient();
 
-  useEffect(() => {
-    const errorParam = searchParams.get("error");
-    if (errorParam === "unauthorized") {
-      setError("You do not have administrative access.");
-    }
-  }, [searchParams]);
+  // Determine if there's an error from search params
+  const authError = searchParams.get("error") === "not_allowed" 
+    ? "Your account is not on the administrative allowlist." 
+    : searchParams.get("error") === "unauthorized"
+    ? "You do not have administrative access."
+    : null;
+
+  const displayError = error || authError;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +40,8 @@ function LoginForm() {
       setError(error.message);
       setLoading(false);
     } else {
-      router.push("/admin/testimonials");
+      const next = searchParams.get("next") || "/admin/testimonials";
+      router.push(next);
       router.refresh();
     }
   };
@@ -79,9 +82,9 @@ function LoginForm() {
           />
         </div>
 
-        {error && (
+        {displayError && (
           <div className="text-red-500 text-sm bg-red-500/10 border border-red-500/20 rounded-lg p-3">
-            {error}
+            {displayError}
           </div>
         )}
 

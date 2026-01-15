@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabaseClient' 
 import { testimonials as staticTestimonials } from "@/data/testimonials";
 import ShareYourStory from './ShareYourStory'
+import SectionHeader from '../layout/SectionHeader'
 import { Quote, Star } from 'lucide-react'
 
 export default async function Testimonials() { 
@@ -25,12 +26,12 @@ export default async function Testimonials() {
   return ( 
     <div className="bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center mb-8 text-center">
-          <span className="text-accent-gold font-sans text-xs uppercase tracking-[0.5em] mb-3">Voices of Syren</span>
-          <h2 className="text-4xl md:text-5xl font-serif text-white mb-4"> 
-            Echoes of Extraordinary Journeys
-          </h2> 
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent mb-6" />
+        <div className="flex flex-col items-center mb-8">
+          <SectionHeader 
+            title="Echoes of Extraordinary Journeys" 
+            label="Voices of Syren" 
+            className="mb-0" // Reset margin since we have ShareYourStory below
+          />
           
           <ShareYourStory />
         </div>

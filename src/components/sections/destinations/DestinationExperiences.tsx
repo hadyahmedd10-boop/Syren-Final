@@ -2,6 +2,7 @@
 
 import Reveal from "../../motion/Reveal";
 import ExperienceCard from "../ExperienceCard";
+import SectionHeader from "../../layout/SectionHeader";
 import { experiences } from "@/data/experiences";
 import Link from "next/link";
 
@@ -11,11 +12,15 @@ interface DestinationExperiencesProps {
   destinationName?: string;
   destinationSlug?: string;
   experiences?: Experience[];
+  title?: string;
+  className?: string;
 }
 
 export default function DestinationExperiences({ 
   destinationSlug,
-  experiences: providedExperiences 
+  experiences: providedExperiences,
+  title = "Journeys That Belong Here",
+  className = "bg-background"
 }: DestinationExperiencesProps) {
   // Filter experiences by matching the current destination slug in their destinations array
   const filteredExperiences = providedExperiences || experiences.filter(exp => 
@@ -25,14 +30,13 @@ export default function DestinationExperiences({
   if (filteredExperiences.length === 0) return null;
 
   return (
-    <section className="section bg-background">
+    <section className={`section ${className}`}>
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal className="mb-4 md:mb-6 text-center">
-          <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">Curated Journeys</span>
-          <h2 className="font-serif text-white text-3xl md:text-5xl tracking-tight">
-            Journeys That Belong Here
-          </h2>
-        </Reveal>
+        <SectionHeader 
+          title={title} 
+          label="Curated Journeys" 
+          className="mb-4 md:mb-6"
+        />
 
         <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
           {filteredExperiences.map((experience, index) => (

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Syren Travel",
     description: "Luxury travel, designed with soul.",
-    url: process.env.NEXT_PUBLIC_SITE_URL,
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel",
     siteName: "Syren",
     images: [{ url: "/og.jpg", width: 1200, height: 630 }],
     locale: "en_US",

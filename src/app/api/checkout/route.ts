@@ -3,11 +3,21 @@ import { NextResponse } from "next/server"
 
 export async function POST(req: Request) { 
   try {
-    const { title, price, slug } = await req.json() 
+    if (!stripe) {
+      return NextResponse.json(
+        { error: "Stripe is not configured" },
+        { status: 500 }
+      );
+    }
+    const { title, price, slug, addOns } = await req.json() 
 
     const session = await stripe.checkout.sessions.create({ 
       payment_method_types: ["card"], 
       mode: "payment", 
+      metadata: {
+        experienceId: slug,
+        addOns: (addOns ?? []).join(","),
+      },
       line_items: [ 
         { 
           price_data: { 

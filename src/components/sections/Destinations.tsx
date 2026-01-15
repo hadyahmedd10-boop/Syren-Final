@@ -1,11 +1,13 @@
 "use client";
 
 import Reveal from "../motion/Reveal";
+import SectionHeader from "../layout/SectionHeader";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { destinations } from "@/data/destinations";
+import { getExcursionsByDestination } from "@/lib/getExcursionsByDestination";
 
 export default function Destinations() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -28,22 +30,17 @@ export default function Destinations() {
     <div
       id="destinations"
       aria-labelledby="destinations-title"
-      className="relative bg-background scroll-mt-24"
+      className="relative bg-background scroll-mt-24 section"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <div className="mb-4 flex flex-col md:flex-row md:items-end md:justify-between md:mb-6">
-          <Reveal>
-            <div className="text-center md:text-left">
-              <span className="block font-sans text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">The Landscape</span>
-              <h2
-                id="destinations-title"
-                className="font-serif text-2xl md:text-5xl tracking-tight text-white"
-              >
-                The Map of Syren
-              </h2>
-              <div className="mx-auto mt-6 h-px w-20 bg-accent-gold/40 md:mx-0" />
-            </div>
-          </Reveal>
+          <SectionHeader 
+            id="destinations-title"
+            title="The Map of Syren" 
+            label="The Landscape" 
+            align="responsive"
+            className="mb-0 md:mb-0" // Reset mb since parent has mb-4/md:mb-6
+          />
 
           {/* Desktop Navigation Buttons */}
           <div className="hidden md:flex gap-4 mt-8 md:mt-0">
@@ -68,8 +65,10 @@ export default function Destinations() {
           ref={scrollRef}
           className="flex overflow-x-auto pb-6 gap-6 md:gap-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:-mx-8 md:px-8"
         >
-          {destinations.map((dest, index) => (
-            <div key={dest.slug} className="min-w-[85%] md:min-w-[45%] lg:min-w-[30%] snap-center">
+          {destinations.map((dest, index) => {
+            const excursionCount = getExcursionsByDestination(dest.slug).length;
+            return (
+              <div key={dest.slug} className="min-w-[85%] md:min-w-[45%] lg:min-w-[30%] snap-center">
               <Reveal delay={0.1 * (index + 1)}>
                 <article className="group relative flex flex-col transition-all duration-500 ease-out hover:-translate-y-0.5 h-full">
                   <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface border border-border transition-all duration-500 ease-out group-hover:border-primary/30">
@@ -110,6 +109,13 @@ export default function Destinations() {
                     </Link>
 
                     <div className="mt-2 h-px w-10 bg-accent-gold/20 md:w-12 mx-auto md:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-primary/40" />
+                    
+                    {excursionCount > 0 && ( 
+                      <span className="mt-3 inline-flex items-center justify-center rounded-full border border-border bg-surface/60 px-4 py-2 font-sans text-[10px] uppercase tracking-[0.3em] text-text-secondary"> 
+                        {excursionCount} Excursions 
+                      </span> 
+                    )} 
+
                     <p className="mt-3 font-sans text-[11px] leading-relaxed text-white/40 md:text-sm line-clamp-2">
                       {dest.description}
                     </p>
@@ -123,7 +129,8 @@ export default function Destinations() {
                 </article>
               </Reveal>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

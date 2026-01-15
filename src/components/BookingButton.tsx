@@ -8,9 +8,15 @@ interface BookingButtonProps {
   experienceTitle: string
   experienceSlug: string
   price: number
+  selectedAddOns?: string[]
 }
 
-export default function BookingButton({ experienceTitle, experienceSlug, price }: BookingButtonProps) {
+export default function BookingButton({ 
+  experienceTitle, 
+  experienceSlug, 
+  price,
+  selectedAddOns = []
+}: BookingButtonProps) {
   const posthog = usePostHog()
   const [loading, setLoading] = useState(false)
 
@@ -34,6 +40,7 @@ export default function BookingButton({ experienceTitle, experienceSlug, price }
           title: experienceTitle, 
           price: price, 
           slug: experienceSlug,
+          addOns: selectedAddOns,
         }), 
       }) 
       

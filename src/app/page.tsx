@@ -69,13 +69,11 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <section>
+      <section className="section-hero">
         <Hero />
       </section>
       
-      <section className="section">
-        <Destinations />
-      </section>
+      <Destinations />
 
       <section className="section-tight">
         <OurVision />

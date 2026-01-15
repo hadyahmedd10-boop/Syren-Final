@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SectionHeader from "@/components/layout/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Contact Us | Syren",
@@ -12,13 +13,16 @@ export default function ContactPage() {
    return ( 
      <main className="min-h-screen bg-background">
        <section className="section"> 
-         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20"> 
+         <div className="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-20"> 
   
          {/* LEFT — INFO */} 
          <div> 
-           <h1 className="font-serif text-5xl mb-6 text-primary"> 
-             Contact Syren 
-           </h1> 
+           <SectionHeader 
+             title="Contact Syren" 
+             label="Begin Your Journey" 
+             align="left"
+             className="mb-8"
+           />
            <p className="text-text-secondary mb-12"> 
              Every journey begins with a conversation. Our concierge team is ready. 
            </p> 

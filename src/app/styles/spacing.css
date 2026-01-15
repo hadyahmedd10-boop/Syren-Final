@@ -1,31 +1,47 @@
 /* GLOBAL SECTION SPACING */ 
 .section { 
-  padding-top: 4rem; 
-  padding-bottom: 4rem; 
+  padding-top: 3rem; 
+  padding-bottom: 3rem; 
 } 
 
 @media (min-width: 768px) { 
   .section { 
-    padding-top: 5rem; 
-    padding-bottom: 5rem; 
+    padding-top: 4.5rem; 
+    padding-bottom: 4.5rem; 
   } 
 } 
 
 .section-tight { 
-  padding-top: 2.5rem; 
-  padding-bottom: 2.5rem; 
+  padding-top: 1.5rem; 
+  padding-bottom: 1.5rem; 
+}
+
+@media (min-width: 768px) {
+  .section-tight {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
 }
 
 .section-hero { 
   padding-top: 0; 
-  padding-bottom: clamp(1.5rem, 3vw, 2.5rem); 
+  padding-bottom: clamp(1rem, 2.5vw, 2rem); 
 } 
  
  /* VISUAL MERGE HELPERS */ 
  .section-merge-top { 
-   margin-top: -4rem; 
+   margin-top: -3rem; 
  } 
  
  .section-merge-bottom { 
-   margin-bottom: -4rem; 
+   margin-bottom: -3rem; 
  }
+
+@media (min-width: 768px) {
+  .section-merge-top {
+    margin-top: -4.5rem;
+  }
+  .section-merge-bottom {
+    margin-bottom: -4.5rem;
+  }
+}

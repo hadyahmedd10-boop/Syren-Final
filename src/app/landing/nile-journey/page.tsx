@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import FinalCTA from "@/components/sections/FinalCTA";
 
 export const metadata: Metadata = {
   title: "Nile River Journeys | Syren",
@@ -30,6 +31,8 @@ export default function NileJourneyLanding() {
           </Link> 
         </div> 
       </section> 
+
+      <FinalCTA as="section" className="section border-t border-white/5" />
     </main>
   ) 
 }

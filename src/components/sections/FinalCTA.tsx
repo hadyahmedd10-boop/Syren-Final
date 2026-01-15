@@ -1,5 +1,6 @@
 import Reveal from "../motion/Reveal";
 import Link from "next/link";
+import SectionHeader from "../layout/SectionHeader";
 
 interface FinalCTAProps {
   className?: string;
@@ -15,23 +16,21 @@ export default function FinalCTA({ className = "", as: Component = "div" }: Fina
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-border),transparent_60%)]" />
       
       <div className="mx-auto max-w-7xl px-6 md:px-8 text-center relative z-10">
-        <Reveal>
-          <div className="flex flex-col items-center">
-            <span className="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] text-accent-gold mb-5">
-              The Journey Continues
-            </span>
-            <h2 
-              id="final-cta-title"
-              className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight text-primary leading-[1.1]"
-            >
-              The Egypt You&apos;ve <br className="hidden md:block" /> Always Imagined.
-            </h2>
-            <p className="mt-6 font-sans text-[13px] md:text-sm lg:text-base text-white/60 max-w-xl mx-auto leading-relaxed">
+        <SectionHeader 
+          title={<>The Egypt You&apos;ve <br className="hidden md:block" /> Always Imagined.</>}
+          label="The Journey Continues"
+          description={
+            <>
               Private access. Master curators. Unforgettable moments. <br className="hidden md:block" />
               Let us design your personal odyssey.
-            </p>
-            
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto mb-12">
+            </>
+          }
+          className="mb-12"
+        />
+        
+        <Reveal>
+          <div className="flex flex-col items-center">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto mb-12">
               <a 
                 href="https://wa.me/201000000000?text=I%20want%20to%20plan%20my%20journey%20with%20Syren"
                 target="_blank"

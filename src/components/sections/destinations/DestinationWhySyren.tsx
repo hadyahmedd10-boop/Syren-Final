@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "../../motion/Reveal";
+import SectionHeader from "../../layout/SectionHeader";
 import { Map, Clock, Sparkles } from "lucide-react";
 
 interface DestinationWhySyrenProps {
@@ -29,11 +30,10 @@ export default function DestinationWhySyren({ destinationName }: DestinationWhyS
   return (
     <section className="section bg-background border-b border-white/5">
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal className="mb-4 md:mb-6 text-center">
-          <h2 className="font-serif text-3xl md:text-5xl text-white">
-            Why Experience {destinationName} with Syren
-          </h2>
-        </Reveal>
+        <SectionHeader 
+          title={`Why Experience ${destinationName} with Syren`} 
+          className="mb-12 md:mb-16"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           {features.map((feature, index) => (

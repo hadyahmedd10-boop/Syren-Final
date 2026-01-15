@@ -1,4 +1,5 @@
 import Reveal from "../motion/Reveal";
+import SectionHeader from "../layout/SectionHeader";
 
 const stats = [
   { value: "20+", label: "Years of Expertise" },
@@ -15,18 +16,12 @@ export default function OurVision() {
       className="bg-background scroll-mt-24"
     >
       <div className="mx-auto max-w-4xl px-6 md:px-8">
-        <Reveal>
-          <div className="text-center mb-8 md:mb-12">
-            <span className="block font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">The Soul</span>
-            <h2
-              id="vision-title"
-              className="font-serif text-3xl md:text-5xl tracking-tight text-white"
-            >
-              The Vision of Syren
-            </h2>
-            <div className="mx-auto mt-8 h-px w-20 bg-accent-gold/40" />
-          </div>
-        </Reveal>
+        <SectionHeader 
+          id="vision-title"
+          title="The Vision of Syren" 
+          label="The Soul" 
+          className="mb-8 md:mb-12"
+        />
         
         <div className="space-y-6 max-w-2xl mx-auto">
           <Reveal delay={0.2}>

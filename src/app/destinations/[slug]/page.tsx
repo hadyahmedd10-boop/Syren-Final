@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Reveal from "@/components/motion/Reveal";
 import { destinations } from "@/data/destinations";
+import { excursions } from "@/data/excursions";
+import ExperienceCard from "@/components/sections/ExperienceCard";
 import DestinationHero from "@/components/sections/destinations/DestinationHero";
+import SectionHeader from "@/components/layout/SectionHeader";
 import DestinationIntro from "@/components/sections/destinations/DestinationIntro";
 import DestinationWhySyren from "@/components/sections/destinations/DestinationWhySyren";
 import DestinationExperiences from "@/components/sections/destinations/DestinationExperiences";
@@ -30,21 +34,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${destination.name} | ${destination.tagline}`;
   const description = destination.description;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
+  const heroImageUrl = typeof destination.heroImage === "string" ? destination.heroImage : destination.heroImage.src;
 
   return {
     title: destination.name,
     description,
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/destinations/${slug}`,
+      canonical: `${siteUrl}/destinations/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/destinations/${slug}`,
+      url: `${siteUrl}/destinations/${slug}`,
       siteName: "Syren",
       images: [
         {
-          url: typeof destination.heroImage === "string" ? destination.heroImage : destination.heroImage.src,
+          url: heroImageUrl,
           width: 1200,
           height: 630,
           alt: destination.name,
@@ -55,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: [typeof destination.heroImage === "string" ? destination.heroImage : destination.heroImage.src],
+      images: [heroImageUrl],
     },
   };
 }
@@ -68,13 +74,18 @@ export default async function DestinationPage({ params }: Props) {
     notFound();
   }
 
+  const destinationExcursions = excursions.filter(e => e.destinationSlug === destination.slug);
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
+  const heroImageUrl = typeof destination.heroImage === 'string' ? destination.heroImage : destination.heroImage.src;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
     "name": destination.name,
     "description": destination.description,
-    "image": typeof destination.heroImage === 'string' ? destination.heroImage : destination.heroImage.src,
-    "url": `${process.env.NEXT_PUBLIC_SITE_URL}/destinations/${slug}`,
+    "image": heroImageUrl,
+    "url": `${siteUrl}/destinations/${slug}`,
     "touristType": ["Luxury Traveler", "Adventure Seeker", "Cultural Enthusiast"],
     "address": {
       "@type": "PostalAddress",
@@ -107,10 +118,33 @@ export default async function DestinationPage({ params }: Props) {
         destinationName={destination.name} 
         destinationSlug={slug} 
       />
+
+      {destinationExcursions.length > 0 && ( 
+        <section className="bg-background border-t border-border section"> 
+          <div className="mx-auto max-w-7xl px-6 md:px-8"> 
+            <SectionHeader title="Recommended Add-Ons" />
       
-      <div className="h-32 bg-gradient-to-b from-background to-surface" />
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10"> 
+              {destinationExcursions.map((exc, index) => ( 
+                <Reveal key={exc.slug} delay={0.05 * (index + 1)}> 
+                  <ExperienceCard 
+                     title={exc.title} 
+                     description={exc.shortDescription} 
+                     image={exc.image} 
+                     alt={exc.imageAlt ?? exc.title} 
+                     duration={exc.duration} 
+                     cities={destination.name} 
+                     buttonText="View Excursion" 
+                     href={`/excursions/${exc.slug}`} 
+                   /> 
+                </Reveal> 
+              ))} 
+            </div> 
+          </div> 
+        </section> 
+      )}
       
-      <FinalCTA />
+      <FinalCTA as="section" className="section border-t border-border" />
     </main>
   );
 }

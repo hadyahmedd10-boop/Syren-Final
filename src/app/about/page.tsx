@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import heroImg from "../../../public/images/hero/luxury.jpg";
 import { Sparkles, ShieldCheck, Globe, Users } from "lucide-react";
+import SectionHeader from "@/components/layout/SectionHeader";
+import FinalCTA from "@/components/sections/FinalCTA";
 
 import type { Metadata } from "next";
 
@@ -64,24 +66,25 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="section">
         <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <h2 className="text-3xl md:text-4xl font-serif text-white mb-8 leading-relaxed">
-              Syren was born from a simple belief: that travel should be as <span className="text-accent-gold italic">extraordinary</span> as the soul seeking it.
-            </h2>
-            <div className="w-24 h-px bg-accent-gold/30 mx-auto mb-12" />
-            <p className="text-text-secondary text-lg leading-relaxed mb-8">
-              In a world of mass tourism, we stand for the rare, the authentic, and the deeply personal. Egypt is a land of infinite depth, and our mission is to peel back the layers, revealing the electric energy and timeless grace that most travelers never see.
-            </p>
-            <p className="text-text-secondary text-lg leading-relaxed">
-              Whether it&apos;s a private dinner at the foot of the Sphinx or a soul-stirring retreat in the Siwa Oasis, we ensure every Syren journey is a masterpiece of curation.
-            </p>
-          </Reveal>
+          <SectionHeader 
+            title={<>Syren was born from a simple belief: that travel should be as <span className="text-accent-gold italic">extraordinary</span> as the soul seeking it.</>}
+            description={
+              <>
+                <p className="mb-8">
+                  In a world of mass tourism, we stand for the rare, the authentic, and the deeply personal. Egypt is a land of infinite depth, and our mission is to peel back the layers, revealing the electric energy and timeless grace that most travelers never see.
+                </p>
+                <p>
+                  Whether it&apos;s a private dinner at the foot of the Sphinx or a soul-stirring retreat in the Siwa Oasis, we ensure every Syren journey is a masterpiece of curation.
+                </p>
+              </>
+            }
+          />
         </div>
       </section>
 
       {/* Values */}
       <section className="section bg-black/40">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.1}>
@@ -102,23 +105,24 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="section">
-        <Reveal>
-          <div className="max-w-3xl mx-auto text-center border border-white/5 rounded-[4rem] p-16 bg-surface/30 backdrop-blur-sm">
-            <h2 className="text-4xl font-serif text-white mb-8">Ready to begin your story?</h2>
-            <p className="text-text-secondary mb-12">
-              Let us craft a journey that resonates with your unique vision of discovery.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/experiences" className="syren-btn-primary px-10 py-4">
-                Explore Experiences
-              </Link>
-              <Link href="/contact" className="px-10 py-4 border border-white/10 rounded-full text-white text-xs uppercase tracking-widest hover:bg-white/5 transition-all">
-                Speak with a Curator
-              </Link>
-            </div>
+        <div className="max-w-3xl mx-auto text-center border border-white/5 rounded-[4rem] p-16 bg-surface/30 backdrop-blur-sm">
+          <SectionHeader 
+            title="Ready to begin your story?" 
+            description="Let us craft a journey that resonates with your unique vision of discovery."
+            className="mb-12"
+          />
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link href="/experiences" className="syren-btn-primary px-10 py-4">
+              Explore Experiences
+            </Link>
+            <Link href="/contact" className="px-10 py-4 border border-white/10 rounded-full text-white text-xs uppercase tracking-widest hover:bg-white/5 transition-all">
+              Speak with a Curator
+            </Link>
           </div>
-        </Reveal>
+        </div>
       </section>
+
+      <FinalCTA as="section" className="section border-t border-white/5" />
     </main>
   );
 }

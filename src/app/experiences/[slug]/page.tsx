@@ -3,10 +3,11 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/motion/Reveal";
 import { experiences } from "@/data/experiences";
-import { CheckCircle2, Star, ShieldCheck, ArrowRight, MessageSquare, Sparkles } from "lucide-react";
-import Script from "next/script";
+import { CheckCircle2, Star, ArrowRight, MessageSquare, Sparkles } from "lucide-react";
 import ExperienceTracker from "@/components/ExperienceTracker";
-import BookingButton from "@/components/BookingButton";
+import SectionHeader from "@/components/layout/SectionHeader";
+import BookingSection from "@/components/checkout/BookingSection";
+import { excursions } from "@/data/excursions";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -31,22 +32,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${experience.title} | ${experience.subtitle || "Curated Egyptian Journeys"}`;
   const description = experience.description;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
+  const ogImage = typeof experience.heroImage === "string" ? experience.heroImage : experience.heroImage.src;
 
   return {
     title: experience.title,
     description,
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/experiences/${slug}`,
+      canonical: `/experiences/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/experiences/${slug}`,
+      url: `${siteUrl}/experiences/${slug}`,
       siteName: "Syren",
       type: "article",
       images: [
         {
-          url: typeof experience.heroImage === "string" ? experience.heroImage : experience.heroImage.src,
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: experience.title,
@@ -57,25 +60,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: [typeof experience.heroImage === "string" ? experience.heroImage : experience.heroImage.src],
+      images: [ogImage],
     },
   };
 }
 
 export default async function ExperienceDetailPage({ params, searchParams }: Props) {
-  const { slug } = await params;
-  const { success, canceled } = await searchParams;
+  // Await params and searchParams at the beginning to avoid potential Next.js 15/16 pitfalls
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+  
+  const { slug } = resolvedParams;
+  const { success, canceled } = resolvedSearchParams;
+  
   const experience = experiences.find((exp) => exp.slug === slug);
 
   if (!experience) {
     notFound();
   }
 
+  const matchedExcursions = excursions.filter(
+    (exc) => 
+      experience.destinations.includes(exc.destinationSlug) && 
+      typeof exc.priceCents === "number"
+  );
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
+  const heroImageUrl = typeof experience.heroImage === 'string' ? experience.heroImage : experience.heroImage.src;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": experience.title,
-    "image": typeof experience.heroImage === 'string' ? experience.heroImage : experience.heroImage.src,
+    "image": heroImageUrl,
     "description": experience.description,
     "brand": {
       "@type": "Brand",
@@ -83,13 +100,16 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
     },
     "offers": {
       "@type": "Offer",
-      "url": `${process.env.NEXT_PUBLIC_SITE_URL}/experiences/${slug}`,
+      "url": `${siteUrl}/experiences/${slug}`,
       "priceCurrency": "USD",
       "availability": "https://schema.org/PreOrder",
       "seller": {
         "@type": "Organization",
         "name": "Syren"
-      }
+      },
+      ...(experience.price && {
+        "price": experience.price.amount,
+      })
     }
   };
 
@@ -100,8 +120,8 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
   return (
     <main className="min-h-screen bg-background">
       <ExperienceTracker experienceTitle={experience.title} experienceSlug={slug} />
-      <Script
-        id={`experience-${slug}-json-ld`}
+      <script
+        id={`experience-json-ld-${slug}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
@@ -161,15 +181,15 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
 
       {/* 2. Introduction Section */}
       <section className="mx-auto max-w-4xl px-6 text-center section bg-background">
+        <SectionHeader 
+          title="Experience Overview" 
+          label="The Soul of the Journey" 
+          className="mb-8 md:mb-12"
+        />
         <Reveal>
-          <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-2 block">The Soul of the Journey</span>
-          <h2 className="mb-2 font-serif text-3xl tracking-tight text-primary md:text-4xl">
-            Experience Overview
-          </h2>
           <p className="mx-auto max-w-3xl font-sans text-lg leading-relaxed tracking-wide text-text-secondary md:text-xl md:leading-loose italic">
             &ldquo;{experience.introduction}&rdquo;
           </p>
-          <div className="mx-auto mt-4 h-px w-24 bg-accent-gold/30" />
         </Reveal>
       </section>
 
@@ -177,12 +197,10 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
       {experience.highlights && (
         <section className="bg-surface section border-y border-white/5">
           <div className="mx-auto max-w-6xl px-6 md:px-8">
-            <Reveal>
-              <div className="mb-12 text-center">
-                <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">The Distinction</span>
-                <h2 className="font-serif text-3xl tracking-tight text-primary">Curated Highlights</h2>
-              </div>
-            </Reveal>
+            <SectionHeader 
+              title="Curated Highlights" 
+              label="The Distinction" 
+            />
             <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
               {experience.highlights.map((highlight, idx) => (
                 <Reveal key={idx} delay={0.1 * idx}>
@@ -251,12 +269,13 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <Reveal>
             <div className="rounded-2xl border border-white/5 bg-background/30 p-8 md:p-16 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-gold/20 to-transparent" />
-              <h2 className="mb-16 text-center font-serif text-3xl tracking-tight text-primary md:text-4xl">
-                The Logistics
-              </h2>
-              
-              <div className="grid gap-16 md:grid-cols-2">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-gold/20 to-transparent" />
+            <SectionHeader 
+              title="The Logistics" 
+              className="mb-16"
+            />
+            
+            <div className="grid gap-16 md:grid-cols-2">
                 <div className="space-y-8">
                   <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-accent-gold flex items-center gap-3">
                     <div className="h-px w-4 bg-accent-gold/40" />
@@ -301,12 +320,10 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
       {/* 6. Testimonials (experience-specific) */}
       <section className="section bg-background">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <Reveal>
-            <div className="mb-16 text-center">
-              <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4 block">The Testimony</span>
-              <h2 className="font-serif text-4xl tracking-tight text-primary">Traveler Stories</h2>
-            </div>
-          </Reveal>
+          <SectionHeader 
+            title="Traveler Stories" 
+            label="The Testimony" 
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Placeholder for now - could be fetched from API filtered by experience */}
             {[1, 2].map((i) => (
@@ -337,11 +354,11 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
       {/* 7. Soft Conversion Section (inquiry / interest) */}
       <section className="relative overflow-hidden bg-surface section border-y border-white/5">
         <div className="relative mx-auto max-w-4xl px-6 text-center">
+          <SectionHeader 
+            title="Ready to Personalize This Experience?" 
+            label="Personal Curation" 
+          />
           <Reveal>
-            <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-6 block">Personal Curation</span>
-            <h2 className="mb-8 font-serif text-4xl leading-tight text-text-primary md:text-5xl">
-              Ready to Personalize This Experience?
-            </h2>
             <p className="mx-auto mb-12 max-w-2xl font-sans text-lg text-text-secondary md:text-xl leading-relaxed">
               Every journey we create is unique. Message our master curators to adjust this itinerary to your specific pace and interests.
             </p>
@@ -364,63 +381,21 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
         </div>
       </section>
 
-      {/* 8. Stripe Payment Readiness */}
+      {/* 8. Booking Section */}
       {experience.price && (
-        <section className="section bg-background relative overflow-hidden">
+        <section id="book" className="section bg-background relative overflow-hidden">
           <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold rounded-full blur-[120px]" />
           </div>
           
-          <div className="mx-auto max-w-3xl px-6">
+          <div className="mx-auto max-w-5xl px-6 md:px-8">
             <Reveal>
-              <div className="p-8 md:p-16 border border-accent-gold/20 bg-surface/50 backdrop-blur-sm relative shadow-2xl">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-background border border-accent-gold/20 px-6 py-2">
-                  <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold font-bold">Secure Booking</span>
-                </div>
-                
-                <div className="text-center mb-12">
-                  <h2 className="font-serif text-3xl text-primary mb-4">Finalize Your Reservation</h2>
-                  <div className="flex items-center justify-center gap-3 text-text-secondary/60">
-                    <ShieldCheck size={16} />
-                    <span className="font-sans text-[10px] uppercase tracking-[0.2em]">Secured by Stripe</span>
-                  </div>
-                </div>
-
-                <div className="space-y-8">
-                  <div className="flex justify-between items-end border-b border-white/10 pb-6">
-                    <div>
-                      <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary/40 mb-1">Estimated Price</p>
-                      <p className="font-serif text-4xl text-accent-gold">
-                        ${experience.price.amount.toLocaleString()}
-                        <span className="text-sm font-sans text-text-secondary/40 ml-2 uppercase tracking-widest font-normal">
-                          {experience.price.currency} {experience.price.perPerson ? "/ Person" : ""}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 size={14} className="text-accent-gold mt-1" />
-                      <p className="font-sans text-[10px] text-text-secondary/60 uppercase tracking-[0.1em] leading-relaxed">Fully refundable up to 30 days before arrival</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 size={14} className="text-accent-gold mt-1" />
-                      <p className="font-sans text-[10px] text-text-secondary/60 uppercase tracking-[0.1em] leading-relaxed">Secure credit card & bank transfer options</p>
-                    </div>
-                  </div>
-
-                  <BookingButton 
-                    experienceTitle={experience.title} 
-                    experienceSlug={slug} 
-                    price={experience.price.amount}
-                  />
-                  
-                  <p className="text-center font-sans text-[9px] uppercase tracking-[0.2em] text-text-secondary/30">
-                    By proceeding, you agree to our <a href="#" className="underline hover:text-accent-gold transition-colors">Terms of Service</a> and <a href="#" className="underline hover:text-accent-gold transition-colors">Privacy Policy</a>.
-                  </p>
-                </div>
-              </div>
+              <BookingSection
+                experienceTitle={experience.title}
+                experienceSlug={slug}
+                basePrice={experience.price.amount}
+                availableAddOns={matchedExcursions}
+              />
             </Reveal>
           </div>
         </section>

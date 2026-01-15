@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
+import SectionHeader from "@/components/layout/SectionHeader";
 import DestinationIntro from "@/components/sections/destinations/DestinationIntro";
 import DestinationExperiences from "@/components/sections/destinations/DestinationExperiences";
 import FinalCTA from "@/components/sections/FinalCTA";
@@ -37,20 +38,15 @@ export default function LuxuryCairoLanding() {
         vibeKeywords={["Sophisticated", "Electric", "Timeless", "Private"]}
       />
 
-      <section className="section bg-surface section-merge-top">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-serif text-white mb-4">Curated Cairo Journeys</h2>
-            <div className="w-24 h-px bg-accent-gold/40 mx-auto" />
-          </div>
-          
-          <DestinationExperiences experiences={cairoExperiences} />
-        </div>
-      </section>
+      <DestinationExperiences 
+        experiences={cairoExperiences} 
+        title="Curated Cairo Journeys"
+        className="bg-surface section-merge-top"
+      />
 
       <section className="section bg-background border-y border-white/5">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif text-white mb-8">The Syren Difference in Cairo</h2>
+          <SectionHeader title="The Syren Difference in Cairo" className="mb-12" />
           <div className="grid md:grid-cols-3 gap-12">
             <div>
               <h3 className="text-accent-gold font-sans text-sm uppercase tracking-widest mb-4">VIP Access</h3>

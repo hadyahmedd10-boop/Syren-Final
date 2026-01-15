@@ -1,5 +1,6 @@
 import { testimonials as staticTestimonials } from "@/data/testimonials";
 import { Quote, Star } from 'lucide-react';
+import SectionHeader from "../layout/SectionHeader";
 import Reveal from "../motion/Reveal";
 
 export default function TestimonialsPreview() {
@@ -7,17 +8,13 @@ export default function TestimonialsPreview() {
   const featuredTestimonials = staticTestimonials.slice(0, 3);
 
   return (
-    <div className="bg-background">
+    <div className="bg-background section">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <Reveal>
-          <div className="flex flex-col items-center mb-16 text-center">
-            <span className="text-accent-gold font-sans text-[10px] uppercase tracking-[0.5em] mb-4">Trust</span>
-            <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">
-              Echoes of Extraordinary Journeys
-            </h2>
-            <div className="w-24 h-px bg-accent-gold/40 mx-auto" />
-          </div>
-        </Reveal>
+        <SectionHeader 
+          title="Echoes of Extraordinary Journeys" 
+          label="Trust" 
+          className="mb-16"
+        />
 
         <div className="grid md:grid-cols-3 gap-8">
           {featuredTestimonials.map((t, index) => (
