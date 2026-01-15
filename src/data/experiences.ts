@@ -329,7 +329,7 @@ export const experiences: Experience[] = [
     subtitle: "From the Pyramids to the Turquoise Coast",
     duration: "10 Days / 9 Nights",
     cities: "Cairo, Aswan, Luxor, Hurghada",
-    description: "A comprehensive 10-day journey across Egypt's most iconic landscapes—from the ancient majesty of Cairo and the Nile to the sun-drenched shores of the Red Sea.",
+    description: "A comprehensive 10-day journey across Egypt's most iconic landscapes - from the ancient majesty of Cairo and the Nile to the sun-drenched shores of the Red Sea.",
     introduction: "Egypt is a land of contrasts, where the echoes of ancient civilizations meet the serene beauty of the coast. This 10-day odyssey is thoughtfully designed to offer a complete immersion into the heart of Egypt. You will stand before the Great Pyramids, sail the timeless Nile, explore the legendary temples of the south, and finally, find sanctuary on the crystalline shores of Hurghada. Every detail, from the VIP meet-and-greet to the private transfers, is handled with the care and soul that defines Syren.",
     heroImage: cairoImg,
     whatsappMessage: "I am interested in the 10-Day Cairo, Nile & Red Sea Odyssey",
@@ -379,8 +379,8 @@ export const experiences: Experience[] = [
       },
       {
         day: 3,
-        title: "Aswan’s Ancient Treasures",
-        description: "Arrive in Aswan and dive straight into history at the Unfinished Obelisk, the largest piece of stonework ever constructed. Continue to the romantic Temple of Philae, dedicated to the goddess Isis. Spend the night in Aswan, soaking in the serene atmosphere of the Nile’s most beautiful city.",
+        title: "Aswan's Ancient Treasures",
+        description: "Arrive in Aswan and dive straight into history at the Unfinished Obelisk, the largest piece of stonework ever constructed. Continue to the romantic Temple of Philae, dedicated to the goddess Isis. Spend the night in Aswan, soaking in the serene atmosphere of the Nile's most beautiful city.",
         meals: "Breakfast, Lunch",
         image: partyImg
       },

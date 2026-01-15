@@ -40,6 +40,8 @@ export default function DestinationHero({ name, tagline, image }: DestinationHer
         alt={`${name} - Syren Egypt Destinations`}
         fill
         priority
+        sizes="100vw"
+        placeholder="blur"
         className="object-cover object-center scale-105"
         quality={90}
       />

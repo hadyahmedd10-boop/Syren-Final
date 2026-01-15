@@ -42,18 +42,23 @@ export default function FAQ() {
               <div className="border-b border-white/5 last:border-0">
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-answer-${index}`}
                   className="w-full py-6 flex items-center justify-between text-left group"
                 >
-                  <span className="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors duration-300">
+                  <span id={`faq-question-${index}`} className="font-serif text-xl text-text-primary group-hover:text-accent-gold transition-colors duration-300">
                     {faq.question}
                   </span>
                   {openIndex === index ? (
                     <Minus size={20} className="text-accent-gold" />
                   ) : (
-                    <Plus size={20} className="text-white/40 group-hover:text-accent-gold transition-colors duration-300" />
+                    <Plus size={20} className="text-white/60 group-hover:text-accent-gold transition-colors duration-300" />
                   )}
                 </button>
                 <div
+                  id={`faq-answer-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${index}`}
                   className={`overflow-hidden transition-all duration-500 ease-in-out ${
                     openIndex === index ? 'max-h-96 pb-6' : 'max-h-0'
                   }`}

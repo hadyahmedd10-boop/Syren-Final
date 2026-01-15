@@ -1,19 +1,15 @@
 import Stripe from "stripe";
 
-// Lazily initialize Stripe to avoid build-time errors when environment variables are missing
-const getStripe = () => {
-  const apiKey = process.env.STRIPE_SECRET_KEY;
-  
-  if (!apiKey) {
-    // Return null or a dummy instance that throws only when called
-    // For build time, we just need the module to evaluate successfully
-    return null;
-  }
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
-  return new Stripe(apiKey, {
-    apiVersion: "2025-12-15.clover" as Stripe.StripeConfig["apiVersion"],
-  });
-};
+if (!stripeSecretKey && process.env.NODE_ENV === "production") {
+  throw new Error("STRIPE_SECRET_KEY is missing in production environment");
+}
 
-export const stripe = getStripe();
+export const stripe = stripeSecretKey 
+  ? new Stripe(stripeSecretKey, {
+      apiVersion: "2024-12-18.acacia" as Stripe.StripeConfig["apiVersion"],
+    })
+  : null;
+
 

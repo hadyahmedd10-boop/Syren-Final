@@ -116,7 +116,7 @@ export default function Destinations() {
                       </span> 
                     )} 
 
-                    <p className="mt-3 font-sans text-[11px] leading-relaxed text-white/40 md:text-sm line-clamp-2">
+                    <p className="mt-3 font-sans text-[11px] leading-relaxed text-white/60 md:text-sm line-clamp-2">
                       {dest.description}
                     </p>
                     

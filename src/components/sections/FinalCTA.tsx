@@ -48,9 +48,10 @@ export default function FinalCTA({ className = "", as: Component = "div" }: Fina
             </div>
 
             <div className="w-full max-w-md mx-auto pt-12 border-t border-white/5">
-              <p className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">Stay inspired</p>
+              <p className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/60 mb-6">Stay inspired</p>
               <form action="https://formsubmit.co/you@email.com" method="POST" className="flex flex-col sm:flex-row gap-3"> 
-                <input placeholder="Email" name="email" className="input flex-grow" required /> 
+                <label htmlFor="newsletter-email" className="sr-only">Email address for updates</label>
+                <input id="newsletter-email" placeholder="Email" name="email" type="email" className="input flex-grow" required /> 
                 <button type="submit" className="btn-secondary whitespace-nowrap">Join Updates</button> 
               </form>
             </div>

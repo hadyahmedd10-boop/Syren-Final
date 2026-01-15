@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/motion/Reveal";
 import SectionHeader from "@/components/layout/SectionHeader";
 import FinalCTA from "@/components/sections/FinalCTA";
+import CheckoutButton from "@/components/payments/CheckoutButton";
 import { excursions } from "@/data/excursions";
+import { MessageSquare } from "lucide-react";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -20,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!excursion) return { title: "Excursion Not Found | Syren" };
 
-  const title = `${excursion.title} | Syren Excursions`;
+  const title = `${excursion.title} | Private Egyptian Excursion | Syren`;
   const description = excursion.shortDescription;
 
   return {
@@ -30,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `https://syren.com/excursions/${slug}`,
+      url: `/excursions/${slug}`,
       type: "article",
     },
     twitter: {
@@ -79,9 +81,29 @@ export default async function ExcursionPage({ params }: Props) {
             </Reveal>
 
             <Reveal delay={0.3}>
-              <p className="mt-8 font-sans text-base md:text-lg text-white/90 max-w-2xl mx-auto">
+              <p className="mt-8 font-sans text-base md:text-lg text-white/90 max-w-2xl mx-auto mb-10">
                 {excursion.shortDescription}
               </p>
+            </Reveal>
+
+            <Reveal delay={0.4}>
+              <div className="flex flex-col items-center justify-center gap-6">
+                <CheckoutButton 
+                  itemType="excursion" 
+                  slug={slug} 
+                  label="Reserve this Excursion" 
+                />
+                
+                <a
+                  href={`https://wa.me/201000000000?text=${encodeURIComponent(`I want to book the ${excursion.title} excursion`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="syren-btn-secondary flex items-center gap-3 w-full sm:w-auto"
+                >
+                  <MessageSquare size={16} />
+                  INQUIRE VIA WHATSAPP
+                </a>
+              </div>
             </Reveal>
           </div>
         </div>

@@ -32,22 +32,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `${destination.name} | ${destination.tagline}`;
-  const description = destination.description;
+  const title = `${destination.name} | Luxury Travel Guide | Syren`;
+  const description = `Explore ${destination.name} with Syren. ${destination.description}`;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
   const heroImageUrl = typeof destination.heroImage === "string" ? destination.heroImage : destination.heroImage.src;
 
   return {
-    title: destination.name,
+    title,
     description,
     alternates: {
-      canonical: `${siteUrl}/destinations/${slug}`,
+      canonical: `/destinations/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/destinations/${slug}`,
+      url: `/destinations/${slug}`,
       siteName: "Syren",
+      type: "article",
       images: [
         {
           url: heroImageUrl,

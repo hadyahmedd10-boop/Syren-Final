@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Syren — Luxury Travel Experiences in Egypt",
   description:
     "Private luxury journeys through Egypt. Discover Cairo, the Nile, the Red Sea, and hidden sanctuaries — curated for the discerning traveler.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Syren Travel",
     description: "Luxury travel, designed with soul.",

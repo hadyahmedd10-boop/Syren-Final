@@ -46,14 +46,13 @@ export async function middleware(req: NextRequest) {
   const isLoginRoute = req.nextUrl.pathname === "/login";
 
   // Check if user is in allowlist if ADMIN_EMAIL_ALLOWLIST is set
-  const allowlist = process.env.ADMIN_EMAIL_ALLOWLIST || "";
-  const adminEmails = allowlist.split(",").map(email => email.trim().toLowerCase());
+  const allowlist = process.env.ADMIN_EMAIL_ALLOWLIST;
+  const adminEmails = allowlist ? allowlist.split(",").map(email => email.trim().toLowerCase()) : [];
   
-  const isUserInAllowlist = user && (
+  const isUserInAllowlist = !!(user && (
     adminEmails.length === 0 || 
-    adminEmails[0] === "" || 
     adminEmails.includes(user.email?.toLowerCase() || "")
-  );
+  ));
 
   if (isAdminRoute && !isUserInAllowlist) {
     const redirectUrl = new URL("/login", req.url);

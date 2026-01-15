@@ -9,8 +9,8 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | Syren",
-  description: "Syren is a luxury travel platform dedicated to curating the most extraordinary experiences across Egypt.",
+  title: "The Spirit of Syren | Luxury Travel Curators in Egypt",
+  description: "Syren is a luxury travel platform dedicated to curating the most extraordinary experiences across Egypt. We believe in travel with soul, depth, and absolute privacy.",
   alternates: {
     canonical: "/about",
   },
@@ -50,6 +50,8 @@ export default function AboutPage() {
           fill
           className="object-cover opacity-40"
           priority
+          sizes="100vw"
+          placeholder="blur"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background" />
         

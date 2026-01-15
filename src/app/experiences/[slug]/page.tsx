@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import Reveal from "@/components/motion/Reveal";
 import { experiences } from "@/data/experiences";
 import { CheckCircle2, Star, ArrowRight, MessageSquare, Sparkles } from "lucide-react";
 import ExperienceTracker from "@/components/ExperienceTracker";
 import SectionHeader from "@/components/layout/SectionHeader";
 import BookingSection from "@/components/checkout/BookingSection";
+import CheckoutButton from "@/components/payments/CheckoutButton";
 import { excursions } from "@/data/excursions";
 
 interface Props {
@@ -30,13 +32,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `${experience.title} | ${experience.subtitle || "Curated Egyptian Journeys"}`;
+  const title = `${experience.title} | Luxury Egypt Experience | Syren`;
   const description = experience.description;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
   const ogImage = typeof experience.heroImage === "string" ? experience.heroImage : experience.heroImage.src;
 
   return {
-    title: experience.title,
+    title,
     description,
     alternates: {
       canonical: `/experiences/${slug}`,
@@ -44,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `${siteUrl}/experiences/${slug}`,
+      url: `/experiences/${slug}`,
       siteName: "Syren",
       type: "article",
       images: [
@@ -225,7 +227,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
           <div className="space-y-8 md:space-y-12">
             {experience.itinerary.map((item, index) => (
               <Reveal key={item.day} delay={0.1 * index}>
-                <div className={`grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center ${index % 2 !== 0 ? 'lg:direction-rtl' : ''}`}>
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center">
                   <div className={`${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
                     <div className="flex items-center gap-4 mb-6">
                       <span className="font-serif text-4xl font-light text-accent-gold">
@@ -254,6 +256,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
                       fill
                       className="object-cover transition-transform duration-700 hover:scale-105"
                       sizes="(min-width: 1024px) 40vw, 100vw"
+                      placeholder="blur"
                     />
                     <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-500" />
                   </div>
@@ -362,20 +365,33 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
             <p className="mx-auto mb-12 max-w-2xl font-sans text-lg text-text-secondary md:text-xl leading-relaxed">
               Every journey we create is unique. Message our master curators to adjust this itinerary to your specific pace and interests.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="syren-btn flex items-center gap-3 w-full sm:w-auto"
-              >
-                <MessageSquare size={18} />
-                INQUIRE VIA WHATSAPP
-              </a>
-              <button className="syren-btn-secondary flex items-center gap-3 w-full sm:w-auto">
-                <ArrowRight size={18} />
-                REQUEST CUSTOM QUOTE
-              </button>
+            <div className="flex flex-col items-center justify-center gap-6">
+              <div className="w-full flex justify-center">
+                <CheckoutButton 
+                  itemType="experience" 
+                  slug={slug} 
+                  label="Reserve this Journey" 
+                />
+              </div>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="syren-btn flex items-center gap-3 w-full sm:w-auto"
+                >
+                  <MessageSquare size={18} />
+                  INQUIRE VIA WHATSAPP
+                </a>
+                <Link 
+                  href="/quote"
+                  className="syren-btn-secondary flex items-center gap-3 w-full sm:w-auto justify-center"
+                >
+                  <ArrowRight size={18} />
+                  REQUEST CUSTOM QUOTE
+                </Link>
+              </div>
             </div>
           </Reveal>
         </div>

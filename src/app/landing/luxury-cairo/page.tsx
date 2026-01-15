@@ -26,7 +26,7 @@ export default function LuxuryCairoLanding() {
       
       <div className="section px-6 md:px-8 max-w-4xl mx-auto text-center">
         <span className="text-accent-gold font-sans text-xs uppercase tracking-[0.5em] mb-4 block">Exclusive Campaign</span>
-        <h1 className="text-4xl md:text-6xl font-serif text-white mb-8">Redefining Cairo Luxury</h1>
+        <h2 className="text-4xl md:text-6xl font-serif text-white mb-8">Redefining Cairo Luxury</h2>
         <p className="text-lg md:text-xl text-text-secondary leading-relaxed font-sans italic">
           &ldquo;Forget what you know about Cairo. We open doors that remain closed to others, 
           revealing a city of secret gardens, midnight jazz, and ancient wonders seen in absolute solitude.&rdquo;

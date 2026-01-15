@@ -15,15 +15,15 @@ import CTA from "@/components/sections/FinalCTA";
 import Testimonials from "@/components/sections/TestimonialsPreview";
 
 export const metadata: Metadata = {
-  title: "Experiences",
-  description: "Discover our collection of ultra-private, expertly curated Egyptian experiences. From desert expeditions to private yacht charters.",
+  title: "Ultra-Private Egyptian Experiences | Curated Journeys | Syren",
+  description: "Discover our collection of ultra-private, expertly curated Egyptian experiences. From desert expeditions to private yacht charters and exclusive VIP access.",
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel"}/experiences`,
+    canonical: "/experiences",
   },
   openGraph: {
     title: "Our Experiences | Syren Travel",
     description: "Discover our collection of ultra-private, expertly curated Egyptian experiences.",
-    url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel"}/experiences`,
+    url: "/experiences",
     type: "website",
   },
   twitter: {

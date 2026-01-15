@@ -74,7 +74,7 @@ export default function ShareYourStory() {
     const formData = new FormData(form) 
 
     try {
-      const response = await fetch('/api/testimonials', {
+      const response = await fetch('/api/testimonials/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,8 @@ export default function ShareYourStory() {
           email: formData.get('email'), 
           message: formData.get('message'), 
           rating: Number(formData.get('rating')),
-          experience_slug: formData.get('experience_slug')
+          experience_slug: formData.get('experience_slug'),
+          honeypot: formData.get('honeypot')
         }),
       });
 
@@ -148,7 +149,8 @@ export default function ShareYourStory() {
                   src={image} 
                   alt="Luxury travel in Egypt" 
                   fill 
-                  priority
+                  sizes="100vw"
+                  placeholder="blur"
                   className="object-cover opacity-10"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-surface/80 to-surface" />
@@ -175,6 +177,15 @@ export default function ShareYourStory() {
               )} 
 
               <form onSubmit={handleSubmit} className="space-y-4"> 
+                {/* Honeypot - hidden from users */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input name="name" placeholder="Your Name" required className="syren-input" /> 
                   <input name="email" type="email" placeholder="Email (optional)" className="syren-input" /> 

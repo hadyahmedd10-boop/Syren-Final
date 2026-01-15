@@ -106,6 +106,8 @@ export default function Navbar() {
                 <div className="w-full">
                   <button 
                     onClick={() => setIsMobileMapOpen(!isMobileMapOpen)}
+                    aria-expanded={isMobileMapOpen}
+                    aria-haspopup="true"
                     className="flex items-center justify-between w-full group"
                   >
                     <span className="font-serif text-2xl text-white tracking-wide group-hover:text-accent-gold transition-colors">The Map</span>
@@ -151,7 +153,7 @@ export default function Navbar() {
 
                 <Link href="/experiences" className="font-serif text-2xl text-white tracking-wide hover:text-accent-gold transition-colors">Experiences</Link>
                 <Link href="/about" className="font-serif text-2xl text-white tracking-wide hover:text-accent-gold transition-colors">About</Link>
-                <Link href="/contact" className="font-serif text-2xl text-accent-gold tracking-wide hover:text-white transition-colors">Contact</Link>
+                <Link href="/quote" className="font-serif text-2xl text-accent-gold tracking-wide hover:text-white transition-colors">Contact</Link>
                 
                 <div className="mt-auto pt-8">
                   <div className="grid grid-cols-2 gap-x-6 gap-y-4">
@@ -185,6 +187,8 @@ export default function Navbar() {
            <div className="relative" ref={dropdownRef}>
              <button 
                onClick={() => setIsMapOpen(!isMapOpen)}
+               aria-expanded={isMapOpen}
+               aria-haspopup="true"
                className="flex items-center gap-1.5 hover:text-accent-gold transition-colors"
              >
                The Map
@@ -226,7 +230,7 @@ export default function Navbar() {
            </div>
            <Link href="/experiences">Experiences</Link> 
            <Link href="/about">About</Link> 
-           <Link href="/contact" className="text-accent-gold"> 
+           <Link href="/quote" className="text-accent-gold"> 
              Contact 
            </Link> 
          </div> 
