@@ -1,5 +1,6 @@
 import { constructMetadata } from "@/lib/seo";
 import LandingShell from "@/components/landing/LandingShell";
+import { DESTINATION_IMAGES } from "@/lib/images";
 
 export const metadata = constructMetadata({
   title: "Red Sea Luxury Sanctuary | Private Yachts & Coastal Solitude",
@@ -17,7 +18,7 @@ export default function RedSeaLuxuryLanding() {
       eyebrow="The Azure Sanctuary"
       title="Red Sea, Redefined"
       subtitle="Where the desert meets the crystal depths. Private yacht charters, hidden reefs, and the ultimate coastal solitude for the discerning soul."
-      heroImage="/images/destinations/red-sea.jpg"
+      heroImage={DESTINATION_IMAGES["red-sea"]}
       primaryCtaLabel="Discover Coastal Luxury"
       primaryCtaHref="/experiences"
       secondaryCtaLabel="Talk to a curator"

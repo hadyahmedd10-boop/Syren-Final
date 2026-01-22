@@ -6,7 +6,13 @@ import Footer from "@/components/layout/Footer";
 import { PHProvider } from "@/providers/PostHogProvider";
 import PostHogPageView from "@/providers/PostHogPageView";
 import { Suspense } from "react";
-import { Analytics } from "@vercel/analytics/react";
+import VercelLive from "@/components/dev/VercelLive";
+import { validateExcursionData } from "@/lib/data-validator";
+
+// Run data validation in development
+if (process.env.NODE_ENV === "development") {
+  validateExcursionData();
+}
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,7 +34,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel"),
+  metadataBase: process.env.NEXT_PUBLIC_SITE_URL ? new URL(process.env.NEXT_PUBLIC_SITE_URL) : undefined,
   title: {
     default: "Syren | Luxury Travel Experiences in Egypt",
     template: "%s | Syren"
@@ -41,9 +47,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Syren Travel",
     description: "Luxury travel, designed with soul.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: "Syren",
-    images: [{ url: "/og.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     locale: "en_US",
     type: "website",
   },
@@ -51,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Syren Travel",
     description: "Luxury travel, designed with soul.",
-    images: ["/og.jpg"],
+    images: ["/og-image.jpg"],
     creator: "@syren_egypt",
   },
   robots: {
@@ -84,7 +90,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <Analytics />
+          <VercelLive />
         </PHProvider>
       </body>
     </html>

@@ -10,19 +10,23 @@
     "qa": "node src/scripts/qa.ts"
   },
   "dependencies": {
+    "@getbrevo/brevo": "^3.0.1",
     "@stripe/react-stripe-js": "^5.4.1",
     "@stripe/stripe-js": "^8.6.1",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.89.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.36.1",
     "@vercel/analytics": "^1.6.1",
+    "date-fns": "^4.1.0",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
     "next": "16.1.0",
     "posthog-js": "^1.310.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "resend": "^6.6.0",
-    "stripe": "^20.1.2"
+    "stripe": "^20.1.2",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

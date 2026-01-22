@@ -1,5 +1,7 @@
+// ITINERARY IMAGE FRAME EDIT
 import type { Metadata } from "next";
 import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Reveal from "@/components/motion/Reveal";
@@ -10,6 +12,7 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import BookingSection from "@/components/checkout/BookingSection";
 import CheckoutButton from "@/components/payments/CheckoutButton";
 import { excursions } from "@/data/excursions";
+import ItineraryTimeline from "@/components/sections/ItineraryTimeline";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -34,7 +37,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${experience.title} | Luxury Egypt Experience | Syren`;
   const description = experience.description;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
   const ogImage = typeof experience.heroImage === "string" ? experience.heroImage : experience.heroImage.src;
 
   return {
@@ -151,7 +153,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
       <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
         <Image
           src={experience.heroImage}
-          alt={experience.title}
+          alt={`Experience the essence of ${experience.title}, an ultra-private Egyptian odyssey`}
           fill
           priority
           sizes="100vw"
@@ -203,7 +205,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
               title="Curated Highlights" 
               label="The Distinction" 
             />
-            <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
+            <div className="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-3">
               {experience.highlights.map((highlight, idx) => (
                 <Reveal key={idx} delay={0.1 * idx}>
                   <div className="p-6 border border-white/5 bg-background/50 hover:border-accent-gold/20 transition-colors duration-500 group h-full">
@@ -221,64 +223,40 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
         </section>
       )}
 
-      {/* 4. Itinerary (day by day) */}
-      <section className="bg-surface section">
-        <div className="mx-auto max-w-5xl px-6 md:px-8">
-          <div className="space-y-8 md:space-y-12">
-            {experience.itinerary.map((item, index) => (
-              <Reveal key={item.day} delay={0.1 * index}>
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center">
-                  <div className={`${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="font-serif text-4xl font-light text-accent-gold">
-                        Day {item.day}
-                      </span>
-                      <div className="h-px flex-1 bg-accent-gold/20" />
-                    </div>
-                    <h3 className="mb-6 font-serif text-3xl tracking-tight text-text-primary">
-                      {item.title}
-                    </h3>
-                    <p className="font-sans text-base leading-relaxed text-text-secondary md:text-lg">
-                      {item.description}
-                    </p>
-                    {item.meals && (
-                      <div className="mt-8 flex items-center gap-2 border-t border-white/5 pt-6">
-                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent-gold/60">Included Meals:</span>
-                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary/60">{item.meals}</span>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className={`relative aspect-[4/3] w-full overflow-hidden rounded-sm shadow-2xl ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-700 hover:scale-105"
-                      sizes="(min-width: 1024px) 40vw, 100vw"
-                      placeholder="blur"
-                    />
-                    <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-500" />
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+      {/* 4. STORY JOURNEY ITINERARY */}
+      <section id="itinerary" className="py-24 md:py-32 bg-background relative">
+        <div className="mx-auto max-w-6xl px-6 md:px-8">
+          <SectionHeader 
+            title="Your Curated Journey" 
+            label="Day by Day" 
+            className="mb-16 md:mb-24"
+          />
+          
+          <div className="relative mt-8 md:mt-10">
+            {/* Spine */}
+            <div className="absolute left-3 top-0 hidden h-full w-px bg-border/40 md:block" />
+
+            <ItineraryTimeline 
+              experienceSlug={experience.slug} 
+              experienceTitle={experience.title}
+              itinerary={experience.itinerary} 
+            />
           </div>
         </div>
       </section>
 
       {/* 5. What’s Included / Not Included */}
-      <section className="bg-surface section border-t border-white/5">
+      <section className="bg-surface/30 py-24 md:py-32 border-t border-border/50">
         <div className="mx-auto max-w-5xl px-6 md:px-8">
           <Reveal>
-            <div className="rounded-2xl border border-white/5 bg-background/30 p-8 md:p-16 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-gold/20 to-transparent" />
+            <div className="rounded-2xl border border-border/40 bg-background/50 p-8 md:p-16 shadow-lg relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-gold/20 to-transparent" />
             <SectionHeader 
               title="The Logistics" 
-              className="mb-16"
+              className="mb-12 md:mb-16"
             />
             
-            <div className="grid gap-16 md:grid-cols-2">
+            <div className="grid gap-10 md:grid-cols-2">
                 <div className="space-y-8">
                   <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.3em] text-accent-gold flex items-center gap-3">
                     <div className="h-px w-4 bg-accent-gold/40" />
@@ -327,11 +305,11 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
             title="Traveler Stories" 
             label="The Testimony" 
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Placeholder for now - could be fetched from API filtered by experience */}
             {[1, 2].map((i) => (
               <Reveal key={i} delay={0.2 * i}>
-                <div className="p-10 border border-white/5 bg-surface/30 relative">
+                <div className="p-6 md:p-10 border border-white/5 bg-surface/30 relative rounded-2xl">
                   <div className="flex gap-1 mb-6">
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} size={12} className="fill-accent-gold text-accent-gold" />
@@ -344,7 +322,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
                     <div className="h-px w-8 bg-accent-gold/30" />
                     <div>
                       <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent-gold font-bold">Anonymous Traveler</p>
-                      <p className="font-sans text-[8px] uppercase tracking-[0.2em] text-white/40">Verified Journey</p>
+                      <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/40">Verified Journey</p>
                     </div>
                   </div>
                 </div>

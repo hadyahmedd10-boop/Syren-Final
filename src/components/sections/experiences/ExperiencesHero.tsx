@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Reveal from "@/components/motion/Reveal";
-import cairoImg from "../../../../public/images/hero/cairo.jpg";
+import { HERO_IMAGES } from "@/lib/images";
 
 export default function ExperiencesHero() {
   return (
     <div className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
       <Image
-        src={cairoImg}
-        alt="Luxury travel experience in Egypt"
+        src={HERO_IMAGES.home}
+        alt="Bespoke luxury travel experiences meticulously curated for the discerning traveler"
         fill
         priority
         sizes="100vw"

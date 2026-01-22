@@ -6,7 +6,7 @@ import { motion, type Variants } from "framer-motion";
 interface DestinationHeroProps {
   name: string;
   tagline: string;
-  image: StaticImageData | string;
+  image: StaticImageData;
 }
 
 export default function DestinationHero({ name, tagline, image }: DestinationHeroProps) {
@@ -37,7 +37,7 @@ export default function DestinationHero({ name, tagline, image }: DestinationHer
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       <Image
         src={image}
-        alt={`${name} - Syren Egypt Destinations`}
+        alt={`The majestic landscapes of ${name}, captured in an exclusive Syren journey`}
         fill
         priority
         sizes="100vw"

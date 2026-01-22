@@ -18,7 +18,7 @@ export interface Experience {
   cities: string;
   description: string;
   introduction: string;
-  heroImage: StaticImageData | string;
+  heroImage: StaticImageData;
   highlights?: string[];
   itinerary: ItineraryDay[];
   included: string[];

@@ -74,11 +74,11 @@ export default async function AdminDashboard() {
           </Reveal>
         </header>
 
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
+        <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
           {cards.map((card, index) => (
             <Reveal key={card.title} delay={0.1 * index}>
-              <div className="bg-surface border border-border p-8 rounded-2xl flex flex-col h-full group hover:border-accent-gold/30 transition-all duration-500">
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-accent-gold/10 group-hover:border-accent-gold/30 transition-all">
+              <div className="p-5 md:p-6 syren-card syren-card-hover flex flex-col h-full group">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-accent-gold/10 group-hover:border-accent-gold/30 transition-all">
                   {card.icon}
                 </div>
                 
@@ -86,7 +86,7 @@ export default async function AdminDashboard() {
                   {card.title}
                 </h3>
                 
-                <div className="text-3xl font-serif text-white mb-8">
+                <div className="text-3xl font-serif text-white mb-6">
                   {card.count}
                 </div>
 

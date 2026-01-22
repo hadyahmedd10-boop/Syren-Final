@@ -40,6 +40,7 @@ function LoginForm() {
       setError(error.message);
       setLoading(false);
     } else {
+      document.cookie = `admin_email=${encodeURIComponent(email)}; path=/; max-age=${60 * 60 * 24 * 7}`;
       const next = searchParams.get("next") || "/admin/testimonials";
       router.push(next);
       router.refresh();

@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabaseClient' 
+import { createClient } from '@/lib/supabaseServer' 
 import { testimonials as staticTestimonials } from "@/data/testimonials";
 import ShareYourStory from './ShareYourStory'
 import SectionHeader from '../layout/SectionHeader'
@@ -6,14 +6,16 @@ import { Quote, Star } from 'lucide-react'
 
 export default async function Testimonials() { 
   let testimonials = staticTestimonials;
+  const supabase = await createClient();
 
   if (supabase) {
     try {
       const { data, error } = await supabase 
-        .from('testimonials') 
-        .select('*') 
-        .eq('approved', true) 
-        .order('created_at', { ascending: false }) 
+        .from("testimonials") 
+        .select("*") 
+        .eq("approved", true) 
+        .order("created_at", { ascending: false }) 
+        .limit(12); 
 
       if (!error && data && data.length > 0) {
         testimonials = data;
@@ -36,19 +38,19 @@ export default async function Testimonials() {
           <ShareYourStory />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"> 
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, index) => ( 
             <div 
               key={t.id} 
-              className={`group relative p-8 rounded-2xl border border-white/5 bg-surface/30 backdrop-blur-sm transition-all duration-700 hover:bg-surface/50 hover:border-accent-gold/20 hover:-translate-y-2 ${
+              className={`group relative p-5 md:p-6 syren-card syren-card-hover border-white/5 bg-surface/30 backdrop-blur-sm ${
                 index % 2 === 1 ? 'md:translate-y-6' : ''
               }`}
             > 
-              <div className="absolute top-6 right-8 text-accent-gold/10 group-hover:text-accent-gold/20 transition-colors duration-700">
-                <Quote size={48} />
+              <div className="absolute top-6 right-6 text-accent-gold/10 group-hover:text-accent-gold/20 transition-colors duration-500">
+                <Quote size={40} />
               </div>
 
-              <div className="flex gap-1 mb-6">
+              <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star 
                     key={i} 
@@ -58,12 +60,12 @@ export default async function Testimonials() {
                 ))}
               </div>
 
-              <p className="text-text-secondary leading-relaxed mb-8 italic relative z-10">
+              <p className="text-text-secondary leading-relaxed mb-5 italic relative z-10">
                 &ldquo;{t.message}&rdquo;
               </p> 
 
-              <div className="flex items-center gap-4 pt-6 border-t border-white/5"> 
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-gold/20 to-transparent border border-accent-gold/10 flex items-center justify-center text-accent-gold font-serif text-lg">
+              <div className="flex items-center gap-4 pt-4 border-t border-white/5"> 
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-accent-gold/20 to-transparent border border-accent-gold/10 flex items-center justify-center text-accent-gold font-serif text-base">
                   {t.name.charAt(0)}
                 </div>
                 <div className="flex flex-col">

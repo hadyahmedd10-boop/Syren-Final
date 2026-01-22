@@ -13,7 +13,7 @@ export default function LuxuryExperiences() {
         label="The Pinnacle" 
         align="left"
       />
-      <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
+      <div className="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-3">
         {luxury.map((experience, index) => (
           <Reveal key={experience.slug} delay={0.1 * index}>
             <ExperienceCard

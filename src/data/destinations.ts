@@ -1,14 +1,13 @@
 import { StaticImageData } from "next/image";
-import cairoImg from "../../public/images/hero/cairo.jpg";
-import luxuryImg from "../../public/images/hero/luxury.jpg";
-import partyImg from "../../public/images/experiences/party.jpg";
+import { DESTINATION_IMAGES } from "@/lib/images";
 
 export interface Destination {
   slug: string;
   name: string;
   tagline: string;
   description: string;
-  heroImage: StaticImageData | string;
+  heroImage: StaticImageData;
+  image?: StaticImageData;
   vibeKeywords: string[];
   featuredExperienceSlugs: string[];
   excursionSlugs?: string[];
@@ -21,7 +20,8 @@ export const destinations: Destination[] = [
     tagline: "Timeless. Electric. Alive.",
     description:
       "Cairo is where ancient wonders meet a living, breathing city. Beyond the pyramids lies art, food, music, and neighborhoods full of soul.",
-    heroImage: cairoImg,
+    heroImage: DESTINATION_IMAGES["cairo"],
+    image: DESTINATION_IMAGES["cairo"],
     vibeKeywords: ["culture", "history", "nightlife"],
     featuredExperienceSlugs: ["cairo-after-dark", "5-day-cairo-experience"],
   },
@@ -29,9 +29,9 @@ export const destinations: Destination[] = [
     slug: "luxor-aswan",
     name: "Luxor & Aswan",
     tagline: "Sacred lands of gods",
-    description:
-      "A journey through Egypt’s most powerful temples and the calm flow of the Nile. Slow, majestic, and deeply spiritual.",
-    heroImage: luxuryImg,
+    description: "A journey through Egypt’s most powerful temples and the calm flow of the Nile. Slow, majestic, and deeply spiritual.",
+    heroImage: DESTINATION_IMAGES["luxor-aswan"],
+    image: DESTINATION_IMAGES["luxor-aswan"],
     vibeKeywords: ["heritage", "nile", "temples"],
     featuredExperienceSlugs: ["nile-signature", "8-day-pyramids-nile-cruise"],
   },
@@ -41,7 +41,8 @@ export const destinations: Destination[] = [
     tagline: "Pure escape by water",
     description:
       "Crystal-clear waters, hidden lagoons, and barefoot luxury. The Red Sea is Egypt’s playground of calm and color.",
-    heroImage: partyImg,
+    heroImage: DESTINATION_IMAGES["red-sea"],
+    image: DESTINATION_IMAGES["red-sea"],
     vibeKeywords: ["beach", "luxury", "relax"],
     featuredExperienceSlugs: ["10-day-cairo-nile-red-sea-odyssey"],
   },
@@ -51,7 +52,8 @@ export const destinations: Destination[] = [
     tagline: "The desert's hidden heart.",
     description:
       "A remote paradise where ancient traditions meet crystalline salt lakes and endless palm groves. Siwa is Egypt’s most soul-stirring desert escape.",
-    heroImage: cairoImg,
+    heroImage: DESTINATION_IMAGES["siwa-oasis"],
+    image: DESTINATION_IMAGES["siwa-oasis"],
     vibeKeywords: ["desert", "culture", "hidden gems"],
     featuredExperienceSlugs: ["siwa-desert-retreat"],
   },
@@ -61,7 +63,8 @@ export const destinations: Destination[] = [
     tagline: "The Pearl of the Mediterranean.",
     description:
       "A city of grand libraries, Greco-Roman heritage, and coastal charm. Alexandria blends Mediterranean elegance with a deep, storied history.",
-    heroImage: luxuryImg,
+    heroImage: DESTINATION_IMAGES["alexandria"],
+    image: DESTINATION_IMAGES["alexandria"],
     vibeKeywords: ["mediterranean", "history", "elegance"],
     featuredExperienceSlugs: ["alexandria-coastal-elegance"],
   },
@@ -71,7 +74,8 @@ export const destinations: Destination[] = [
     tagline: "Sun, Sea, and Desert Adventures",
     description:
       "A vibrant coastal escape offering world-class diving, luxury resorts, and thrilling desert safaris. The gateway to the Red Sea's most iconic experiences.",
-    heroImage: partyImg,
+    heroImage: DESTINATION_IMAGES["hurghada"],
+    image: DESTINATION_IMAGES["hurghada"],
     vibeKeywords: ["adventure", "diving", "resort"],
     featuredExperienceSlugs: [],
     excursionSlugs: [

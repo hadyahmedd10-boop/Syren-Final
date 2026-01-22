@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeInContainer, fadeInUp } from "@/lib/animations";
-import luxuryImg from "../../../public/images/hero/luxury.jpg";
+import { StaticImageData } from "next/image";
+import { HERO_IMAGES } from "@/lib/images";
 
 export default function Hero() {
   useEffect(() => {
@@ -14,10 +15,10 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center">
+    <section id="hero" className="relative min-h-[55vh] flex items-center py-20">
       <Image
-        src={luxuryImg}
-        alt="Luxury yacht in the Red Sea - Syren Egypt Experiences"
+        src={HERO_IMAGES.home}
+        alt="A private luxury yacht navigating the crystal-clear waters of the Red Sea - A signature Syren experience"
         fill
         priority
         sizes="100vw"
@@ -28,7 +29,6 @@ export default function Hero() {
       
       {/* Cinematic Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 via-60% to-background" />
-      <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')] pointer-events-none" />
       
       <div className="relative mx-auto max-w-5xl px-6 text-center w-full z-10">
         <motion.div
@@ -47,17 +47,17 @@ export default function Hero() {
           {/* Powerful Short Headline */}
           <motion.h1 
             variants={fadeInUp}
-            className="font-serif text-white text-3xl md:text-5xl lg:text-6xl leading-[1.05] mb-8 tracking-tight"
+            className="font-serif text-white text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 tracking-tight"
           > 
-            Experience Egypt, <br className="hidden md:block" /> like never before! 
+            The Egypt You’ve Dreamed of, <br className="hidden md:block" /> Perfected.
           </motion.h1> 
       
           {/* Poetic sub-line */}
           <motion.p 
             variants={fadeInUp}
-            className="text-white/70 max-w-xl mx-auto text-[14px] md:text-base font-light italic mb-12 leading-relaxed"
+            className="text-white/70 max-w-xl mx-auto text-base md:text-lg font-light italic mb-12 leading-relaxed"
           > 
-            Where luxury meets authenticity and every journey is curated for you
+            Private, soul-stirring journeys curated for the most discerning travelers.
           </motion.p>
 
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">

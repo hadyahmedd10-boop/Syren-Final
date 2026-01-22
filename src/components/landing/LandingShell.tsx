@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/motion/Reveal";
 import { CheckCircle2 } from "lucide-react";
@@ -10,7 +10,7 @@ interface LandingShellProps {
   eyebrow: string;
   title: string;
   subtitle: string;
-  heroImage: string;
+  heroImage: string | StaticImageData;
   primaryCtaLabel: string;
   primaryCtaHref: string;
   secondaryCtaLabel?: string;
@@ -48,6 +48,8 @@ export default function LandingShell({
   },
   children
 }: LandingShellProps) {
+  const isStaticImage = typeof heroImage !== "string";
+  
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -56,7 +58,7 @@ export default function LandingShell({
     "provider": {
       "@type": "TravelAgency",
       "name": "Syren",
-      "url": "https://syren.travel"
+      "url": process.env.NEXT_PUBLIC_SITE_URL
     },
     "areaServed": {
       "@type": "Country",
@@ -87,11 +89,11 @@ export default function LandingShell({
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <Image
           src={heroImage}
-          alt={title}
+          alt={`Experience the extraordinary: ${title} - ${subtitle}`}
           fill
           priority
           sizes="100vw"
-          placeholder="blur"
+          placeholder={isStaticImage ? "blur" : undefined}
           className="object-cover brightness-[0.45]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-background" />
@@ -143,7 +145,7 @@ export default function LandingShell({
 
       {/* Benefits Section */}
       <section className="py-24 px-6 border-b border-white/5">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
           {benefits.map((benefit, index) => (
             <Reveal key={index} delay={0.1 * index}>
               <div className="space-y-4">
@@ -174,7 +176,7 @@ export default function LandingShell({
             </h2>
           </Reveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {whatYouGet.items.map((item, index) => (
               <Reveal key={index} delay={0.1 * index} className="flex items-start gap-4">
                 <span className="text-accent-gold font-serif text-xl mt-1">/</span>

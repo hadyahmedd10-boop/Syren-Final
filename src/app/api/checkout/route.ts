@@ -14,13 +14,24 @@ const PRICING_MAP: Record<string, number> = {
   "the-signature-nile-journey": 389900,
   
   // Excursions
-  "hurghada-to-luxor-day-trip": 19900,
-  "hurghada-to-cairo-day-trip-by-car": 19900,
+  "hurghada-luxor-day-trip": 19900,
+  "hurghada-cairo-day-trip": 19900,
   "hurghada-jeep-safari": 9900,
+  "mahmya-island-snorkeling": 9500,
+  "giftun-island-snorkeling": 6500,
+  "paradise-island-snorkeling": 7500,
+  "hurghada-quad-bike": 5500,
 };
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json(
+        { error: "Checkout is temporarily unavailable." },
+        { status: 501 }
+      );
+    }
+
     if (!stripe) {
       return NextResponse.json(
         { error: "Stripe is not configured" },
@@ -59,7 +70,10 @@ export async function POST(req: Request) {
     // Get price from map or data file (fallback to 9900 for excursions if not in map)
     const unitAmount = PRICING_MAP[slug] || (itemType === "excursion" ? 9900 : 149900);
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    // Get site URL dynamically or from env
+    const host = req.headers.get("host");
+    const protocol = req.headers.get("x-forwarded-proto") || "http";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || `${protocol}://${host}`;
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],

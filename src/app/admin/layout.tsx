@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import AdminHeader from "@/components/admin/AdminHeader";
 
 export const metadata: Metadata = {
   title: "Admin | Syren",
@@ -22,5 +23,10 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <AdminHeader />
+      {children}
+    </>
+  );
 }

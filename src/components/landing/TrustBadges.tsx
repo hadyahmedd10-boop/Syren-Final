@@ -15,7 +15,7 @@ export default function TrustBadges() {
         </Reveal>
 
         {/* Trust Badges */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Reveal delay={0.1}>
             <div className="flex flex-col items-center text-center space-y-4">
               <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">

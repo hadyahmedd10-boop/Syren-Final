@@ -63,21 +63,21 @@ export default function Destinations() {
 
         <div 
           ref={scrollRef}
-          className="flex overflow-x-auto pb-6 gap-6 md:gap-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:-mx-8 md:px-8"
+          className="flex overflow-x-auto pb-6 gap-4 md:gap-6 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:-mx-8 md:px-8"
         >
           {destinations.map((dest, index) => {
             const excursionCount = getExcursionsByDestination(dest.slug).length;
             return (
               <div key={dest.slug} className="min-w-[85%] md:min-w-[45%] lg:min-w-[30%] snap-center">
               <Reveal delay={0.1 * (index + 1)}>
-                <article className="group relative flex flex-col transition-all duration-500 ease-out hover:-translate-y-0.5 h-full">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface border border-border transition-all duration-500 ease-out group-hover:border-primary/30">
+                <article className="group relative flex flex-col syren-card-hover h-full transition-all duration-500 ease-out">
+                  <div className="relative aspect-[4/5] overflow-hidden syren-card group-hover:border-primary/30">
                     <Image
                       src={dest.heroImage}
-                      alt={dest.name}
+                      alt={`Discover the timeless allure of ${dest.name} with Syren's private curation`}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                       placeholder="blur"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
@@ -90,7 +90,7 @@ export default function Destinations() {
                     </div>
                   </div>
 
-                  <div className="mt-6 flex flex-col text-center md:text-left flex-grow">
+                  <div className="mt-2.5 flex flex-col text-center md:text-left flex-grow">
                     <div className="relative">
                       <span className="absolute -left-3 -top-5 font-serif text-5xl text-white/5 select-none hidden md:block group-hover:text-primary/10 transition-colors duration-500">
                         0{index + 1}
@@ -108,20 +108,23 @@ export default function Destinations() {
                       <span className="sr-only">View {dest.name}</span>
                     </Link>
 
-                    <div className="mt-2 h-px w-10 bg-accent-gold/20 md:w-12 mx-auto md:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-primary/40" />
+                    <div className="mt-1 h-px w-10 bg-accent-gold/20 md:w-12 mx-auto md:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-primary/40" />
                     
                     {excursionCount > 0 && ( 
-                      <span className="mt-3 inline-flex items-center justify-center rounded-full border border-border bg-surface/60 px-4 py-2 font-sans text-[10px] uppercase tracking-[0.3em] text-text-secondary"> 
+                      <span 
+                        tabIndex={0}
+                        className="syren-pill mt-1.5 border border-accent-gold/20 bg-accent-gold/5 text-accent-gold hover:bg-accent-gold/10 hover:border-accent-gold/30 hover:shadow-[0_0_10px_rgba(196,160,82,0.1)]"
+                      > 
                         {excursionCount} Excursions 
                       </span> 
                     )} 
 
-                    <p className="mt-3 font-sans text-[11px] leading-relaxed text-white/60 md:text-sm line-clamp-2">
+                    <p className="mt-1.5 font-sans text-[11px] leading-relaxed text-white/60 md:text-sm line-clamp-2">
                       {dest.description}
                     </p>
                     
-                    <div className="mt-auto pt-6">
-                      <Link href={`/destinations/${dest.slug}`} className="syren-btn-secondary py-2 text-[9px] w-full md:w-auto text-center block">
+                    <div className="mt-auto pt-2.5">
+                      <Link href={`/destinations/${dest.slug}`} className="syren-btn-secondary py-2 text-[10px] w-full md:w-auto text-center block">
                         Explore {dest.name}
                       </Link>
                     </div>

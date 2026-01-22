@@ -12,7 +12,7 @@ export default function ExperiencesGrid() {
           label="Complete Collection" 
           className="mb-16"
         />
-        <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
+        <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
           {experiences.map((experience, index) => (
             <Reveal key={experience.slug} delay={0.1 * index}>
               <ExperienceCard
@@ -24,6 +24,7 @@ export default function ExperiencesGrid() {
                 cities={experience.cities}
                 buttonText="Discover Journey"
                 href={`/experiences/${experience.slug}`}
+                variant={index < 3 ? "primary" : "secondary"}
               />
             </Reveal>
           ))}

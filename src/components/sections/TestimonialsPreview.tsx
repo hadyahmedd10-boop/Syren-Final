@@ -16,11 +16,11 @@ export default function TestimonialsPreview() {
           className="mb-16"
         />
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {featuredTestimonials.map((t, index) => (
             <Reveal key={t.id} delay={index * 0.1}>
-              <div className="group relative p-8 rounded-2xl border border-white/5 bg-surface/30 backdrop-blur-sm transition-all duration-700 hover:bg-surface/50 hover:border-accent-gold/20">
-                <div className="absolute top-6 right-8 text-accent-gold/10 group-hover:text-accent-gold/20 transition-colors duration-700">
+              <div className="group relative p-8 syren-card syren-card-hover border-white/5 bg-surface/30 backdrop-blur-sm hover:bg-surface/50">
+                <div className="absolute top-6 right-8 text-accent-gold/10 group-hover:text-accent-gold/20 transition-colors duration-500">
                   <Quote size={32} />
                 </div>
 

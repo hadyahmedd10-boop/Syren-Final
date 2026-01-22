@@ -1,5 +1,6 @@
 import { constructMetadata } from "@/lib/seo";
 import LandingShell from "@/components/landing/LandingShell";
+import { DESTINATION_IMAGES } from "@/lib/images";
 
 export const metadata = constructMetadata({
   title: "The Eternal Nile Journey | Private River Cruises & Sacred Sites",
@@ -17,7 +18,7 @@ export default function NileJourneyLanding() {
       eyebrow="The Sacred River"
       title="The Eternal Flow of the Nile"
       subtitle="A journey through Egypt's most powerful temples and the calm flow of the Nile. Slow, majestic, and deeply spiritual."
-      heroImage="/images/destinations/luxor.jpg"
+      heroImage={DESTINATION_IMAGES["luxor-aswan"]}
       primaryCtaLabel="View River Journeys"
       primaryCtaHref="/experiences"
       secondaryCtaLabel="Talk to a curator"

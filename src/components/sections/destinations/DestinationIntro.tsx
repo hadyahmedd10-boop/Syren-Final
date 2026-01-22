@@ -36,11 +36,12 @@ export default function DestinationIntro({ description, vibeKeywords }: Destinat
             )}
 
             {/* Vibe Keywords Footer */}
-            <div className="pt-8 flex flex-wrap justify-center gap-x-6 gap-y-4">
+            <div className="pt-8 flex flex-wrap justify-center gap-2">
               {vibeKeywords.map((keyword) => (
                 <span 
                   key={keyword} 
-                  className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold/60"
+                  tabIndex={0}
+                  className="syren-pill border border-accent-gold/20 bg-accent-gold/5 text-accent-gold/80 hover:bg-accent-gold/10 hover:border-accent-gold/30 hover:text-accent-gold hover:shadow-[0_0_10px_rgba(196,160,82,0.1)]"
                 >
                   {keyword}
                 </span>

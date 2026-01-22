@@ -4,8 +4,12 @@ import { destinations } from '@/data/destinations'
 import { excursions } from '@/data/excursions'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://syren.travel'
-  const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const baseUrl = siteUrl ? (siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl) : ''
+
+  if (!siteUrl) {
+    return []
+  }
 
   // Static routes
   const routes = [

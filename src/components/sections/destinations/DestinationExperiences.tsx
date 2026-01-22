@@ -25,7 +25,12 @@ export default function DestinationExperiences({
   // Filter experiences by matching the current destination slug in their destinations array
   const filteredExperiences = providedExperiences || experiences.filter(exp => 
     destinationSlug && exp.destinations.includes(destinationSlug)
-  ).slice(0, 3);
+  );
+
+  // Dev-only confirmation log
+  if (process.env.NODE_ENV === "development") {
+    console.log(`[Dev] Destination Experiences for ${destinationSlug}: ${filteredExperiences.length}`);
+  }
 
   if (filteredExperiences.length === 0) return null;
 
@@ -38,7 +43,7 @@ export default function DestinationExperiences({
           className="mb-4 md:mb-6"
         />
 
-        <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
+        <div className="grid gap-5 md:gap-6 grid-cols-1 md:grid-cols-3">
           {filteredExperiences.map((experience, index) => (
             <Reveal key={experience.slug} delay={index * 0.1}>
               <ExperienceCard 

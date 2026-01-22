@@ -14,7 +14,7 @@ export default function FeaturedExperiences() {
         align="responsive"
         className="mb-12"
       />
-      <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-3">
+      <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
         {featured.map((experience, index) => (
           <Reveal key={experience.slug} delay={0.1 * index}>
             <ExperienceCard

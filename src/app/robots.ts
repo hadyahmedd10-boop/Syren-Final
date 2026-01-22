@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://syren.travel'
-  const baseUrl = siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const baseUrl = siteUrl ? (siteUrl.endsWith('/') ? siteUrl.slice(0, -1) : siteUrl) : ''
 
   return {
     rules: {
@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin', '/login', '/api/'],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: siteUrl ? `${baseUrl}/sitemap.xml` : undefined,
   }
 }

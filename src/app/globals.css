@@ -198,9 +198,42 @@ p, span, a, li, button, input, textarea {
       hover:border-white/40
       hover:scale-[1.02]
       active:scale-[0.98];
- } 
+ }
 
-  /* === Syren Primary Button === */
+ .syren-card {
+    @apply 
+      bg-surface 
+      border border-border 
+      rounded-2xl 
+      transition-all 
+      duration-500 
+      ease-out;
+ }
+ 
+ .syren-card-hover {
+     @apply 
+       hover:-translate-y-[2px] 
+       hover:border-accent-gold/30;
+  }
+
+  .syren-card-secondary {
+     @apply 
+       bg-surface/60 
+       border border-border/40 
+       rounded-2xl 
+       transition-all 
+       duration-500 
+       ease-out;
+  }
+
+  .syren-card-hover-secondary {
+     @apply 
+       hover:-translate-y-[1px] 
+       hover:border-border 
+       hover:bg-surface/80;
+  }
+  
+    /* === Syren Primary Button === */
   .syren-btn-primary { 
     @apply 
       inline-flex

@@ -47,7 +47,7 @@ export default function LuxuryCairoLanding() {
       <section className="section bg-background border-y border-white/5">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <SectionHeader title="The Syren Difference in Cairo" className="mb-12" />
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-10">
             <div>
               <h3 className="text-accent-gold font-sans text-sm uppercase tracking-widest mb-4">VIP Access</h3>
               <p className="text-text-secondary text-sm">After-hours entry to monuments and private gallery viewings.</p>

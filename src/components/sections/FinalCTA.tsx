@@ -1,6 +1,10 @@
+"use client";
+
 import Reveal from "../motion/Reveal";
 import Link from "next/link";
 import SectionHeader from "../layout/SectionHeader";
+import Image from "next/image";
+import { HERO_IMAGES } from "@/lib/images";
 
 interface FinalCTAProps {
   className?: string;
@@ -11,11 +15,19 @@ export default function FinalCTA({ className = "", as: Component = "div" }: Fina
   return (
     <Component
       aria-labelledby="final-cta-title"
-      className={`relative bg-background ${className}`}
+      className={`relative bg-background overflow-hidden ${className}`}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-border),transparent_60%)]" />
+      <Image
+        src={HERO_IMAGES.home}
+        alt="The majestic beauty of Egypt - A Syren journey"
+        fill
+        className="object-cover object-center opacity-30"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/60 to-background" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-border),transparent_60%)] opacity-50" />
       
-      <div className="mx-auto max-w-7xl px-6 md:px-8 text-center relative z-10">
+      <div className="mx-auto max-w-7xl px-6 md:px-8 text-center relative z-10 py-24">
         <SectionHeader 
           title={<>The Egypt You&apos;ve <br className="hidden md:block" /> Always Imagined.</>}
           label="The Journey Continues"
@@ -49,7 +61,36 @@ export default function FinalCTA({ className = "", as: Component = "div" }: Fina
 
             <div className="w-full max-w-md mx-auto pt-12 border-t border-white/5">
               <p className="font-sans text-[10px] uppercase tracking-[0.3em] text-white/60 mb-6">Stay inspired</p>
-              <form action="https://formsubmit.co/you@email.com" method="POST" className="flex flex-col sm:flex-row gap-3"> 
+              <form 
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+                  const button = form.querySelector('button');
+                  if (button) button.disabled = true;
+                  
+                  try {
+                    await fetch('/api/notify/contact', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        name: 'Newsletter Subscriber',
+                        email: email,
+                        subject: 'Newsletter Signup',
+                        message: 'New newsletter signup from footer/CTA.',
+                        pathname: window.location.pathname
+                      })
+                    });
+                    alert('Thank you for joining our updates!');
+                    form.reset();
+                  } catch (err) {
+                    console.error('Newsletter error:', err);
+                  } finally {
+                    if (button) button.disabled = false;
+                  }
+                }}
+                className="flex flex-col sm:flex-row gap-3"
+              > 
                 <label htmlFor="newsletter-email" className="sr-only">Email address for updates</label>
                 <input id="newsletter-email" placeholder="Email" name="email" type="email" className="input flex-grow" required /> 
                 <button type="submit" className="btn-secondary whitespace-nowrap">Join Updates</button> 

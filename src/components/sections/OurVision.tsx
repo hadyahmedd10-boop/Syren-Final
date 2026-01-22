@@ -1,5 +1,7 @@
 import Reveal from "../motion/Reveal";
 import SectionHeader from "../layout/SectionHeader";
+import Image from "next/image";
+import { HERO_IMAGES } from "@/lib/images";
 
 const stats = [
   { value: "20+", label: "Years of Expertise" },
@@ -13,9 +15,19 @@ export default function OurVision() {
     <div 
       id="vision" 
       aria-labelledby="vision-title" 
-      className="bg-background scroll-mt-24"
+      className="bg-background scroll-mt-24 relative overflow-hidden"
     >
-      <div className="mx-auto max-w-4xl px-6 md:px-8">
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <Image
+          src={HERO_IMAGES.home}
+          alt=""
+          fill
+          className="object-cover object-center grayscale"
+          sizes="100vw"
+        />
+      </div>
+      
+      <div className="mx-auto max-w-4xl px-6 md:px-8 relative z-10 py-12">
         <SectionHeader 
           id="vision-title"
           title="The Vision of Syren" 
@@ -60,7 +72,7 @@ export default function OurVision() {
                     {stat.value}
                   </span>
                   <div className="flex flex-col items-center gap-2">
-                    <span className="font-sans text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-text-secondary font-semibold group-hover:text-text-primary transition-colors duration-500">
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary group-hover:text-text-primary transition-colors duration-500">
                       {stat.label}
                     </span>
                     {/* Tiny Decorative Gold Dot */}

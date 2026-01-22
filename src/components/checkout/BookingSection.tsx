@@ -31,17 +31,20 @@ export default function BookingSection({
   const totalPrice = basePrice + addOnsTotal;
 
   return (
-    <div className="p-8 md:p-16 border border-accent-gold/20 bg-surface/50 backdrop-blur-sm relative shadow-2xl">
-      <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-background border border-accent-gold/20 px-6 py-2">
-        <span className="font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold font-bold">
+    <div className="px-6 pt-6 pb-4 md:px-12 md:pt-12 md:pb-10 border border-accent-gold/20 bg-surface/50 backdrop-blur-sm relative shadow-xl rounded-2xl">
+      <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-background border border-accent-gold/20 px-6 py-2.5 transition-all duration-300 ease-out hover:border-accent-gold/40 hover:shadow-[0_0_15px_rgba(196,160,82,0.1)] group/secure whitespace-nowrap">
+        <span 
+          tabIndex={0}
+          className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
           Secure Booking
         </span>
       </div>
 
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <SectionHeader 
           title="Finalize Your Reservation" 
-          className="mb-4"
+          className="mb-3"
         />
         <div className="flex items-center justify-center gap-3 text-text-secondary/60">
           <ShieldCheck size={16} />
@@ -49,8 +52,8 @@ export default function BookingSection({
         </div>
       </div>
 
-      <div className="space-y-8">
-        <div className="flex justify-between items-end border-b border-white/10 pb-6">
+      <div className="space-y-6">
+        <div className="flex justify-between items-end border-b border-white/10 pb-4">
           <div>
             <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary/40 mb-1">
               Total Price
@@ -94,7 +97,7 @@ export default function BookingSection({
           selectedAddOns={selectedAddOns}
         />
 
-        <p className="text-center font-sans text-[9px] uppercase tracking-[0.2em] text-text-secondary/30">
+        <p className="text-center font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary/30">
           By proceeding, you agree to our{" "}
           <a href="#" className="underline hover:text-accent-gold transition-colors">
             Terms of Service

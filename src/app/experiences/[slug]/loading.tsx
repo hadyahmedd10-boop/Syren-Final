@@ -12,7 +12,7 @@ export default function ExperienceLoading() {
       </div>
 
       <div className="bg-surface section">
-        <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[1, 2, 3].map((i) => (
             <div key={i} className="h-48 bg-background animate-pulse border border-white/5" />
           ))}

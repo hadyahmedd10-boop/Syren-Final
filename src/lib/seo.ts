@@ -11,11 +11,11 @@ interface SeoProps {
 export function constructMetadata({
   title,
   description,
-  image = "/og.jpg",
+  image = "/og-image.jpg",
   canonical = "/",
   noIndex = false,
 }: SeoProps): Metadata {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   
   return {
     title,
@@ -23,7 +23,7 @@ export function constructMetadata({
     openGraph: {
       title,
       description,
-      url: siteUrl + canonical,
+      url: siteUrl ? siteUrl + canonical : undefined,
       siteName: "Syren",
       images: [{ url: image }],
       type: "website",
@@ -35,7 +35,7 @@ export function constructMetadata({
       images: [image],
     },
     alternates: {
-      canonical: siteUrl + canonical,
+      canonical: siteUrl ? siteUrl + canonical : undefined,
     },
     ...(noIndex && {
       robots: {

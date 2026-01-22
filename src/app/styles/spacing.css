@@ -1,7 +1,7 @@
 /* GLOBAL SECTION SPACING */ 
 .section { 
-  padding-top: 3rem; 
-  padding-bottom: 3rem; 
+  padding-top: 2.5rem; 
+  padding-bottom: 2.5rem; 
 } 
 
 @media (min-width: 768px) { 
@@ -12,8 +12,8 @@
 } 
 
 .section-tight { 
-  padding-top: 1.5rem; 
-  padding-bottom: 1.5rem; 
+  padding-top: 1.25rem; 
+  padding-bottom: 1.25rem; 
 }
 
 @media (min-width: 768px) {

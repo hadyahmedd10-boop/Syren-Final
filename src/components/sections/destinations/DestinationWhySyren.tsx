@@ -35,7 +35,7 @@ export default function DestinationWhySyren({ destinationName }: DestinationWhyS
           className="mb-12 md:mb-16"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
           {features.map((feature, index) => (
             <Reveal key={feature.title} delay={index * 0.1}>
               <div className="flex flex-col items-center text-center group">

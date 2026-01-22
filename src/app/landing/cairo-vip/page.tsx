@@ -1,5 +1,6 @@
 import { constructMetadata } from "@/lib/seo";
 import LandingShell from "@/components/landing/LandingShell";
+import { DESTINATION_IMAGES } from "@/lib/images";
 
 export const metadata = constructMetadata({
   title: "Cairo VIP Experience | Private Access & Luxury Journeys",
@@ -17,7 +18,7 @@ export default function CairoVIPLanding() {
       eyebrow="Exclusive Access"
       title="Cairo, Beyond the Veil"
       subtitle="Private pyramid entries. After-hours museum tours. The city's most prestigious addresses, curated for the discerning traveler."
-      heroImage="/images/destinations/cairo.jpg"
+      heroImage={DESTINATION_IMAGES["cairo"]}
       primaryCtaLabel="Explore Journeys"
       primaryCtaHref="/experiences"
       secondaryCtaLabel="Talk to a curator"

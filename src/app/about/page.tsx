@@ -1,7 +1,7 @@
 import Reveal from "@/components/motion/Reveal";
 import Image from "next/image";
 import Link from "next/link";
-import heroImg from "../../../public/images/hero/luxury.jpg";
+import { HERO_IMAGES } from "@/lib/images";
 import { Sparkles, ShieldCheck, Globe, Users } from "lucide-react";
 import SectionHeader from "@/components/layout/SectionHeader";
 import FinalCTA from "@/components/sections/FinalCTA";
@@ -45,8 +45,8 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <Image
-          src={heroImg}
-          alt="Syren Luxury Travel"
+          src={HERO_IMAGES.home}
+          alt="The Spirit of Syren: Curating the most extraordinary luxury travel experiences in Egypt"
           fill
           className="object-cover opacity-40"
           priority
@@ -87,7 +87,7 @@ export default function AboutPage() {
       {/* Values */}
       <section className="section bg-black/40">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.1}>
                 <div className="flex flex-col items-center text-center group">
@@ -107,7 +107,7 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="section">
-        <div className="max-w-3xl mx-auto text-center border border-white/5 rounded-[4rem] p-16 bg-surface/30 backdrop-blur-sm">
+        <div className="max-w-3xl mx-auto text-center border border-white/5 rounded-2xl p-16 bg-surface/30 backdrop-blur-sm">
           <SectionHeader 
             title="Ready to begin your story?" 
             description="Let us craft a journey that resonates with your unique vision of discovery."

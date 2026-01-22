@@ -30,20 +30,20 @@ export default function AddOns({ items, onChange }: AddOnsProps) {
   if (items.length === 0) return null;
 
   return (
-    <div className="mt-12 pt-8 border-t border-white/10">
-      <h3 className="font-serif text-2xl text-primary mb-6">Enhance Your Journey</h3>
-      <p className="font-sans text-[10px] uppercase tracking-[0.3em] text-text-secondary mb-8">
+    <div className="mt-6 pt-4 border-t border-white/10">
+      <h3 className="font-serif text-2xl text-primary mb-4">Enhance Your Journey</h3>
+      <p className="font-sans text-[10px] uppercase tracking-[0.3em] text-text-secondary mb-5">
         Recommended Add-Ons
       </p>
 
-      <div className="space-y-4">
+      <div className="space-y-2.5">
         {items.map((item) => {
           const isSelected = selectedSlugs.includes(item.slug);
           return (
             <div
               key={item.slug}
               onClick={() => toggleAddOn(item.slug)}
-              className={`group flex items-center justify-between p-4 border transition-all duration-300 cursor-pointer ${
+              className={`group flex items-center justify-between py-3 px-4 border transition-all duration-300 cursor-pointer rounded-2xl ${
                 isSelected
                   ? "bg-accent-gold/5 border-accent-gold/40"
                   : "bg-surface border-border hover:border-accent-gold/20"
@@ -79,7 +79,7 @@ export default function AddOns({ items, onChange }: AddOnsProps) {
       </div>
 
       {selectedSlugs.length > 0 && (
-        <div className="mt-6 flex justify-between items-center px-4 py-3 bg-white/5 border border-white/10">
+        <div className="mt-4 flex justify-between items-center px-4 py-3 bg-white/5 border border-white/10">
           <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-text-secondary">
             Add-Ons Total
           </span>

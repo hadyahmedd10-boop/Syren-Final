@@ -7,6 +7,8 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import CheckoutButton from "@/components/payments/CheckoutButton";
 import { excursions } from "@/data/excursions";
 import { MessageSquare } from "lucide-react";
+import { destinations } from "@/data/destinations";
+import { HERO_IMAGES } from "@/lib/images";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -49,21 +51,36 @@ export default async function ExcursionPage({ params }: Props) {
 
   if (!excursion) notFound();
 
+  const destination = destinations.find((d) => d.slug === excursion.destinationSlug);
+  const heroImage = excursion.heroImage || destination?.heroImage || HERO_IMAGES.home;
+
+  // Trivial highlight inference
+  const inferStepHighlights = (item: { title: string; description: string }) => {
+    const chips: string[] = [];
+    const text = `${item.title} ${item.description}`.toLowerCase();
+    
+    if (text.includes("private guide") || text.includes("expert guide")) chips.push("Private Guide");
+    if (text.includes("sunset")) chips.push("Sunset Stop");
+    if (text.includes("transfer") || text.includes("pickup") || text.includes("private driver")) chips.push("Transfer");
+    if (text.includes("lunch")) chips.push("Lunch Included");
+    if (text.includes("snorkeling")) chips.push("Snorkeling");
+    if (text.includes("boat") || text.includes("sailing")) chips.push("Boat Trip");
+    
+    return chips.slice(0, 3);
+  };
+
   return (
     <main className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[520px] w-full overflow-hidden">
-        {excursion.heroImage && (
-          <Image
-            src={excursion.heroImage}
-            alt={excursion.title}
-            fill
-            priority
-            sizes="100vw"
-            placeholder="blur"
-            className="object-cover object-center brightness-[0.55]"
-          />
-        )}
+        <Image
+          src={heroImage}
+          alt={`Immerse yourself in the ${excursion.title} excursion, a private journey through Egypt's wonders`}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center brightness-[0.55]"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
 
         <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
@@ -110,17 +127,21 @@ export default async function ExcursionPage({ params }: Props) {
       </section>
 
       {/* Highlights */}
-      <section className="section">
+      <section className="py-16 md:py-24 bg-surface/30 border-b border-border/50">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <SectionHeader title="Highlights" />
+          <SectionHeader 
+            title="Excursion Highlights" 
+            label="Key Experiences"
+            className="mb-10"
+          />
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="grid gap-3 md:gap-4 md:grid-cols-2 lg:grid-cols-4">
             {excursion.highlights.map((h) => (
               <div
                 key={h}
-                className="rounded-xl border border-border bg-surface p-6"
+                className="rounded-2xl border border-border bg-background p-4 hover:border-accent-gold/30 transition-colors duration-300"
               >
-                <p className="font-sans text-sm text-text-primary">{h}</p>
+                <p className="font-sans text-xs md:text-sm text-text-primary leading-relaxed">{h}</p>
               </div>
             ))}
           </div>
@@ -128,27 +149,67 @@ export default async function ExcursionPage({ params }: Props) {
       </section>
 
       {/* Itinerary */}
-      <section className="section bg-surface border-y border-border">
-        <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <SectionHeader title="Itinerary" />
+      <section className="py-20 md:py-28 bg-background">
+        <div className="mx-auto max-w-5xl px-6 md:px-8">
+          <SectionHeader 
+            title="The Journey Flow" 
+            label="Step by Step"
+            className="mb-12 md:mb-20"
+          />
 
-          <div className="mt-12 space-y-10">
+          <div className="relative space-y-0">
+            {/* Timeline Line */}
+            <div className="absolute left-4 top-0 bottom-0 w-px bg-border/20 md:left-1/2 md:-ml-px hidden md:block" />
+
             {excursion.itinerary.map((step, i) => (
               <Reveal key={`${step.title}-${i}`} delay={0.05 * i}>
-                <div className="rounded-xl border border-border p-8">
-                  <div className="flex flex-wrap items-center gap-3">
-                    {step.time && (
-                      <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-text-secondary">
-                        {step.time}
-                      </span>
-                    )}
-                    <h3 className="font-serif text-2xl text-accent-gold">
-                      {step.title}
-                    </h3>
+                <div className={`relative flex items-center mb-10 md:mb-16 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                  {/* Timeline Dot */}
+                  <div className="absolute left-4 md:left-1/2 md:-ml-1 w-2.5 h-2.5 rounded-full border border-accent-gold/60 bg-background z-10" />
+                  
+                  {/* Content */}
+                  <div className="ml-10 md:ml-0 md:w-1/2 md:px-10">
+                    <div 
+                      tabIndex={0}
+                      className="p-5 md:p-6 syren-card syren-card-hover border-border/60 bg-surface/50 backdrop-blur-sm hover:shadow-[0_8px_30px_rgba(0,0,0,0.02)] focus-visible:ring-1 focus-visible:ring-accent-gold/30 focus-visible:outline-none group"
+                    >
+                      <div className="flex flex-col gap-2 mb-3">
+                        {step.time && (
+                          <span 
+                            tabIndex={0}
+                            className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold transition-all duration-300 ease-out hover:text-accent-gold hover:drop-shadow-[0_0_8px_rgba(196,160,82,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background inline-block"
+                          >
+                            {step.time}
+                          </span>
+                        )}
+                        <h3 className="font-serif text-2xl text-text-primary group-hover:text-accent-gold transition-colors duration-500">
+                          {step.title}
+                        </h3>
+                        
+                        {/* Highlights Chips */}
+                        {(() => {
+                          const chips = inferStepHighlights(step);
+                          if (chips.length === 0) return null;
+                          return (
+                            <div className="flex flex-wrap gap-2 pt-1">
+                              {chips.map(chip => (
+                                <span 
+                                  key={chip} 
+                                  tabIndex={0}
+                                  className="syren-pill border border-accent-gold/20 bg-accent-gold/5 text-accent-gold/80 hover:bg-accent-gold/10 hover:border-accent-gold/30 hover:text-accent-gold hover:shadow-[0_0_10px_rgba(196,160,82,0.1)]"
+                                >
+                                  {chip}
+                                </span>
+                              ))}
+                            </div>
+                          );
+                        })()}
+                      </div>
+                      <p className="font-sans text-sm md:text-base text-text-secondary leading-relaxed font-light">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-                  <p className="mt-4 font-sans text-sm md:text-base text-text-secondary leading-relaxed">
-                    {step.description}
-                  </p>
                 </div>
               </Reveal>
             ))}
@@ -161,7 +222,7 @@ export default async function ExcursionPage({ params }: Props) {
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <SectionHeader title="What’s Included" />
 
-          <div className="mt-12 grid gap-12 md:grid-cols-2">
+          <div className="mt-12 grid gap-4 md:gap-6 md:grid-cols-2">
             <div>
               <h3 className="label mb-6">Included</h3>
               <ul className="space-y-3">

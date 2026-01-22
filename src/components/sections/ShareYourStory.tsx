@@ -2,15 +2,15 @@
  
 import { useState, useEffect, useRef } from 'react' 
 import Image from 'next/image'
-import image from "../../../public/images/hero/cairo.jpg"
+import { HERO_IMAGES } from '@/lib/images'
 import { X, ChevronDown } from 'lucide-react' 
 import { motion, AnimatePresence } from 'framer-motion'
 import { fadeIn, fadeInUp } from '@/lib/animations'
 
 export default function ShareYourStory() { 
   const [open, setOpen] = useState(false) 
-  const [loading, setLoading] = useState(false) 
-  const [success, setSuccess] = useState(false) 
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const modalRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const isFirstRender = useRef(true)
@@ -67,14 +67,14 @@ export default function ShareYourStory() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) { 
     e.preventDefault() 
-    setLoading(true) 
-    setSuccess(false)
+    setStatus("loading");
+    setErrorMessage("");
     
     const form = e.currentTarget 
     const formData = new FormData(form) 
 
     try {
-      const response = await fetch('/api/testimonials/submit', {
+      const response = await fetch('/api/testimonials', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,18 +89,19 @@ export default function ShareYourStory() {
         }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        setSuccess(true) 
+        setStatus("success");
         form.reset()
         setTimeout(() => setOpen(false), 3000)
       } else {
-        const data = await response.json();
-        alert(data.error || "Something went wrong. Please try again.");
+        setStatus("error");
+        setErrorMessage(data.error || "Something went wrong. Try again.");
       }
     } catch {
-      alert("Failed to submit. Please check your connection.");
-    } finally {
-      setLoading(false) 
+      setStatus("error");
+      setErrorMessage("Something went wrong. Try again.");
     }
   } 
 
@@ -142,12 +143,12 @@ export default function ShareYourStory() {
               initial="hidden"
               animate="visible"
               exit="hidden"
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-xl bg-surface p-12 rounded-3xl border border-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] overflow-hidden z-[101]"
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-xl bg-surface p-12 rounded-2xl border border-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] overflow-hidden z-[101]"
             > 
               <div className="absolute inset-0 z-0">
                 <Image 
-                  src={image} 
-                  alt="Luxury travel in Egypt" 
+                  src={HERO_IMAGES.home} 
+                  alt="An evocative scene of luxury exploration across the timeless landscapes of Egypt" 
                   fill 
                   sizes="100vw"
                   placeholder="blur"
@@ -170,9 +171,15 @@ export default function ShareYourStory() {
               <h3 id="modal-title" className="text-3xl font-serif mb-3 text-white">How was your journey?</h3> 
               <p className="text-text-secondary text-sm mb-10 italic opacity-80">Your story inspires the next generation of travelers.</p> 
 
-              {success && ( 
-                <p className="text-green-400 mb-6 bg-green-400/10 py-3 rounded-lg border border-green-400/20 text-sm"> 
+              {status === "success" && ( 
+                <p className="text-green-400 mb-6 bg-green-400/10 py-3 rounded-lg border border-green-400/20 text-sm px-4"> 
                   Thank you! Your review will appear once approved. 
+                </p> 
+              )} 
+
+              {status === "error" && ( 
+                <p className="text-red-400 mb-6 bg-red-400/10 py-3 rounded-lg border border-red-400/20 text-sm px-4"> 
+                  {errorMessage}
                 </p> 
               )} 
 
@@ -200,7 +207,7 @@ export default function ShareYourStory() {
                   <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none" />
                 </div>
 
-                <textarea name="message" placeholder="Describe your experience with Syren..." required className="syren-input h-32 resize-none" /> 
+                <textarea name="message" rows={4} placeholder="Your story..." required className="syren-input" /> 
 
                 <div className="relative">
                   <select name="rating" required className="syren-input appearance-none pr-10"> 
@@ -212,8 +219,12 @@ export default function ShareYourStory() {
                   <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none" />
                 </div>
 
-                <button disabled={loading} className="syren-btn-primary w-full mt-4"> 
-                  {loading ? 'Sending...' : 'Post Experience'} 
+                <button 
+                  type="submit"
+                  disabled={status === "loading"} 
+                  className="syren-btn-primary w-full mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                > 
+                  {status === "loading" ? 'Submitting...' : 'Submit Story'} 
                 </button> 
               </form> 
               </div>

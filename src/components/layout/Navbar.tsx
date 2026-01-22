@@ -133,7 +133,7 @@ export default function Navbar() {
                               <span className="font-serif text-lg text-white/90 group-hover:text-accent-gold transition-colors">
                                 {dest.name}
                               </span>
-                              <span className="font-sans text-[9px] uppercase tracking-[0.2em] text-white/40 group-hover:text-accent-gold/60 transition-colors">
+                              <span className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 group-hover:text-accent-gold/60 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(196,160,82,0.2)]">
                                 {dest.tagline}
                               </span>
                             </Link>
@@ -158,11 +158,11 @@ export default function Navbar() {
                 <div className="mt-auto pt-8">
                   <div className="grid grid-cols-2 gap-x-6 gap-y-4">
                     <div>
-                      <p className="text-[9px] uppercase tracking-[0.2em] text-white/30 mb-2">Inquiries</p>
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-2">Inquiries</p>
                       <a href="mailto:concierge@syren.travel" className="text-xs text-white/60 hover:text-accent-gold transition-colors">concierge@syren.travel</a>
                     </div>
                     <div>
-                      <p className="text-[9px] uppercase tracking-[0.2em] text-white/30 mb-2">Follow</p>
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-2">Follow</p>
                       <div className="flex gap-4">
                         <a href="#" className="text-xs text-white/60 hover:text-accent-gold transition-colors">Instagram</a>
                         <a href="#" className="text-xs text-white/60 hover:text-accent-gold transition-colors">LinkedIn</a>
@@ -201,7 +201,7 @@ export default function Navbar() {
                    initial={{ opacity: 0, y: 10 }}
                    animate={{ opacity: 1, y: 0 }}
                    exit={{ opacity: 0, y: 10 }}
-                   className="absolute top-full left-0 mt-4 w-64 bg-background/95 backdrop-blur-xl border border-border rounded-xl overflow-hidden shadow-2xl z-50"
+                   className="absolute top-full left-0 mt-4 w-64 bg-background/95 backdrop-blur-xl border border-border rounded-2xl overflow-hidden shadow-xl z-50"
                  >
                    <div className="p-2">
                      <p className="px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-accent-gold/60 font-bold">Destinations</p>
@@ -212,7 +212,7 @@ export default function Navbar() {
                          className="flex flex-col px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
                        >
                          <span className="text-sm font-medium group-hover:text-accent-gold transition-colors">{dest.name}</span>
-                         <span className="text-[10px] text-text-secondary line-clamp-1">{dest.tagline}</span>
+                         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary/60 group-hover:text-accent-gold/60 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(196,160,82,0.2)] line-clamp-1">{dest.tagline}</span>
                        </Link>
                      ))}
                      <div className="mt-2 pt-2 border-t border-border/50">

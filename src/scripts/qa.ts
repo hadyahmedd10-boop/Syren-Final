@@ -6,15 +6,15 @@
  * - Slug counts for experiences, destinations, and excursions
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 // 1. Required Env Vars
 const REQUIRED_ENV_VARS = [
   'NEXT_PUBLIC_SUPABASE_URL',
   'NEXT_PUBLIC_SUPABASE_ANON_KEY',
   'SUPABASE_SERVICE_ROLE_KEY',
-  'RESEND_API_KEY',
+  'BREVO_API_KEY',
   'NOTIFY_EMAIL',
   'NEXT_PUBLIC_SITE_URL',
   'STRIPE_SECRET_KEY',
@@ -35,9 +35,9 @@ function checkEnvVars() {
 
 // 2. Placeholder Check
 const CRITICAL_FILES = [
-  'src/app/api/quote/route.ts',
   'src/app/api/notify/quote/route.ts',
-  'src/app/api/testimonials/submit/route.ts',
+  'src/app/api/notify/contact/route.ts',
+  'src/app/api/testimonials/route.ts',
   'src/lib/supabaseClient.ts',
   'src/lib/supabaseAdmin.ts'
 ];

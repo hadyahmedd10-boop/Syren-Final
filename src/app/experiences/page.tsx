@@ -2,6 +2,7 @@
   import { experiences } from "@/data/experiences";
 import { excursions } from "@/data/excursions";
 import { destinations } from "@/data/destinations";
+import { HERO_IMAGES } from "@/lib/images";
 import Link from "next/link";
   import Reveal from "@/components/motion/Reveal";
   import Image from "next/image";
@@ -9,6 +10,7 @@ import Link from "next/link";
   // Components
 import Hero from "@/components/sections/experiences/ExperiencesHero";
 import ExperiencesGrid from "@/components/sections/experiences/ExperiencesGrid";
+import ExperienceCard from "@/components/sections/ExperienceCard";
 import SectionHeader from "@/components/layout/SectionHeader";
 import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/FinalCTA";
@@ -47,7 +49,7 @@ export default function ExperiencesPage() {
       "url": `${siteUrl}/experiences/${exp.slug}`,
       "name": exp.title,
       "description": exp.description,
-      "image": typeof exp.heroImage === 'string' ? exp.heroImage : exp.heroImage.src
+      "image": exp.heroImage.src
     }))
   };
 
@@ -74,50 +76,25 @@ export default function ExperiencesPage() {
           className="mb-12 md:mb-16"
         />
       
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"> 
-          {excursions.map((exc, i) => ( 
-            <Reveal key={exc.slug} delay={0.05 * i}> 
-              <article className="group relative flex h-full flex-col overflow-hidden bg-surface border border-border transition-all duration-500 ease-out hover:border-primary/30 hover:-translate-y-1"> 
-                <div className="relative aspect-[16/10] w-full overflow-hidden"> 
-                  <Image 
-                    src={exc.image} 
-                    alt={exc.imageAlt ?? exc.title} 
-                    fill 
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" 
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" 
-                    placeholder={typeof exc.image === "string" ? undefined : "blur"} 
-                    priority={false} 
-                  /> 
-                  <div className="absolute inset-0 bg-black/25 transition-opacity duration-500 group-hover:bg-black/35" /> 
-                  <div className="absolute left-6 top-6 z-10"> 
-                    <span className="bg-background/70 px-3 py-1.5 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold backdrop-blur-md border border-accent-gold/20"> 
-                      {exc.duration} 
-                    </span> 
-                  </div> 
-                </div> 
-      
-                <div className="flex flex-1 flex-col p-8"> 
-                  <h3 className="font-serif text-2xl tracking-tight text-accent-gold"> 
-                    {exc.title} 
-                  </h3> 
-      
-                  <p className="mt-2 font-sans text-[10px] uppercase tracking-[0.3em] text-text-secondary"> 
-                    {destinationMap[exc.destinationSlug]} · {exc.tourStyle} · {exc.availability} 
-                  </p> 
-      
-                  <p className="mt-6 font-sans text-sm leading-relaxed text-white/60 flex-1"> 
-                    {exc.shortDescription} 
-                  </p> 
-      
-                  <div className="mt-8 pt-6 border-t border-white/10"> 
-                    <Link href={`/excursions/${exc.slug}`} className="syren-btn-secondary"> 
-                      View Itinerary 
-                    </Link> 
-                  </div> 
-                </div> 
-              </article> 
-            </Reveal> 
-          ))} 
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"> 
+          {excursions.map((exc, i) => {
+            const destination = destinations.find(d => d.slug === exc.destinationSlug);
+            const displayImage = exc.image || destination?.heroImage || HERO_IMAGES.home;
+            
+            return ( 
+              <Reveal key={exc.slug} delay={0.05 * i}> 
+                <ExperienceCard 
+                  title={exc.title}
+                  description={exc.shortDescription}
+                  image={displayImage}
+                  alt={exc.imageAlt ?? exc.title}
+                  duration={exc.duration}
+                  buttonText="Discover Excursion"
+                  href={`/excursions/${exc.slug}`}
+                /> 
+              </Reveal> 
+            );
+          })} 
         </div> 
       </section>
 

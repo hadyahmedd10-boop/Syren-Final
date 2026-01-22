@@ -59,11 +59,27 @@ export default function SectionHeader({
     }
   };
 
+  const getLabelClasses = () => {
+    const base = "block font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold mb-4 transition-all duration-300 ease-out hover:text-accent-gold hover:drop-shadow-[0_0_8px_rgba(196,160,82,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background w-fit";
+    switch (align) {
+      case "left":
+        return base;
+      case "responsive":
+        return `${base} mx-auto md:mx-0`;
+      case "center":
+      default:
+        return `${base} mx-auto`;
+    }
+  };
+
   return (
     <Reveal className={className || "mb-12 md:mb-16"}>
       <div className={`flex flex-col ${getAlignmentClasses()}`}>
         {label && (
-          <span className="block font-sans text-[10px] uppercase tracking-[0.4em] text-accent-gold mb-4">
+          <span 
+            tabIndex={0}
+            className={getLabelClasses()}
+          >
             {label}
           </span>
         )}

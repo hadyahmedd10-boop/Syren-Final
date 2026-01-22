@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { Testimonial } from "@/types/testimonial";
-import { Check, X, Trash2, Star, Loader2, LogOut } from "lucide-react";
+import { Check, X, Trash2, Star, Loader2 } from "lucide-react";
 
 export default function AdminTestimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -74,14 +74,6 @@ export default function AdminTestimonials() {
     }
   };
 
-  const handleLogout = async () => {
-    if (supabase) {
-      await supabase.auth.signOut();
-    }
-    router.push("/login");
-    router.refresh();
-  };
-
   return (
     <div className="min-h-screen bg-background text-white p-6 md:p-12">
       <div className="max-w-6xl mx-auto">
@@ -90,13 +82,6 @@ export default function AdminTestimonials() {
             <h1 className="text-4xl font-serif text-accent-gold mb-2">Moderation Dashboard</h1>
             <p className="text-text-secondary font-sans text-sm uppercase tracking-widest">Manage Traveler Stories</p>
           </div>
-          <button 
-            onClick={handleLogout}
-            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all text-xs uppercase tracking-widest"
-          >
-            <LogOut size={14} />
-            Logout
-          </button>
         </div>
 
         {loading ? (
@@ -105,7 +90,7 @@ export default function AdminTestimonials() {
             <p className="text-text-secondary italic">Loading testimonials...</p>
           </div>
         ) : testimonials.length === 0 ? (
-          <div className="text-center py-20 border border-white/5 rounded-3xl bg-surface/30 backdrop-blur-sm">
+          <div className="text-center py-20 border border-white/5 rounded-2xl bg-surface/30 backdrop-blur-sm">
             <p className="text-text-secondary italic">No testimonials to moderate.</p>
           </div>
         ) : (
@@ -113,7 +98,7 @@ export default function AdminTestimonials() {
             {testimonials.map((t) => (
               <div 
                 key={t.id} 
-                className={`group relative p-8 rounded-3xl border transition-all duration-500 bg-surface/30 backdrop-blur-sm ${
+                className={`group relative p-8 rounded-2xl border transition-all duration-500 bg-surface/30 backdrop-blur-sm ${
                   t.approved ? 'border-green-500/20' : 'border-white/5 hover:border-accent-gold/20'
                 }`}
               >
@@ -128,7 +113,7 @@ export default function AdminTestimonials() {
                         <p className="text-text-secondary text-sm">{t.email || "No email provided"}</p>
                       </div>
                       {t.approved && (
-                        <span className="ml-2 px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] uppercase tracking-widest rounded-full border border-green-500/20">
+                        <span className="ml-2 inline-flex items-center justify-center px-3 py-1.5 bg-green-500/10 text-green-500 text-[10px] uppercase tracking-widest rounded-full border border-green-500/20 whitespace-nowrap">
                           Approved
                         </span>
                       )}

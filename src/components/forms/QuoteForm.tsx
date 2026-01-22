@@ -23,49 +23,41 @@ export default function QuoteForm() {
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/quote", {
+      const res = await fetch("/api/notify/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          trip_dates: formData.trip_dates,
+          budget: formData.budget,
+          message: formData.message,
+        }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
         setStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          trip_dates: "",
+          budget: "",
+          message: "",
+          honeypot: "",
+        });
       } else {
         setStatus("error");
-        setErrorMessage(data.error || "Something went wrong. Please try again.");
+        setErrorMessage(data.error || "Something went wrong. Try again.");
       }
     } catch {
       setStatus("error");
-      setErrorMessage("Failed to connect to the server.");
+      setErrorMessage("Something went wrong. Try again.");
     }
   };
-
-  if (status === "success") {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center px-6">
-        <Reveal>
-          <div className="text-center space-y-6 max-w-md">
-            <div className="w-20 h-20 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-8">
-              <CheckCircle2 className="text-accent-gold w-10 h-10" />
-            </div>
-            <h2 className="font-serif text-3xl md:text-4xl text-white">Request Received</h2>
-            <p className="text-white/60 font-light leading-relaxed">
-              Thank you for reaching out. A Syren curator will review your request and contact you within 24 hours to begin crafting your journey.
-            </p>
-            <button
-              onClick={() => window.location.href = "/"}
-              className="syren-btn-secondary mt-8"
-            >
-              Return Home
-            </button>
-          </div>
-        </Reveal>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -84,7 +76,7 @@ export default function QuoteForm() {
       </Reveal>
 
       <Reveal delay={0.2}>
-        <form onSubmit={handleSubmit} className="space-y-8 bg-white/5 p-8 md:p-12 border border-white/10 backdrop-blur-sm">
+        <form onSubmit={handleSubmit} className="space-y-6 bg-white/5 p-6 md:p-10 border border-white/10 backdrop-blur-sm rounded-2xl">
           {/* Honeypot - hidden from users */}
           <input
             type="text"
@@ -94,7 +86,7 @@ export default function QuoteForm() {
             onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label htmlFor="name" className="text-[10px] uppercase tracking-[0.2em] text-accent-gold font-bold">Full Name</label>
               <input
@@ -173,6 +165,13 @@ export default function QuoteForm() {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             />
           </div>
+
+          {status === "success" && (
+            <div className="flex items-center gap-3 text-green-400 bg-green-400/10 p-4 border border-green-400/20">
+              <CheckCircle2 size={18} />
+              <p className="text-sm">Sent. We&apos;ll reply shortly.</p>
+            </div>
+          )}
 
           {status === "error" && (
             <div className="flex items-center gap-3 text-red-400 bg-red-400/10 p-4 border border-red-400/20">

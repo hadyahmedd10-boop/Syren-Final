@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/motion/Reveal";
 import { destinations } from "@/data/destinations";
 import { excursions } from "@/data/excursions";
+import { HERO_IMAGES } from "@/lib/images";
 import ExperienceCard from "@/components/sections/ExperienceCard";
 import DestinationHero from "@/components/sections/destinations/DestinationHero";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -34,8 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${destination.name} | Luxury Travel Guide | Syren`;
   const description = `Explore ${destination.name} with Syren. ${destination.description}`;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
-  const heroImageUrl = typeof destination.heroImage === "string" ? destination.heroImage : destination.heroImage.src;
+  const heroImageUrl = destination.heroImage.src;
 
   return {
     title,
@@ -77,8 +77,19 @@ export default async function DestinationPage({ params }: Props) {
 
   const destinationExcursions = excursions.filter(e => e.destinationSlug === destination.slug);
 
+  // Dev-only confirmation log
+  if (process.env.NODE_ENV === "development") {
+    const dataCount = destination.excursionSlugs?.length || 0;
+    console.log(`[Dev] Destination: ${destination.name}`);
+    console.log(`[Dev]   - Excursions found via filter: ${destinationExcursions.length}`);
+    console.log(`[Dev]   - Excursions listed in data: ${dataCount}`);
+    if (destinationExcursions.length !== dataCount) {
+      console.warn(`[Dev]   - WARNING: Mismatch between filter count and data count!`);
+    }
+  }
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
-  const heroImageUrl = typeof destination.heroImage === 'string' ? destination.heroImage : destination.heroImage.src;
+  const heroImageUrl = destination.heroImage.src;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -108,42 +119,58 @@ export default async function DestinationPage({ params }: Props) {
         image={destination.heroImage} 
       />
       
-      <DestinationIntro 
-        description={destination.description} 
-        vibeKeywords={destination.vibeKeywords} 
-      />
+      <div className="bg-background py-4">
+        <DestinationIntro 
+          description={destination.description} 
+          vibeKeywords={destination.vibeKeywords} 
+        />
+      </div>
       
-      <DestinationWhySyren destinationName={destination.name} />
+      <div className="bg-surface/30 border-y border-border/40">
+        <DestinationWhySyren destinationName={destination.name} />
+      </div>
       
-      <DestinationExperiences 
-        destinationName={destination.name} 
-        destinationSlug={slug} 
-      />
+      <div className="bg-background">
+        <DestinationExperiences 
+          destinationName={destination.name} 
+          destinationSlug={slug} 
+        />
+      </div>
 
-      {destinationExcursions.length > 0 && ( 
-        <section className="bg-background border-t border-border section"> 
-          <div className="mx-auto max-w-7xl px-6 md:px-8"> 
-            <SectionHeader title="Recommended Add-Ons" />
-      
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10"> 
-              {destinationExcursions.map((exc, index) => ( 
-                <Reveal key={exc.slug} delay={0.05 * (index + 1)}> 
-                  <ExperienceCard 
-                     title={exc.title} 
-                     description={exc.shortDescription} 
-                     image={exc.image} 
-                     alt={exc.imageAlt ?? exc.title} 
-                     duration={exc.duration} 
-                     cities={destination.name} 
-                     buttonText="View Excursion" 
-                     href={`/excursions/${exc.slug}`} 
-                   /> 
-                </Reveal> 
-              ))} 
+      <section className="bg-background border-t border-border py-20 md:py-24"> 
+        <div className="mx-auto max-w-7xl px-6 md:px-8"> 
+          <SectionHeader title="Recommended Add-Ons" />
+    
+          {destinationExcursions.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-6"> 
+              {destinationExcursions.map((exc, index) => {
+                const displayImage = exc.image || destination.heroImage || HERO_IMAGES.home;
+                
+                return ( 
+                  <Reveal key={exc.slug} delay={0.05 * (index + 1)}> 
+                    <ExperienceCard 
+                       title={exc.title} 
+                       description={exc.shortDescription} 
+                       image={displayImage} 
+                       alt={exc.imageAlt ?? exc.title} 
+                       duration={exc.duration} 
+                       cities={destination.name} 
+                       buttonText="View Excursion" 
+                       href={`/excursions/${exc.slug}`} 
+                     /> 
+                  </Reveal> 
+                );
+              })} 
             </div> 
-          </div> 
-        </section> 
-      )}
+          ) : (
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <p className="font-sans text-lg text-text-secondary">
+                No excursions listed yet
+              </p>
+            </div>
+          )}
+        </div> 
+      </section> 
       
       <FinalCTA as="section" className="section border-t border-border" />
     </main>

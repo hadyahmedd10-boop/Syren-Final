@@ -12,42 +12,42 @@ const landings = [
   {
     title: "Luxury Cairo",
     subtitle: "Redefining Cairo Luxury with private VIP access and curated boutique stays.",
-    image: "/images/hero/luxury.jpg",
+    image: "/Images/hero-cairo.jpg",
     slug: "luxury-cairo",
     category: "Campaign: Cairo"
   },
   {
     title: "Cairo VIP",
     subtitle: "Ultimate Cairo Access for the discerning traveler seeking absolute exclusivity.",
-    image: "/images/destinations/cairo.jpg",
+    image: "/Images/hero-cairo.jpg",
     slug: "cairo-vip",
     category: "Campaign: Cairo"
   },
   {
     title: "Nile Journey",
     subtitle: "A Sacred Voyage through time on the world's most historic river.",
-    image: "/images/destinations/luxor.jpg",
+    image: "/Images/luxor-aswan.jpg",
     slug: "nile-journey",
     category: "Campaign: Nile"
   },
   {
     title: "Red Sea Luxury",
     subtitle: "The Azure Sanctuary: Where the desert meets the crystal depths.",
-    image: "/images/destinations/red-sea.jpg",
+    image: "/Images/experiences/party.jpg",
     slug: "red-sea-luxury",
     category: "Campaign: Coastal"
   },
   {
     title: "Exclusive Experiences",
     subtitle: "The Syren Exclusive: Handpicked journeys beyond the ordinary.",
-    image: "/images/hero/experience-hero.jpg",
+    image: "/Images/hero-cairo.jpg",
     slug: "exclusive",
     category: "Campaign: Brand"
   },
   {
     title: "Private Nile Cruise",
     subtitle: "Coming Soon: The ultimate private dahabiya experience.",
-    image: "/images/destinations/aswan.jpg",
+    image: "/Images/luxor-aswan.jpg",
     slug: "#", // Placeholder
     category: "Draft"
   }
@@ -71,7 +71,7 @@ export default function LandingIndexPage() {
           </Reveal>
         </header>
 
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {landings.map((landing, index) => (
             <Reveal key={landing.slug} delay={0.1 * index}>
               <LandingCard
@@ -80,6 +80,7 @@ export default function LandingIndexPage() {
                 image={landing.image}
                 slug={landing.slug}
                 category={landing.category}
+                variant={landing.category === "Draft" ? "secondary" : "primary"}
               />
             </Reveal>
           ))}
