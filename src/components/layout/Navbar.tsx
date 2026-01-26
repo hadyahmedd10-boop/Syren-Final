@@ -10,7 +10,8 @@ import { destinations } from "@/data/destinations";
 function Logo({ className = "", onClick }: { className?: string; onClick?: (e: React.MouseEvent) => void }) {
   return (
     <Link 
-      href="/" 
+      href="/home#hero" 
+      scroll={true}
       onClick={onClick}
       className={`font-serif text-xl text-accent-gold tracking-tight ${className}`}
     > 
@@ -27,9 +28,14 @@ export default function Navbar() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleLogoClick = (e: React.MouseEvent) => {
-    if (pathname === "/") {
+    if (pathname === "/home") {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const hero = document.getElementById("hero");
+      if (hero) {
+        hero.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
   };
 

@@ -28,12 +28,12 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="section bg-surface/30">
-      <div className="mx-auto max-w-4xl px-6 md:px-8">
+    <section className="bg-surface/30 py-10 sm:py-12 lg:py-14">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader 
           title="Frequently Asked Questions" 
           label="Information" 
-          className="mb-16"
+          className="mb-6 sm:mb-8"
         />
 
         <div className="space-y-4">

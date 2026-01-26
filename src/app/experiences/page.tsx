@@ -1,15 +1,13 @@
-  import type { Metadata } from "next";
-  import { experiences } from "@/data/experiences";
+import type { Metadata } from "next";
+import { experiences } from "@/data/experiences";
 import { excursions } from "@/data/excursions";
 import { destinations } from "@/data/destinations";
 import { HERO_IMAGES } from "@/lib/images";
-import Link from "next/link";
-  import Reveal from "@/components/motion/Reveal";
-  import Image from "next/image";
+import Reveal from "@/components/motion/Reveal";
 
-  // Components
 import Hero from "@/components/sections/experiences/ExperiencesHero";
 import ExperiencesGrid from "@/components/sections/experiences/ExperiencesGrid";
+import ExperiencesSectionNav from "@/components/sections/experiences/ExperiencesSectionNav";
 import ExperienceCard from "@/components/sections/ExperienceCard";
 import SectionHeader from "@/components/layout/SectionHeader";
 import FAQ from "@/components/sections/FAQ";
@@ -37,8 +35,6 @@ export const metadata: Metadata = {
 
 export default function ExperiencesPage() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";
-  
-  const destinationMap = Object.fromEntries(destinations.map(d => [d.slug, d.name]));
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -60,46 +56,60 @@ export default function ExperiencesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
-      <section className="section-hero">
-        <Hero />
-      </section>
-      
-      <ExperiencesGrid />
-      
-      <FAQ />
 
-      <section className="section mx-auto max-w-7xl px-6 md:px-8"> 
-        <SectionHeader 
-          title="Tours & Excursions" 
-          description="Premium add-ons curated to elevate your destination experience — private, seamless, and unforgettable."
-          className="mb-12 md:mb-16"
-        />
-      
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"> 
-          {excursions.map((exc, i) => {
-            const destination = destinations.find(d => d.slug === exc.destinationSlug);
-            const displayImage = exc.image || destination?.heroImage || HERO_IMAGES.home;
-            
-            return ( 
-              <Reveal key={exc.slug} delay={0.05 * i}> 
-                <ExperienceCard 
-                  title={exc.title}
-                  description={exc.shortDescription}
-                  image={displayImage}
-                  alt={exc.imageAlt ?? exc.title}
-                  duration={exc.duration}
-                  buttonText="Discover Excursion"
-                  href={`/excursions/${exc.slug}`}
-                /> 
-              </Reveal> 
-            );
-          })} 
-        </div> 
-      </section>
+      <div id="experiences-scroll-root">
+        <section className="section-hero">
+          <Hero />
+        </section>
 
-      <Testimonials />
-      <CTA as="section" className="section border-t border-border" />
+        <ExperiencesSectionNav />
+
+        <section id="explore-our-journeys" className="scroll-mt-[140px]">
+          <ExperiencesGrid />
+        </section>
+
+        <section id="frequently-asked-questions" className="scroll-mt-[140px]">
+          <FAQ />
+        </section>
+
+        <section id="tours-excursions" className="scroll-mt-[140px] py-10 sm:py-12 lg:py-14"> 
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <SectionHeader 
+              title="Tours & Excursions" 
+              description="Premium add-ons curated to elevate your destination experience — private, seamless, and unforgettable."
+              className="mb-6 sm:mb-8"
+            />
+          
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"> 
+              {excursions.map((exc, i) => {
+                const destination = destinations.find(d => d.slug === exc.destinationSlug);
+                const displayImage = exc.image || destination?.heroImage || HERO_IMAGES.home;
+                
+                return ( 
+                  <Reveal key={exc.slug} delay={0.05 * i}> 
+                    <ExperienceCard 
+                      title={exc.title}
+                      description={exc.shortDescription}
+                      image={displayImage}
+                      alt={exc.imageAlt ?? exc.title}
+                      duration={exc.duration}
+                      buttonText="Discover Excursion"
+                      href={`/excursions/${exc.slug}`}
+                    /> 
+                  </Reveal> 
+                );
+              })} 
+            </div> 
+          </div>
+        </section>
+
+        <section id="echoes-of-extraordinary-journeys" className="scroll-mt-[140px]">
+          <Testimonials />
+        </section>
+        <section id="experience-egypt-properly" className="scroll-mt-[140px]">
+          <CTA as="div" className="section border-t border-border" />
+        </section>
+      </div>
     </main>
   );
 }

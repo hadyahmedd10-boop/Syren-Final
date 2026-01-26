@@ -82,11 +82,12 @@ export async function sendTransactionalEmail({
     }
 
     return { success: true };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Fetch error sending to Brevo:", error);
+    const message = error instanceof Error ? error.message : "Unknown fetch error";
     return {
       success: false,
-      error: error.message || "Unknown fetch error",
+      error: message,
     };
   }
 }

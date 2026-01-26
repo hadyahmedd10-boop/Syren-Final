@@ -6,7 +6,6 @@ import Footer from "@/components/layout/Footer";
 import { PHProvider } from "@/providers/PostHogProvider";
 import PostHogPageView from "@/providers/PostHogPageView";
 import { Suspense } from "react";
-import VercelLive from "@/components/dev/VercelLive";
 import { validateExcursionData } from "@/lib/data-validator";
 
 // Run data validation in development
@@ -90,7 +89,6 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <VercelLive />
         </PHProvider>
       </body>
     </html>

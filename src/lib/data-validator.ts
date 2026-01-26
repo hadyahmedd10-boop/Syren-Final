@@ -17,16 +17,4 @@ export function validateExcursionData() {
       );
     }
   });
-
-  // Also check if excursions listed in destinations actually exist
-  destinations.forEach((dest) => {
-    dest.excursionSlugs?.forEach((exSlug) => {
-      const exists = excursions.some((e) => e.slug === exSlug);
-      if (!exists) {
-        console.warn(
-          `[Data Validation] Destination "${dest.name}" lists excursion slug "${exSlug}" but it was not found in excursions data.`
-        );
-      }
-    });
-  });
 }

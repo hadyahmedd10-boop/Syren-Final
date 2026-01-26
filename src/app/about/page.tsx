@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "The Spirit of Syren | Luxury Travel Curators in Egypt",
-  description: "Syren is a luxury travel platform dedicated to curating the most extraordinary experiences across Egypt. We believe in travel with soul, depth, and absolute privacy.",
+  description: "Syren was built for travelers who don’t want Egypt explained to them — they want to experience it properly. Not rushed. Not staged. Not wrapped in clichés.",
   alternates: {
     canonical: "/about",
   },
@@ -19,23 +19,23 @@ export const metadata: Metadata = {
 const values = [
   {
     icon: <Sparkles className="text-accent-gold" />,
-    title: "Curated Excellence",
-    description: "We don't just book trips; we craft stories. Every partner and experience is hand-selected for its soul and standard."
+    title: "We Travel Like Locals, Not Tourists",
+    description: "Most trips show you Egypt from the outside. We take you inside it. We design experiences the same way locals move through the country — at the right pace, at the right time, with the right people. Early mornings when sites are quiet. Evenings when cities soften. Moments that don’t feel scheduled, because they aren’t. This isn’t about seeing more. It’s about seeing clearly."
   },
   {
     icon: <ShieldCheck className="text-accent-gold" />,
-    title: "Uncompromising Safety",
-    description: "Your peace of mind is our priority. We handle every detail with precision so you can stay present in the moment."
+    title: "Nothing Pre-Built. Nothing Generic.",
+    description: "We don’t sell packages. We don’t reuse itineraries. We don’t believe one experience fits everyone. Every journey starts with a conversation — not a form. We listen to how you travel, what you care about, and what you want this trip to mean. From there, we build something that fits you, not a brochure. Some travelers want depth. Some want comfort. Some want adventure. Most want a balance — and that balance looks different for everyone."
   },
   {
     icon: <Globe className="text-accent-gold" />,
-    title: "Local Connection",
-    description: "Go beyond the surface. We connect you with the heartbeat of Egypt through exclusive access and local expertise."
+    title: "Comfort Without Performance",
+    description: "Luxury, to us, isn’t about excess. It’s about ease. Knowing where to go — and when not to. Having the right people around you. Moving smoothly without needing to think about logistics. Everything works quietly in the background so you can stay present in the experience itself. No forced experiences. No unnecessary stops. No pressure to “do it all.”"
   },
   {
     icon: <Users className="text-accent-gold" />,
-    title: "Personal Legacy",
-    description: "We believe travel is a form of art. We design journeys that leave a lasting impact on both the traveler and the destination."
+    title: "Why We Exist",
+    description: "Syren exists because Egypt deserves better than mass tourism — and travelers deserve better than rushed, surface-level trips. We work with people who want to engage with the country respectfully, thoughtfully, and honestly. If you’re looking to tick boxes, we’re probably not the right fit. If you want a journey that stays with you long after you leave, we might be."
   }
 ];
 
@@ -46,7 +46,7 @@ export default function AboutPage() {
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <Image
           src={HERO_IMAGES.home}
-          alt="The Spirit of Syren: Curating the most extraordinary luxury travel experiences in Egypt"
+          alt="About Syren: Private journeys designed by local experts"
           fill
           className="object-cover opacity-40"
           priority
@@ -59,7 +59,7 @@ export default function AboutPage() {
           <div className="relative z-10 text-center px-6">
             <span className="text-accent-gold font-sans text-xs uppercase tracking-[0.5em] mb-6 block">Our Story</span>
             <h1 className="text-5xl md:text-8xl font-serif text-white mb-8">
-              The Art of <span className="italic">Egyptian</span> Discovery
+              About Syren
             </h1>
           </div>
         </Reveal>
@@ -69,14 +69,15 @@ export default function AboutPage() {
       <section className="section">
         <div className="max-w-4xl mx-auto text-center">
           <SectionHeader 
-            title={<>Syren was born from a simple belief: that travel should be as <span className="text-accent-gold italic">extraordinary</span> as the soul seeking it.</>}
+            title="Syren was built for travelers who don’t want Egypt explained to them — they want to experience it properly."
             description={
               <>
                 <p className="mb-8">
-                  In a world of mass tourism, we stand for the rare, the authentic, and the deeply personal. Egypt is a land of infinite depth, and our mission is to peel back the layers, revealing the electric energy and timeless grace that most travelers never see.
+                  Not rushed. Not staged. Not wrapped in clichés.
                 </p>
                 <p>
-                  Whether it&apos;s a private dinner at the foot of the Sphinx or a soul-stirring retreat in the Siwa Oasis, we ensure every Syren journey is a masterpiece of curation.
+                  Egypt is layered, intense, beautiful, chaotic, spiritual, and deeply human. 
+                  We don’t try to simplify that — we design journeys that respect it.
                 </p>
               </>
             }
@@ -109,8 +110,14 @@ export default function AboutPage() {
       <section className="section">
         <div className="max-w-3xl mx-auto text-center border border-white/5 rounded-2xl p-16 bg-surface/30 backdrop-blur-sm">
           <SectionHeader 
-            title="Ready to begin your story?" 
-            description="Let us craft a journey that resonates with your unique vision of discovery."
+            title="What We Build" 
+            description={
+              <>
+                <p className="mb-4 text-accent-gold uppercase tracking-widest text-xs font-bold">Not trips. Not schedules. Not content for social media.</p>
+                <p className="mb-4">We build experiences that feel real while you’re in them — and meaningful after you’re home.</p>
+                <p className="text-white font-serif italic text-xl">That’s Syren. Simple as that.</p>
+              </>
+            }
             className="mb-12"
           />
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

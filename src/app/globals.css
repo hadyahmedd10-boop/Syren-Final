@@ -100,6 +100,17 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 0 2px rgba(15, 76, 92, 0.1);
 }
 
+select option {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+}
+
+select option:checked,
+select option:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-background-light);
+}
+
 label {
   font-family: var(--font-inter);
   font-size: 0.75rem;
@@ -147,6 +158,10 @@ h4 {
 p, span, a, li, button, input, textarea {
   font-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+.syren-pill.mt-1\.5 {
+  display: none !important;
 }
 
 /* === Syren Primary Button === */ 
@@ -355,5 +370,3 @@ p, span, a, li, button, input, textarea {
   .mobile-nav-link {
     @apply font-serif text-3xl text-white tracking-wide hover:text-accent-gold transition-colors block text-center py-2;
   }
-
-

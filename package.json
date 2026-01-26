@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/generate-itinerary-manifest.mjs && next dev",
+    "build": "node scripts/generate-itinerary-manifest.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "qa": "node src/scripts/qa.ts"
@@ -17,7 +17,6 @@
     "@supabase/supabase-js": "^2.89.0",
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.36.1",
-    "@vercel/analytics": "^1.6.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",

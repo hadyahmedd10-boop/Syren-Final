@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion, Transition } from "framer-motion";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState } from "react";
-import { getItineraryDayImageSrc, ITINERARY_FALLBACK_IMAGE } from "@/lib/itinerary-images";
+import { getItineraryImages, ITINERARY_FALLBACK_IMAGE } from "@/lib/getItineraryImages";
 import { inferDayHighlights } from "@/lib/highlights";
 
 interface ItineraryItem {
@@ -12,6 +12,7 @@ interface ItineraryItem {
   description: string;
   meals?: string;
   highlights?: string[];
+  image?: string | StaticImageData;
 }
 
 interface ItineraryTimelineProps {
@@ -27,9 +28,12 @@ export default function ItineraryTimeline({
 }: ItineraryTimelineProps) {
   const prefersReducedMotion = useReducedMotion();
   const [imageSources, setImageSources] = useState<Record<number, string>>({});
+  const images = getItineraryImages(experienceSlug);
 
   const handleImageError = (day: number) => {
-    setImageSources(prev => ({ ...prev, [day]: ITINERARY_FALLBACK_IMAGE }));
+    if (imageSources[day] !== ITINERARY_FALLBACK_IMAGE) {
+      setImageSources(prev => ({ ...prev, [day]: ITINERARY_FALLBACK_IMAGE }));
+    }
   };
   
   const base = prefersReducedMotion 
@@ -44,7 +48,13 @@ export default function ItineraryTimeline({
     <div className="space-y-16 md:space-y-24">
       {itinerary.map((item, idx) => {
         const isEven = idx % 2 === 0;
-        const initialImg = getItineraryDayImageSrc(experienceSlug, item.day);
+        // Use filesystem image if available, otherwise fallback
+        // We prioritize the manifest (images[idx]) over item.image if we want "filesystem truth",
+        // but item.image might be the same thing.
+        // Let's use the manifest image if it exists for this index.
+        const manifestImage = images[idx];
+        const initialImg = manifestImage || ITINERARY_FALLBACK_IMAGE;
+        
         const currentImg = imageSources[item.day] || initialImg;
         const highlights = item.highlights || inferDayHighlights(item);
 
@@ -91,9 +101,10 @@ export default function ItineraryTimeline({
                       src={currentImg}
                       alt={`Day ${item.day} – ${experienceTitle}`}
                       fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
                       className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                       onError={() => handleImageError(item.day)}
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      loading={idx === 0 ? "eager" : "lazy"}
                     />
                     {/* Premium Overlays */}
                     <>

@@ -10,7 +10,6 @@ export interface Destination {
   image?: StaticImageData;
   vibeKeywords: string[];
   featuredExperienceSlugs: string[];
-  excursionSlugs?: string[];
 }
 
 export const destinations: Destination[] = [
@@ -78,14 +77,5 @@ export const destinations: Destination[] = [
     image: DESTINATION_IMAGES["hurghada"],
     vibeKeywords: ["adventure", "diving", "resort"],
     featuredExperienceSlugs: [],
-    excursionSlugs: [
-      "hurghada-luxor-day-trip",
-      "hurghada-cairo-day-trip",
-      "hurghada-jeep-safari",
-      "mahmya-island-snorkeling",
-      "giftun-island-snorkeling",
-      "paradise-island-snorkeling",
-      "hurghada-quad-bike",
-    ],
   },
 ];

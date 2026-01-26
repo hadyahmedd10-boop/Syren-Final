@@ -12,42 +12,42 @@ const landings = [
   {
     title: "Luxury Cairo",
     subtitle: "Redefining Cairo Luxury with private VIP access and curated boutique stays.",
-    image: "/Images/hero-cairo.jpg",
+    image: "/images/hero-cairo.jpg",
     slug: "luxury-cairo",
     category: "Campaign: Cairo"
   },
   {
     title: "Cairo VIP",
     subtitle: "Ultimate Cairo Access for the discerning traveler seeking absolute exclusivity.",
-    image: "/Images/hero-cairo.jpg",
+    image: "/images/hero-cairo.jpg",
     slug: "cairo-vip",
     category: "Campaign: Cairo"
   },
   {
     title: "Nile Journey",
     subtitle: "A Sacred Voyage through time on the world's most historic river.",
-    image: "/Images/luxor-aswan.jpg",
+    image: "/images/luxor-aswan.jpg",
     slug: "nile-journey",
     category: "Campaign: Nile"
   },
   {
     title: "Red Sea Luxury",
     subtitle: "The Azure Sanctuary: Where the desert meets the crystal depths.",
-    image: "/Images/experiences/party.jpg",
+    image: "/images/experiences/party.jpg",
     slug: "red-sea-luxury",
     category: "Campaign: Coastal"
   },
   {
     title: "Exclusive Experiences",
     subtitle: "The Syren Exclusive: Handpicked journeys beyond the ordinary.",
-    image: "/Images/hero-cairo.jpg",
+    image: "/images/hero-cairo.jpg",
     slug: "exclusive",
     category: "Campaign: Brand"
   },
   {
     title: "Private Nile Cruise",
     subtitle: "Coming Soon: The ultimate private dahabiya experience.",
-    image: "/Images/luxor-aswan.jpg",
+    image: "/images/luxor-aswan.jpg",
     slug: "#", // Placeholder
     category: "Draft"
   }

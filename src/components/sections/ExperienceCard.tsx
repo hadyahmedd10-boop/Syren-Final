@@ -30,7 +30,7 @@ export default function ExperienceCard({
       variant === "primary" ? "syren-card syren-card-hover" : "syren-card-secondary syren-card-hover-secondary"
     }`}>
       {/* Image Container with Consistent Aspect Ratio - Fixed Landscape Frame */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden">
+      <div className="relative h-52 w-full overflow-hidden sm:h-56">
         <Image
           src={image}
           alt={alt ?? `A bespoke luxury journey through ${title} - Curated by Syren`}
@@ -46,7 +46,7 @@ export default function ExperienceCard({
         
         {/* Floating Badge */}
         {duration && (
-          <div className="absolute left-6 top-6 z-10">
+          <div className="absolute left-4 top-4 z-10">
             <span 
               tabIndex={0}
               className="syren-pill bg-background/80 border border-accent-gold/20 text-accent-gold backdrop-blur-md hover:bg-background hover:border-accent-gold/40 hover:shadow-[0_0_15px_rgba(196,160,82,0.2)]"
@@ -57,7 +57,7 @@ export default function ExperienceCard({
         )}
       </div>
       
-      <div className="flex flex-1 flex-col px-3.5 pt-3.5 pb-3 md:px-6 md:pt-6 md:pb-5">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="mb-1.5 flex flex-col gap-1">
           {cities && (
             <div className="mb-0.5">
@@ -69,16 +69,16 @@ export default function ExperienceCard({
               </span>
             </div>
           )}
-          <h3 className="font-serif text-xl md:text-2xl lg:text-3xl tracking-tight text-text-primary transition-colors duration-500">
+          <h3 className="font-serif text-lg sm:text-xl tracking-tight text-text-primary transition-colors duration-500">
             {title}
           </h3>
         </div>
 
-        <p className="mb-2.5 flex-1 font-sans text-[12px] md:text-[13px] leading-relaxed text-white/60">
+        <p className="mb-2 flex-1 font-sans text-[12px] sm:text-[13px] leading-relaxed text-white/60 line-clamp-2 md:line-clamp-3">
           {description}
         </p>
         
-        <div className="mt-auto pt-2.5 border-t border-white/5">
+        <div className="mt-auto pt-2 border-t border-white/5">
           <Link
             href={href}
             className="syren-btn-secondary w-full"

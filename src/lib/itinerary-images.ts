@@ -1,21 +1,34 @@
-/**
- * Discovered Disk Path: /public/images/itineraries/
- * (Verified all lowercase)
- */
-
-export function getItineraryDayImageSrc(slug: string, dayIndex1Based: number): string {
-  const day = String(dayIndex1Based).padStart(2, '0');
-  const src = `/images/itineraries/${slug}/day-${day}.jpg`;
-  
-  if (process.env.NODE_ENV === "development") {
-    console.log("[itinerary-image]", { slug, day: dayIndex1Based, src });
-  }
-
-  // Cache busting in production if needed (can be toggled)
-  // const version = process.env.NEXT_PUBLIC_BUILD_ID || "1";
-  // return `${src}?v=${version}`;
-  
-  return src;
-}
+import itineraryManifest from "@/generated/itinerary-manifest.json";
 
 export const ITINERARY_FALLBACK_IMAGE = "/images/itineraries/fallback.jpg";
+
+export function getItineraryDayImage(slug: string, dayNumber: number): string {
+  const isDev = process.env.NODE_ENV === "development";
+  const normalizedSlug = slug.toLowerCase();
+  const manifest = itineraryManifest as Record<string, string[]>;
+  const images = manifest[normalizedSlug];
+
+  if (!images || images.length === 0) {
+    if (isDev) {
+      console.warn(`[itinerary-images] Unknown itinerary slug: "${slug}". Using fallback.`);
+    }
+    return ITINERARY_FALLBACK_IMAGE;
+  }
+
+  if (dayNumber < 1 || dayNumber > images.length) {
+    if (isDev) {
+      console.warn(`[itinerary-images] Day ${dayNumber} out of range for "${normalizedSlug}" (max: ${images.length}). Using fallback.`);
+    }
+    return ITINERARY_FALLBACK_IMAGE;
+  }
+
+  const src = images[dayNumber - 1];
+  if (!src) {
+    if (isDev) {
+      console.warn(`[itinerary-images] Missing image for "${normalizedSlug}" day ${dayNumber}. Using fallback.`);
+    }
+    return ITINERARY_FALLBACK_IMAGE;
+  }
+
+  return src;
+}

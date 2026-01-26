@@ -38,19 +38,19 @@ export default function OurVision() {
         <div className="space-y-6 max-w-2xl mx-auto">
           <Reveal delay={0.2}>
             <p className="font-serif text-xl md:text-2xl leading-[1.4] text-white text-center italic mb-8">
-              &ldquo;We believe that travel is most profound when it feels like a homecoming—a connection that goes beyond the surface to the ancient soul of our home.&rdquo;
+              &ldquo;Egypt is layered, intense, beautiful, chaotic, spiritual, and deeply human. We don’t try to simplify that — we design journeys that respect it.&rdquo;
             </p>
           </Reveal>
           
           <Reveal delay={0.3}>
             <p className="font-sans text-xs md:text-sm leading-relaxed text-white/60 text-center max-w-xl mx-auto">
-              Every journey we curate is a private dialogue between your curiosity and our heritage. By blending deep local insight with a meticulous eye for personalization, we ensure that your experience is as unique as a signature, opening doors to the authentic pulse of Egypt that few ever get to witness.
+              We don’t sell packages. We don’t reuse itineraries. We don’t believe one experience fits everyone. Every journey starts with a conversation — not a form. We listen to how you travel, what you care about, and what you want this trip to mean.
             </p>
           </Reveal>
 
           <Reveal delay={0.4}>
             <p className="font-sans text-xs md:text-sm leading-relaxed text-white/60 text-center max-w-xl mx-auto">
-              Our commitment is to your absolute peace of mind, providing a sanctuary of safety and seamless logistics across every landscape. Whether standing in the shadow of the Pyramids or navigating the energy of a Cairo midnight, you are invited to see Egypt through our eyes—with depth, with soul, and with the unwavering care of family.
+              From there, we build something that fits you, not a brochure. Some travelers want depth. Some want comfort. Some want adventure. Most want a balance — and that balance looks different for everyone.
             </p>
           </Reveal>
         </div>

@@ -79,13 +79,8 @@ export default async function DestinationPage({ params }: Props) {
 
   // Dev-only confirmation log
   if (process.env.NODE_ENV === "development") {
-    const dataCount = destination.excursionSlugs?.length || 0;
     console.log(`[Dev] Destination: ${destination.name}`);
     console.log(`[Dev]   - Excursions found via filter: ${destinationExcursions.length}`);
-    console.log(`[Dev]   - Excursions listed in data: ${dataCount}`);
-    if (destinationExcursions.length !== dataCount) {
-      console.warn(`[Dev]   - WARNING: Mismatch between filter count and data count!`);
-    }
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://syren.travel";

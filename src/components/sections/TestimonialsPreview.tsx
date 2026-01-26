@@ -8,15 +8,15 @@ export default function TestimonialsPreview() {
   const featuredTestimonials = staticTestimonials.slice(0, 3);
 
   return (
-    <div className="bg-background section">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <div className="bg-background py-10 sm:py-12 lg:py-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader 
           title="Echoes of Extraordinary Journeys" 
           label="Trust" 
-          className="mb-16"
+          className="mb-6 sm:mb-8"
         />
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid gap-5 md:grid-cols-3">
           {featuredTestimonials.map((t, index) => (
             <Reveal key={t.id} delay={index * 0.1}>
               <div className="group relative p-8 syren-card syren-card-hover border-white/5 bg-surface/30 backdrop-blur-sm hover:bg-surface/50">

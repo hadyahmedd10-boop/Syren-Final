@@ -1,34 +1,31 @@
 'use client';
 
-import { Analytics } from "@vercel/analytics/react";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 /**
- * VercelLive component handles conditional loading of Vercel Analytics and 
+ * VercelLive component handles conditional loading of 
  * Vercel Toolbar/Live feedback tools.
  * 
- * Disabled Vercel Live/Feedback outside local dev because it causes 
- * net::ERR_ABORTED /.well-known/vercel/jwe errors in Preview and Production.
+ * Strict dev-only guard:
+ * 1. Only renders in development mode
+ * 2. Only renders on localhost
+ * 3. Requires NEXT_PUBLIC_ENABLE_VERCEL_LIVE="true"
  */
 export default function VercelLive() {
-  const [shouldRender, setShouldRender] = useState(false);
-
-  useEffect(() => {
+  const shouldRender = useMemo(() => {
+    if (typeof window === "undefined") return false;
     const isDev = process.env.NODE_ENV === "development";
     const enableLive = process.env.NEXT_PUBLIC_ENABLE_VERCEL_LIVE === "true";
-    
-    if (isDev && enableLive) {
-      setShouldRender(true);
-    }
+    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    return isDev && isLocal && enableLive;
   }, []);
 
   if (!shouldRender) return null;
 
   return (
     <>
-      <Analytics />
       {/* 
-        The Vercel Toolbar would be dynamically imported here if needed:
+        The Vercel Toolbar can be dynamically imported here if needed:
         import("@vercel/toolbar/next").then(({ VercelToolbar }) => { ... })
       */}
     </>

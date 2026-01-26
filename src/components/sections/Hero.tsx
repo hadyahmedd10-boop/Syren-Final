@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeInContainer, fadeInUp } from "@/lib/animations";
-import { StaticImageData } from "next/image";
 import { HERO_IMAGES } from "@/lib/images";
 
 export default function Hero() {
@@ -49,7 +48,7 @@ export default function Hero() {
             variants={fadeInUp}
             className="font-serif text-white text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 tracking-tight"
           > 
-            The Egypt You’ve Dreamed of, <br className="hidden md:block" /> Perfected.
+            Egypt, Like you&apos;ve <br className="hidden md:block" /> never seen before
           </motion.h1> 
       
           {/* Poetic sub-line */}
@@ -57,7 +56,7 @@ export default function Hero() {
             variants={fadeInUp}
             className="text-white/70 max-w-xl mx-auto text-base md:text-lg font-light italic mb-12 leading-relaxed"
           > 
-            Private, soul-stirring journeys curated for the most discerning travelers.
+            Private journeys designed by local experts. Delivered with absolute precision.
           </motion.p>
 
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -71,7 +70,7 @@ export default function Hero() {
               href="/experiences"
               className="syren-btn-secondary min-w-[180px] sm:min-w-[220px]"
             >
-              View Experiences
+              Explore Experiences
             </Link>
           </motion.div>
         </motion.div>

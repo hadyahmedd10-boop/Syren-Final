@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Excursion } from "@/types/excursion";
 import { Check } from "lucide-react";
 
@@ -12,19 +12,18 @@ interface AddOnsProps {
 export default function AddOns({ items, onChange }: AddOnsProps) {
   const [selectedSlugs, setSelectedSlugs] = useState<string[]>([]);
 
-  useEffect(() => {
-    const total = items
-      .filter((item) => selectedSlugs.includes(item.slug))
-      .reduce((sum, item) => sum + item.priceCents, 0);
-    onChange(selectedSlugs, total);
-  }, [selectedSlugs, items, onChange]);
-
   const toggleAddOn = (slug: string) => {
-    setSelectedSlugs((prev) =>
-      prev.includes(slug)
-        ? prev.filter((s) => s !== slug)
-        : [...prev, slug]
-    );
+    const nextSlugs = selectedSlugs.includes(slug)
+      ? selectedSlugs.filter((s) => s !== slug)
+      : [...selectedSlugs, slug];
+    
+    setSelectedSlugs(nextSlugs);
+    
+    const nextTotal = items
+      .filter((item) => nextSlugs.includes(item.slug))
+      .reduce((sum, item) => sum + item.priceCents, 0);
+    
+    onChange(nextSlugs, nextTotal);
   };
 
   if (items.length === 0) return null;

@@ -7,12 +7,13 @@ type Props = ImageProps & {
   fallbackSrc: string; 
 }; 
 
-export default function SafeImage({ fallbackSrc, src, ...props }: Props) { 
+export default function SafeImage({ fallbackSrc, src, alt, ...props }: Props) { 
   const [imgSrc, setImgSrc] = useState(src); 
 
   return ( 
     <Image 
       {...props} 
+      alt={alt ?? ""}
       src={imgSrc} 
       onError={() => setImgSrc(fallbackSrc)} 
     /> 

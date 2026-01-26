@@ -28,12 +28,12 @@ export default function PopularExperiences({ variant }: PopularExperiencesProps)
 
   const getSubtitle = () => {
     switch (variant) {
-      case 'nightlife': return "Emotional";
-      case 'luxury': return "Luxury";
-      case 'adventure': return "Adventure";
-      case 'cultural': return "Trust";
-      case 'all': return "Exclusivity";
-      default: return "The Action";
+      case 'nightlife': return "Vibrant";
+      case 'luxury': return "Refined";
+      case 'adventure': return "Untamed";
+      case 'cultural': return "Authentic";
+      case 'all': return "Private";
+      default: return "Curated";
     }
   };
 

@@ -34,8 +34,9 @@ export async function GET() {
       inquiries: inquiries || [],
       quotes: quotes || [],
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
     console.error("Admin leads fetch error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

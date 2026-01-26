@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { destinations } from "@/data/destinations";
-import { getExcursionsByDestination } from "@/lib/getExcursionsByDestination";
 
 export default function Destinations() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -65,9 +64,8 @@ export default function Destinations() {
           ref={scrollRef}
           className="flex overflow-x-auto pb-6 gap-4 md:gap-6 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:-mx-8 md:px-8"
         >
-          {destinations.map((dest, index) => {
-            const excursionCount = getExcursionsByDestination(dest.slug).length;
-            return (
+        {destinations.map((dest, index) => {
+          return (
               <div key={dest.slug} className="min-w-[85%] md:min-w-[45%] lg:min-w-[30%] snap-center">
               <Reveal delay={0.1 * (index + 1)}>
                 <article className="group relative flex flex-col syren-card-hover h-full transition-all duration-500 ease-out">
@@ -110,15 +108,6 @@ export default function Destinations() {
 
                     <div className="mt-1 h-px w-10 bg-accent-gold/20 md:w-12 mx-auto md:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-primary/40" />
                     
-                    {excursionCount > 0 && ( 
-                      <span 
-                        tabIndex={0}
-                        className="syren-pill mt-1.5 border border-accent-gold/20 bg-accent-gold/5 text-accent-gold hover:bg-accent-gold/10 hover:border-accent-gold/30 hover:shadow-[0_0_10px_rgba(196,160,82,0.1)]"
-                      > 
-                        {excursionCount} Excursions 
-                      </span> 
-                    )} 
-
                     <p className="mt-1.5 font-sans text-[11px] leading-relaxed text-white/60 md:text-sm line-clamp-2">
                       {dest.description}
                     </p>

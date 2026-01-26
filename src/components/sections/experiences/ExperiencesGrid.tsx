@@ -5,14 +5,14 @@ import SectionHeader from "@/components/layout/SectionHeader";
 
 export default function ExperiencesGrid() {
   return (
-    <section className="section bg-background">
-      <div className="mx-auto max-w-7xl px-6 md:px-8">
+    <div className="bg-background py-10 sm:py-12 lg:py-14">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader 
           title="Explore Our Journeys" 
           label="Complete Collection" 
-          className="mb-16"
+          className="mb-6 sm:mb-8"
         />
-        <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {experiences.map((experience, index) => (
             <Reveal key={experience.slug} delay={0.1 * index}>
               <ExperienceCard
@@ -30,6 +30,6 @@ export default function ExperiencesGrid() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 // ITINERARY IMAGE FRAME EDIT
 import type { Metadata } from "next";
 import Image from "next/image";
-import SafeImage from "@/components/ui/SafeImage";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Reveal from "@/components/motion/Reveal";
@@ -13,6 +12,7 @@ import BookingSection from "@/components/checkout/BookingSection";
 import CheckoutButton from "@/components/payments/CheckoutButton";
 import { excursions } from "@/data/excursions";
 import ItineraryTimeline from "@/components/sections/ItineraryTimeline";
+import ItineraryImageDebug from "@/components/dev/ItineraryImageDebug";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -242,6 +242,8 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
               itinerary={experience.itinerary} 
             />
           </div>
+
+          <ItineraryImageDebug slug={experience.slug} />
         </div>
       </section>
 

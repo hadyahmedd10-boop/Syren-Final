@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 // Hero Images
 import heroHome from "../../public/images/hero/luxury.jpg";
 import heroCairo from "../../public/images/hero/cairo.jpg";

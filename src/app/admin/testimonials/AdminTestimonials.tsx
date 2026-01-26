@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { Testimonial } from "@/types/testimonial";
 import { Check, X, Trash2, Star, Loader2 } from "lucide-react";
@@ -11,7 +10,6 @@ export default function AdminTestimonials() {
   const [loading, setLoading] = useState(true);
   const [actionId, setActionId] = useState<string | null>(null);
   const router = useRouter();
-  const supabase = createClient();
 
   const fetchTestimonials = useCallback(async () => {
     setLoading(true);

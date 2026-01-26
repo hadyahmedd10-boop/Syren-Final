@@ -29,12 +29,11 @@ export default function FinalCTA({ className = "", as: Component = "div" }: Fina
       
       <div className="mx-auto max-w-7xl px-6 md:px-8 text-center relative z-10 py-24">
         <SectionHeader 
-          title={<>The Egypt You&apos;ve <br className="hidden md:block" /> Always Imagined.</>}
-          label="The Journey Continues"
+          title="Experience Egypt properly."
+          label="Next Steps"
           description={
             <>
-              Private access. Master curators. Unforgettable moments. <br className="hidden md:block" />
-              Let us design your personal odyssey.
+              Every journey starts with a conversation. We don’t sell packages — we design experiences that fit you.
             </>
           }
           className="mb-12"

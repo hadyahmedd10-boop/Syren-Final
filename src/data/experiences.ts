@@ -1,6 +1,6 @@
 import { Experience } from "@/types/experience";
-import { HERO_IMAGES, DESTINATION_IMAGES, EXPERIENCE_IMAGES } from "@/lib/images";
-import { getItineraryDayImageSrc } from "@/lib/itinerary-images";
+import { EXPERIENCE_IMAGES } from "@/lib/images";
+import { getItineraryDayImage } from "@/lib/getItineraryImages";
 
 export const experiences: Experience[] = [
   {
@@ -43,28 +43,28 @@ export const experiences: Experience[] = [
         title: "Neon Arrival",
         description: "VIP arrival and transfer to a boutique hotel in Zamalek. Welcome cocktails at a rooftop bar overlooking the city lights.",
         meals: "Dinner",
-        image: getItineraryDayImageSrc("cairo-after-dark", 1)
+        image: getItineraryDayImage("cairo-after-dark", 1)
       },
       {
         day: 2,
         title: "The Heart of the Night",
         description: "Explore the historic Al-Muizz street under the stars, followed by an exclusive underground music performance.",
         meals: "Breakfast, Late Dinner",
-        image: getItineraryDayImageSrc("cairo-after-dark", 2)
+        image: getItineraryDayImage("cairo-after-dark", 2)
       },
       {
         day: 3,
         title: "Boutique Beats",
         description: "Gallery hopping in Downtown Cairo followed by a private Nile cruise with a curated DJ set.",
         meals: "Breakfast, Brunch",
-        image: getItineraryDayImageSrc("cairo-after-dark", 3)
+        image: getItineraryDayImage("cairo-after-dark", 3)
       },
       {
         day: 4,
         title: "Morning After",
         description: "Relaxing late brunch before private transfer to the airport.",
         meals: "Brunch",
-        image: getItineraryDayImageSrc("cairo-after-dark", 4)
+        image: getItineraryDayImage("cairo-after-dark", 4)
       }
     ]
   },
@@ -108,42 +108,42 @@ export const experiences: Experience[] = [
         title: "Luxor Embarkation",
         description: "Transfer from Luxor airport to your private Dahabiya. Afternoon visit to Karnak Temple at sunset.",
         meals: "Lunch, Dinner",
-        image: getItineraryDayImageSrc("nile-signature", 1)
+        image: getItineraryDayImage("nile-signature", 1)
       },
       {
         day: 2,
         title: "The West Bank",
         description: "Early morning balloon ride followed by the Valley of the Kings. Set sail southward in the afternoon.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("nile-signature", 2)
+        image: getItineraryDayImage("nile-signature", 2)
       },
       {
         day: 3,
         title: "Sailing Through Time",
         description: "A day of pure sailing and relaxation. Stop at local villages and hidden river islands.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("nile-signature", 3)
+        image: getItineraryDayImage("nile-signature", 3)
       },
       {
         day: 4,
         title: "Temples of the South",
         description: "Visit the Horus Temple in Edfu and the unique double temple of Kom Ombo as evening falls.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("nile-signature", 4)
+        image: getItineraryDayImage("nile-signature", 4)
       },
       {
         day: 5,
         title: "Aswan Sanctuary",
         description: "Arrive in Aswan. Visit Philae Temple followed by a farewell dinner on the river.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("nile-signature", 5)
+        image: getItineraryDayImage("nile-signature", 5)
       },
       {
         day: 6,
         title: "Departure",
         description: "Final breakfast on board before private transfer to Aswan airport.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("nile-signature", 6)
+        image: getItineraryDayImage("nile-signature", 6)
       }
     ]
   },
@@ -191,35 +191,35 @@ export const experiences: Experience[] = [
         title: "Arrival & The Grand Egyptian Museum",
         description: "Arrive at Cairo International Airport where your private host awaits. After a seamless VIP entry, transfer to your luxury residence overlooking the Nile. In the afternoon, enjoy a private, after-hours preview of the Grand Egyptian Museum, followed by a welcome dinner featuring contemporary Egyptian cuisine.",
         meals: "Dinner",
-        image: getItineraryDayImageSrc("5-day-cairo-experience", 1)
+        image: getItineraryDayImage("5-day-cairo-experience", 1)
       },
       {
         day: 2,
         title: "Giza Plateau & The Sphinx",
         description: "Experience the Great Pyramids like never before. Start with a sunrise meditation at the base of Khufu's pyramid, followed by exclusive access to the Sphinx enclosure. Enjoy a gourmet picnic lunch on the plateau before exploring the Solar Boat Museum. The evening is yours to relax or enjoy a private jazz performance.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("5-day-cairo-experience", 2)
+        image: getItineraryDayImage("5-day-cairo-experience", 2)
       },
       {
         day: 3,
         title: "Islamic Cairo & Hidden Alleys",
         description: "Dive into the heart of historic Cairo. Visit the Citadel of Saladin and the Mosque of Muhammad Ali. Wander through the enchanting Khan el-Khalili bazaar with a local artisan who will guide you to hidden workshops and secret rooftop tea houses. Dinner is served in a restored 19th-century mansion.",
         meals: "Breakfast, Dinner",
-        image: getItineraryDayImageSrc("5-day-cairo-experience", 3)
+        image: getItineraryDayImage("5-day-cairo-experience", 3)
       },
       {
         day: 4,
         title: "Coptic Heritage & The Nile at Sunset",
         description: "Explore the serene atmosphere of Old Cairo, including the Hanging Church and the Ben Ezra Synagogue. After a light lunch, board a private, traditionally-styled Felucca for a sunset sail on the Nile. Sip on local hibiscus tea as the city lights begin to flicker against the twilight sky.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("5-day-cairo-experience", 4)
+        image: getItineraryDayImage("5-day-cairo-experience", 4)
       },
       {
         day: 5,
         title: "Modern Cairo & Departure",
         description: "Spend your final morning exploring the sophisticated boutiques and galleries of Zamalek. Enjoy a farewell brunch at a riverside garden before your private chauffeur transfers you to the airport for your departure, leaving with memories that will last a lifetime.",
         meals: "Breakfast, Brunch",
-        image: getItineraryDayImageSrc("5-day-cairo-experience", 5)
+        image: getItineraryDayImage("5-day-cairo-experience", 5)
       }
     ]
   },
@@ -268,56 +268,56 @@ export const experiences: Experience[] = [
         title: "Arrival in Cairo",
         description: "Your Egyptian story begins with a private greeting at the airport and transfer to your luxury hotel with Pyramids views.",
         meals: "Dinner",
-        image: getItineraryDayImageSrc("8-day-pyramids-nile-cruise", 1)
+        image: getItineraryDayImage("8-day-pyramids-nile-cruise", 1)
       },
       {
         day: 2,
         title: "The Pyramids & Memphis",
         description: "Explore the Giza Plateau, the Great Sphinx, and the ancient capital of Memphis with your private Egyptologist.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("8-day-pyramids-nile-cruise", 2)
+        image: getItineraryDayImage("8-day-pyramids-nile-cruise", 2)
       },
       {
         day: 3,
         title: "Fly to Luxor & Embarkation",
         description: "Fly to Luxor and board your luxury Nile cruiser. In the afternoon, visit the magnificent Karnak and Luxor Temples.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("8-day-pyramids-nile-cruise", 3)
+        image: getItineraryDayImage("8-day-pyramids-nile-cruise", 3)
       },
       {
         day: 4,
         title: "Valley of the Kings",
         description: "Cross to the West Bank to discover the Valley of the Kings, the Temple of Hatshepsut, and the Colossi of Memnon.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("8-day-pyramids-nile-cruise", 4)
+        image: getItineraryDayImage("8-day-pyramids-nile-cruise", 4)
       },
       {
         day: 5,
         title: "Edfu & Kom Ombo Temples",
         description: "Sail south to Edfu to visit the Temple of Horus, then continue to the unique double temple of Kom Ombo at sunset.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("8-day-pyramids-nile-cruise", 5)
+        image: getItineraryDayImage("8-day-pyramids-nile-cruise", 5)
       },
       {
         day: 6,
         title: "Aswan & Philae Temple",
         description: "Arrive in Aswan. Visit the beautiful Philae Temple, the Unfinished Obelisk, and the High Dam.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("8-day-pyramids-nile-cruise", 6)
+        image: getItineraryDayImage("8-day-pyramids-nile-cruise", 6)
       },
       {
         day: 7,
         title: "Abu Simbel (Optional) & Fly back to Cairo",
         description: "Optional early morning visit to the breathtaking Abu Simbel temples. Fly back to Cairo for a final farewell dinner.",
         meals: "Breakfast, Dinner",
-        image: getItineraryDayImageSrc("8-day-pyramids-nile-cruise", 7)
+        image: getItineraryDayImage("8-day-pyramids-nile-cruise", 7)
       },
       {
         day: 8,
         title: "Final Departure",
         description: "Enjoy a final Egyptian breakfast before your private transfer to Cairo International Airport.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("8-day-pyramids-nile-cruise", 8)
+        image: getItineraryDayImage("8-day-pyramids-nile-cruise", 8)
       }
     ]
   },
@@ -367,70 +367,70 @@ export const experiences: Experience[] = [
         title: "Arrival in Cairo",
         description: "Your journey begins with a seamless arrival. Our team will meet you at the airport, assist with luggage, and transfer you to your hotel. After an uneventful check-in, enjoy a complimentary welcome drink while we discuss your upcoming itinerary. The rest of the day is yours to relax and prepare for the adventure ahead.",
         meals: "Welcome Drink",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 1)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 1)
       },
       {
         day: 2,
         title: "The Giza Plateau & Sleeper Train",
         description: "Begin with the Giza Plateau, home to the Great Pyramids and the Sphinx. After an authentic Egyptian lunch, explore the New Grand Egyptian Museum in a special preview experience. As evening falls, board your overnight sleeper train to Aswan, enjoying dinner as the landscapes of the Nile valley pass by.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 2)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 2)
       },
       {
         day: 3,
         title: "Aswan's Ancient Treasures",
         description: "Arrive in Aswan and dive straight into history at the Unfinished Obelisk, the largest piece of stonework ever constructed. Continue to the romantic Temple of Philae, dedicated to the goddess Isis. Spend the night in Aswan, soaking in the serene atmosphere of the Nile's most beautiful city.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 3)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 3)
       },
       {
         day: 4,
         title: "The Majesty of Abu Simbel",
         description: "A private 3.5-hour drive brings you to the breathtaking Temples of Abu Simbel. Stand in awe before the massive statues of Ramses II and Nefertari, carved directly into the mountain. Return to Aswan in the afternoon for another comfortable evening by the water.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 4)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 4)
       },
       {
         day: 5,
         title: "The Valley of the Kings",
         description: "Journey to Luxor, the world's greatest open-air museum. Explore the notorious Valley of the Kings, the Temple of Hatshepsut, and the Colossi of Memnon. Each site tells a story of power, faith, and the eternal quest for immortality. Transfer to your Luxor hotel for the night.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 5)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 5)
       },
       {
         day: 6,
         title: "Karnak, Luxor & The Red Sea",
         description: "Discover the immense Karnak Temple Complex and the elegant Luxor Temple. After your final exploration of the south, we drive you in a private vehicle to Hurghada. Arrive at your coastal resort and settle in for a well-deserved escape to the Red Sea.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 6)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 6)
       },
       {
         day: 7,
         title: "Red Sea Relaxation",
         description: "A free day in Hurghada to nourish your mind, body, and soul. Relax at the resort, swim in the turquoise waters of the Red Sea, or choose from optional activities like snorkeling or windsurfing. The day is entirely yours.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 7)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 7)
       },
       {
         day: 8,
         title: "Sun, Sand & Sailing",
         description: "Another day of coastal bliss. Take advantage of Hurghada's world-class sailing or deep-sea fishing, or simply enjoy the refined amenities of your resort. Another evening to watch the sun set over the crystalline horizon.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 8)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 8)
       },
       {
         day: 9,
         title: "Return to Cairo",
         description: "After a final breakfast by the sea, transfer back to Cairo. Enjoy some free time in the capital before your last night in a luxury hotel. Reflect on your journey through the heart of Egypt as the city lights begin to flicker.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 9)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 9)
       },
       {
         day: 10,
         title: "Farewell Egypt",
         description: "Wake up to a final 5-star breakfast before your private transfer to Cairo International Airport. Our staff will assist you with your luggage as you bid farewell to the land of the Pharaohs, taking with you memories that will last a lifetime.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("10-day-cairo-nile-red-sea-odyssey", 10)
+        image: getItineraryDayImage("10-day-cairo-nile-red-sea-odyssey", 10)
       }
     ]
   },
@@ -478,84 +478,84 @@ export const experiences: Experience[] = [
         title: "Arrival in Cairo",
         description: "Welcome to Egypt. Private VIP transfer to your luxury hotel overlooking the Nile. Enjoy a special welcome amenity and evening at leisure.",
         meals: "Welcome Drink",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 1)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 1)
       },
       {
         day: 2,
         title: "Pyramids & Romantic Dinner",
         description: "Explore the Giza Plateau by day. As evening falls, enjoy an exclusive, private dinner with the Pyramids as your backdrop.",
         meals: "Breakfast, Dinner",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 2)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 2)
       },
       {
         day: 3,
         title: "Cairo's Hidden Gems",
         description: "Visit the Grand Egyptian Museum and the charming streets of Old Cairo. Afternoon tea at a historic mansion.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 3)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 3)
       },
       {
         day: 4,
         title: "Fly to Aswan & Embarkation",
         description: "Fly to Aswan and board your private Dahabiya. Afternoon visit to the romantic Temple of Philae.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 4)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 4)
       },
       {
         day: 5,
         title: "Sailing the Nile",
         description: "A day of pure romance and relaxation as you sail north. Enjoy the changing landscapes from the deck.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 5)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 5)
       },
       {
         day: 6,
         title: "Temples & Sunset",
         description: "Visit the temples of Kom Ombo and Edfu. A private dinner on a river island under the stars.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 6)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 6)
       },
       {
         day: 7,
         title: "Arrival in Luxor",
         description: "Arrive in Luxor. Afternoon visit to the illuminated Luxor Temple followed by a private cocktail hour.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 7)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 7)
       },
       {
         day: 8,
         title: "Sunrise over the Valley",
         description: "Private hot air balloon ride at sunrise followed by exploration of the Valley of the Kings.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 8)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 8)
       },
       {
         day: 9,
         title: "Fly to Hurghada",
         description: "Transfer to the Red Sea. Settle into your luxury coastal suite with private pool.",
         meals: "Breakfast, Dinner",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 9)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 9)
       },
       {
         day: 10,
         title: "Red Sea Bliss",
         description: "A day for relaxation. Enjoy a couples' spa treatment and a private sunset cruise.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 10)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 10)
       },
       {
         day: 11,
         title: "Private Beach Day",
         description: "Enjoy a private cabana on the beach. Farewell beach dinner with live music.",
         meals: "Breakfast, Dinner",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 11)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 11)
       },
       {
         day: 12,
         title: "Farewell Egypt",
         description: "Final breakfast before your private transfer to the airport for your departure.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("12-day-egyptian-honeymoon-odyssey", 12)
+        image: getItineraryDayImage("12-day-egyptian-honeymoon-odyssey", 12)
       }
     ]
   },
@@ -601,49 +601,49 @@ export const experiences: Experience[] = [
         title: "Welcome to the Land of Wonders",
         description: "Arrive in Cairo and transfer to your hotel. Welcome briefing with your family host and distribution of the 'Pharaoh's Quest' explorer kits.",
         meals: "Dinner",
-        image: getItineraryDayImageSrc("family-adventure", 1)
+        image: getItineraryDayImage("family-adventure", 1)
       },
       {
         day: 2,
         title: "The Pyramid Treasure Hunt",
         description: "A morning of discovery at the Giza Plateau. Kids follow clues to find hidden 'treasures' while parents enjoy the majesty of the pyramids.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("family-adventure", 2)
+        image: getItineraryDayImage("family-adventure", 2)
       },
       {
         day: 3,
         title: "Artisans & Hieroglyphs",
         description: "Learn how to write your name in hieroglyphs and create your own papyrus at a traditional workshop. Afternoon visit to the Egyptian Museum.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("family-adventure", 3)
+        image: getItineraryDayImage("family-adventure", 3)
       },
       {
         day: 4,
         title: "Flight to Luxor & River Life",
         description: "Fly to Luxor. Board a private felucca for a sunset sail. Learn traditional Nubian songs and enjoy a BBQ dinner on the riverbank.",
         meals: "Breakfast, Dinner",
-        image: getItineraryDayImageSrc("family-adventure", 4)
+        image: getItineraryDayImage("family-adventure", 4)
       },
       {
         day: 5,
         title: "The Valley of the Kings & Donkeys",
         description: "Explore the West Bank tombs followed by a fun donkey ride through the local farming villages to see rural Egyptian life.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("family-adventure", 5)
+        image: getItineraryDayImage("family-adventure", 5)
       },
       {
         day: 6,
         title: "Karnak Temple & Farewell Games",
         description: "Visit the massive Karnak Temple. Afternoon free for pool time or a final family scavenger hunt in the hotel gardens.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("family-adventure", 6)
+        image: getItineraryDayImage("family-adventure", 6)
       },
       {
         day: 7,
         title: "Departure",
         description: "Final family breakfast before transfer to Luxor airport for your flight home.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("family-adventure", 7)
+        image: getItineraryDayImage("family-adventure", 7)
       }
     ]
   },
@@ -689,35 +689,35 @@ export const experiences: Experience[] = [
         title: "Journey to the Oasis",
         description: "Private 4x4 transfer from Cairo through the desert. Arrive in Siwa by sunset and settle into your eco-lodge.",
         meals: "Lunch, Dinner",
-        image: getItineraryDayImageSrc("siwa-desert-retreat", 1)
+        image: getItineraryDayImage("siwa-desert-retreat", 1)
       },
       {
         day: 2,
         title: "Fortresses & Oracles",
         description: "Explore the mud-brick Shali Fortress and the Temple of the Oracle. Afternoon dip in Cleopatra's Bath.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("siwa-desert-retreat", 2)
+        image: getItineraryDayImage("siwa-desert-retreat", 2)
       },
       {
         day: 3,
         title: "Salt Lakes & Fatnas Island",
         description: "Float in the therapeutic salt lakes before heading to Fatnas Island for a legendary desert sunset.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("siwa-desert-retreat", 3)
+        image: getItineraryDayImage("siwa-desert-retreat", 3)
       },
       {
         day: 4,
         title: "The Great Sand Sea",
         description: "Venture into the dunes for a 4x4 adventure. Enjoy a private candlelit dinner under the stars in the heart of the desert.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("siwa-desert-retreat", 4)
+        image: getItineraryDayImage("siwa-desert-retreat", 4)
       },
       {
         day: 5,
         title: "Return to Cairo",
         description: "Final morning in the oasis before the private transfer back to Cairo, carrying the peace of the desert with you.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("siwa-desert-retreat", 5)
+        image: getItineraryDayImage("siwa-desert-retreat", 5)
       }
     ]
   },
@@ -763,56 +763,56 @@ export const experiences: Experience[] = [
         title: "Arrival in Aswan",
         description: "VIP arrival and transfer to your riverfront sanctuary. Evening welcome circle and grounding meditation by the water.",
         meals: "Dinner",
-        image: getItineraryDayImageSrc("wellness-retreat", 1)
+        image: getItineraryDayImage("wellness-retreat", 1)
       },
       {
         day: 2,
         title: "Sunrise Yoga & Island Life",
         description: "Morning yoga session followed by a visit to an organic island farm for a farm-to-table lunch. Afternoon at leisure.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("wellness-retreat", 2)
+        image: getItineraryDayImage("wellness-retreat", 2)
       },
       {
         day: 3,
         title: "Nubian Healing Traditions",
         description: "Experience a traditional Nubian sand bath or herbal wrap. Afternoon visit to the colorful Nubian villages.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("wellness-retreat", 3)
+        image: getItineraryDayImage("wellness-retreat", 3)
       },
       {
         day: 4,
         title: "Meditation at Philae",
         description: "Private early morning boat to Philae Temple for a guided meditation session before the crowds arrive.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("wellness-retreat", 4)
+        image: getItineraryDayImage("wellness-retreat", 4)
       },
       {
         day: 5,
         title: "Sailing & Silence",
         description: "A day of silent sailing on a private felucca. Lunch served on board as you drift past the botanical gardens.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("wellness-retreat", 5)
+        image: getItineraryDayImage("wellness-retreat", 5)
       },
       {
         day: 6,
         title: "Energy & Flow",
         description: "Advanced yoga and breathwork session. Afternoon spa treatments and sound healing ceremony.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("wellness-retreat", 6)
+        image: getItineraryDayImage("wellness-retreat", 6)
       },
       {
         day: 7,
         title: "Gratitude & Celebration",
         description: "Final morning yoga and closing ceremony. Farewell dinner on a private terrace overlooking the first cataract.",
         meals: "Breakfast, Lunch, Dinner",
-        image: getItineraryDayImageSrc("wellness-retreat", 7)
+        image: getItineraryDayImage("wellness-retreat", 7)
       },
       {
         day: 8,
         title: "Departure",
         description: "Final sunrise meditation and breakfast before private transfer to Aswan airport.",
         meals: "Breakfast",
-        image: getItineraryDayImageSrc("wellness-retreat", 8)
+        image: getItineraryDayImage("wellness-retreat", 8)
       }
     ]
   },
@@ -858,21 +858,21 @@ export const experiences: Experience[] = [
         title: "Mediterranean Arrival",
         description: "Private transfer from Cairo to Alexandria. Check into your historic hotel and enjoy a sunset walk along the Corniche.",
         meals: "Lunch",
-        image: getItineraryDayImageSrc("alexandria-coastal-elegance", 1)
+        image: getItineraryDayImage("alexandria-coastal-elegance", 1)
       },
       {
         day: 2,
         title: "Greco-Roman Heritage",
         description: "Explore the Catacombs of Kom El Shoqafa and the Citadel of Qaitbay with your private Egyptologist.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("alexandria-coastal-elegance", 2)
+        image: getItineraryDayImage("alexandria-coastal-elegance", 2)
       },
       {
         day: 3,
         title: "Royal Gardens & Departure",
         description: "Wander through the Montaza Palace gardens. Enjoy a final seafood lunch before your private transfer.",
         meals: "Breakfast, Lunch",
-        image: getItineraryDayImageSrc("alexandria-coastal-elegance", 3)
+        image: getItineraryDayImage("alexandria-coastal-elegance", 3)
       }
     ]
   }
