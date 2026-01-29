@@ -11,8 +11,12 @@ export const metadata: Metadata = {
 
 export default function QuotePage() {
   return (
-    <main className="min-h-screen bg-background pt-32 pb-24 px-6">
-      <QuoteForm />
+    <main className="min-h-screen bg-background">
+      <section className="section">
+        <div className="max-w-4xl mx-auto container-x">
+          <QuoteForm />
+        </div>
+      </section>
     </main>
   );
 }

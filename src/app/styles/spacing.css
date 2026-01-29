@@ -1,26 +1,17 @@
 /* GLOBAL SECTION SPACING */ 
-.section { 
-  padding-top: 2.5rem; 
-  padding-bottom: 2.5rem; 
-} 
+.container-x {
+  padding-left: var(--container-x);
+  padding-right: var(--container-x);
+}
 
-@media (min-width: 768px) { 
-  .section { 
-    padding-top: 4.5rem; 
-    padding-bottom: 4.5rem; 
-  } 
+.section { 
+  padding-top: var(--section-y); 
+  padding-bottom: var(--section-y); 
 } 
 
 .section-tight { 
-  padding-top: 1.25rem; 
-  padding-bottom: 1.25rem; 
-}
-
-@media (min-width: 768px) {
-  .section-tight {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
+  padding-top: var(--section-y-tight); 
+  padding-bottom: var(--section-y-tight); 
 }
 
 .section-hero { 
@@ -29,19 +20,10 @@
 } 
  
  /* VISUAL MERGE HELPERS */ 
- .section-merge-top { 
-   margin-top: -3rem; 
- } 
- 
- .section-merge-bottom { 
-   margin-bottom: -3rem; 
- }
+.section-merge-top { 
+  margin-top: calc(var(--section-y) * -0.5); 
+} 
 
-@media (min-width: 768px) {
-  .section-merge-top {
-    margin-top: -4.5rem;
-  }
-  .section-merge-bottom {
-    margin-bottom: -4.5rem;
-  }
+.section-merge-bottom { 
+  margin-bottom: calc(var(--section-y) * -0.5); 
 }

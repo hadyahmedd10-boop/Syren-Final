@@ -72,7 +72,7 @@ export default async function ExcursionPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[520px] w-full overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] w-full overflow-hidden">
         <Image
           src={heroImage}
           alt={`Immerse yourself in the ${excursion.title} excursion, a private journey through Egypt's wonders`}
@@ -254,4 +254,3 @@ export default async function ExcursionPage({ params }: Props) {
     </main>
   );
 }
-

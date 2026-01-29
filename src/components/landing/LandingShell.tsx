@@ -86,7 +86,7 @@ export default function LandingShell({
       />
       <LandingTracking pageTitle={title} />
       {/* Hero Section */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] flex items-center justify-center overflow-hidden">
         <Image
           src={heroImage}
           alt={`Experience the extraordinary: ${title} - ${subtitle}`}

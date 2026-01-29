@@ -47,7 +47,7 @@ export default function SectionHeader({
   };
 
   const getDescriptionClasses = () => {
-    const base = "font-sans text-base leading-relaxed text-text-secondary mt-6";
+    const base = "font-sans text-[var(--p)] leading-relaxed text-text-secondary mt-6";
     switch (align) {
       case "left":
         return `${base} max-w-2xl`;
@@ -86,7 +86,7 @@ export default function SectionHeader({
         
         <h2 
           id={id}
-          className="font-serif text-4xl md:text-5xl tracking-tight text-primary"
+          className="font-serif text-[var(--h2)] tracking-tight text-primary"
         >
           {title}
         </h2>

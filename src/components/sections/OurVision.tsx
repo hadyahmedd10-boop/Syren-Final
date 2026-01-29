@@ -27,7 +27,7 @@ export default function OurVision() {
         />
       </div>
       
-      <div className="mx-auto max-w-4xl px-6 md:px-8 relative z-10 py-12">
+      <div className="mx-auto max-w-4xl container-x relative z-10 py-12">
         <SectionHeader 
           id="vision-title"
           title="The Vision of Syren" 
@@ -63,7 +63,7 @@ export default function OurVision() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-accent/20 to-transparent md:hidden" />
         </div>
 
-        <div className="mx-auto max-w-5xl px-6 md:px-8 relative z-10">
+        <div className="mx-auto max-w-5xl container-x relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-y-12 md:gap-y-0 items-center justify-center">
             {stats.map((stat, i) => (
               <Reveal key={stat.label} delay={0.1 * (i + 1)}>

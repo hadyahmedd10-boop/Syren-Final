@@ -51,6 +51,12 @@
   --foreground: var(--color-text-primary);
   --color-accent: var(--color-primary);
   --color-accent-hover: var(--color-primary-dark);
+  --container-x: clamp(1rem, 4vw, 2.75rem);
+  --section-y: clamp(3.5rem, 7vw, 7rem);
+  --section-y-tight: clamp(2rem, 4vw, 4rem);
+  --h1: clamp(2.25rem, 5.5vw, 4.5rem);
+  --h2: clamp(1.75rem, 4vw, 3rem);
+  --p: clamp(1rem, 1.6vw, 1.125rem);
 }
 
 html {
@@ -63,7 +69,7 @@ section {
 }
 
 body {
-  @apply font-sans text-white antialiased;
+  @apply font-sans text-white antialiased overflow-x-hidden;
 }
 
 /* Custom Scrollbar for Luxury Feel */
@@ -132,6 +138,7 @@ h1 {
   font-weight: 500;
   line-height: 1.1;
   color: var(--color-accent-gold);
+  font-size: var(--h1);
 }
 
 h2 {
@@ -139,6 +146,7 @@ h2 {
   font-weight: 500;
   line-height: 1.1;
   color: var(--color-primary);
+  font-size: var(--h2);
 }
 
 h3 {
@@ -160,6 +168,10 @@ p, span, a, li, button, input, textarea {
   -webkit-font-smoothing: antialiased;
 }
 
+p {
+  font-size: var(--p);
+}
+
 .syren-pill.mt-1\.5 {
   display: none !important;
 }
@@ -170,6 +182,7 @@ p, span, a, li, button, input, textarea {
       inline-flex
       items-center
       justify-center
+      min-h-[44px]
       rounded-full 
       px-4 py-2.5 md:px-8 md:py-4 
       text-[9px] md:text-[11px] 
@@ -195,6 +208,7 @@ p, span, a, li, button, input, textarea {
       inline-flex
       items-center
       justify-center
+      min-h-[44px]
       rounded-full 
       px-4 py-2.5 md:px-8 md:py-4 
       text-[9px] md:text-[11px] 
@@ -254,6 +268,7 @@ p, span, a, li, button, input, textarea {
       inline-flex
       items-center
       justify-center
+      min-h-[44px]
       rounded-full 
       px-8 py-3 
       text-[11px] 
@@ -273,41 +288,6 @@ p, span, a, li, button, input, textarea {
       shadow-lg
       shadow-accent-gold/10;
   }
-
-/* GLOBAL SECTION SPACING */ 
- .section { 
-   padding-top: 7rem; 
-   padding-bottom: 7rem; 
- } 
- 
- @media (min-width: 768px) { 
-   .section { 
-     padding-top: 9rem; 
-     padding-bottom: 9rem; 
-   } 
- } 
- 
- @media (min-width: 1024px) { 
-   .section { 
-     padding-top: 11rem; 
-     padding-bottom: 11rem; 
-   } 
- } 
- 
- /* TIGHTER SECTIONS (stats, dividers) */ 
- .section-tight { 
-   padding-top: 4rem; 
-   padding-bottom: 4rem; 
- } 
- 
- /* VISUAL MERGE HELPERS */ 
- .section-merge-top { 
-   margin-top: -4rem; 
- } 
- 
- .section-merge-bottom { 
-   margin-bottom: -4rem; 
- }
 
   /* === Syren Input === */
   .input { 
@@ -333,6 +313,7 @@ p, span, a, li, button, input, textarea {
       inline-flex
       items-center
       justify-center
+      min-h-[44px]
       rounded-full 
       px-6 py-3
       text-[11px] 

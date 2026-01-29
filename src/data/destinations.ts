@@ -32,7 +32,7 @@ export const destinations: Destination[] = [
     heroImage: DESTINATION_IMAGES["luxor-aswan"],
     image: DESTINATION_IMAGES["luxor-aswan"],
     vibeKeywords: ["heritage", "nile", "temples"],
-    featuredExperienceSlugs: ["nile-signature", "8-day-pyramids-nile-cruise"],
+    featuredExperienceSlugs: ["nile-signature"],
   },
   {
     slug: "red-sea",

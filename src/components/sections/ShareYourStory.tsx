@@ -224,7 +224,7 @@ export default function ShareYourStory() {
               initial="hidden"
               animate="visible"
               exit="hidden"
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-xl bg-surface p-12 rounded-2xl border border-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] overflow-hidden z-[101]"
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-xl max-h-[85vh] bg-surface p-6 sm:p-8 md:p-12 rounded-2xl border border-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] overflow-y-auto z-[101]"
             > 
               <div className="absolute inset-0 z-0">
                 <Image 
@@ -244,7 +244,7 @@ export default function ShareYourStory() {
               
               <button 
                 onClick={closeModal}
-                className="absolute top-0 -right-4 p-2 text-text-secondary hover:text-white hover:bg-white/5 rounded-full transition-all"
+                className="absolute top-2 right-2 sm:top-0 sm:-right-4 p-2 text-text-secondary hover:text-white hover:bg-white/5 rounded-full transition-all"
                 aria-label="Close modal"
               >
                 <X size={20} />

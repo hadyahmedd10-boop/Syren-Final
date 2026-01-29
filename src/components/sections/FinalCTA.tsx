@@ -27,7 +27,7 @@ export default function FinalCTA({ className = "", as: Component = "div" }: Fina
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/60 to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-border),transparent_60%)] opacity-50" />
       
-      <div className="mx-auto max-w-7xl px-6 md:px-8 text-center relative z-10 py-24">
+      <div className="mx-auto max-w-7xl container-x text-center relative z-10 py-[var(--section-y)]">
         <SectionHeader 
           title="Experience Egypt properly."
           label="Next Steps"

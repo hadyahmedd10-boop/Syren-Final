@@ -43,7 +43,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[50vh] md:min-h-[60vh] lg:min-h-[65vh] flex items-center justify-center overflow-hidden">
         <Image
           src={HERO_IMAGES.home}
           alt="About Syren: Private journeys designed by local experts"
@@ -67,7 +67,7 @@ export default function AboutPage() {
 
       {/* Mission */}
       <section className="section">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto container-x text-center">
           <SectionHeader 
             title="Syren was built for travelers who don’t want Egypt explained to them — they want to experience it properly."
             description={
@@ -87,7 +87,7 @@ export default function AboutPage() {
 
       {/* Values */}
       <section className="section bg-black/40">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <div className="max-w-7xl mx-auto container-x">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.1}>
@@ -108,7 +108,7 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="section">
-        <div className="max-w-3xl mx-auto text-center border border-white/5 rounded-2xl p-16 bg-surface/30 backdrop-blur-sm">
+        <div className="max-w-3xl mx-auto container-x text-center border border-white/5 rounded-2xl p-8 sm:p-10 md:p-16 bg-surface/30 backdrop-blur-sm">
           <SectionHeader 
             title="What We Build" 
             description={
@@ -121,10 +121,10 @@ export default function AboutPage() {
             className="mb-12"
           />
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link href="/experiences" className="syren-btn-primary px-10 py-4">
+            <Link href="/experiences" className="syren-btn-primary">
               Explore Experiences
             </Link>
-            <Link href="/contact" className="px-10 py-4 border border-white/10 rounded-full text-white text-xs uppercase tracking-widest hover:bg-white/5 transition-all">
+            <Link href="/contact" className="syren-btn-secondary">
               Speak with a Curator
             </Link>
           </div>

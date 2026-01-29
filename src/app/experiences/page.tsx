@@ -72,8 +72,8 @@ export default function ExperiencesPage() {
           <FAQ />
         </section>
 
-        <section id="tours-excursions" className="scroll-mt-[140px] py-10 sm:py-12 lg:py-14"> 
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section id="tours-excursions" className="scroll-mt-[140px] section-tight"> 
+          <div className="mx-auto max-w-7xl container-x">
             <SectionHeader 
               title="Tours & Excursions" 
               description="Premium add-ons curated to elevate your destination experience — private, seamless, and unforgettable."

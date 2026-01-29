@@ -18,7 +18,8 @@ export async function GET() {
     const { data: inquiries, error: inquiriesError } = await supabaseAdmin
       .from("contact_inquiries")
       .select("*")
-      .order("created_at", { ascending: false });
+      .order("created_at", { ascending: false })
+      .limit(100);
 
     if (inquiriesError) throw inquiriesError;
 
@@ -26,7 +27,8 @@ export async function GET() {
     const { data: quotes, error: quotesError } = await supabaseAdmin
       .from("quote_requests")
       .select("*")
-      .order("created_at", { ascending: false });
+      .order("created_at", { ascending: false })
+      .limit(100);
 
     if (quotesError) throw quotesError;
 

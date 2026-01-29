@@ -7,10 +7,10 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { destinations } from "@/data/destinations";
 
-function Logo({ className = "", onClick }: { className?: string; onClick?: (e: React.MouseEvent) => void }) {
+function Logo({ className = "", onClick, href = "/home#hero" }: { className?: string; onClick?: (e: React.MouseEvent) => void; href?: string }) {
   return (
     <Link 
-      href="/home#hero" 
+      href={href} 
       scroll={true}
       onClick={onClick}
       className={`font-serif text-xl text-accent-gold tracking-tight ${className}`}
@@ -27,15 +27,18 @@ export default function Navbar() {
   const [isMobileMapOpen, setIsMobileMapOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const logoHref = pathname === "/" ? "/home#hero" : `${pathname}#hero`;
+
   const handleLogoClick = (e: React.MouseEvent) => {
-    if (pathname === "/home") {
+    const hero = document.getElementById("hero");
+    if (hero) {
       e.preventDefault();
-      const hero = document.getElementById("hero");
-      if (hero) {
-        hero.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+      hero.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    if (pathname === logoHref) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -70,21 +73,25 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    if (isMenuOpen) setIsMobileMapOpen(false);
-  };
+const toggleMenu = () => {
+  setIsMenuOpen((open) => {
+    const next = !open;
+    if (!next) setIsMobileMapOpen(false); // closing menu
+    return next;
+  });
+};
+
 
   return ( 
-    <header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur border-b border-border"> 
+    <header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur border-b border-border relative">
       {/* Mobile Navbar */}
       <div className="md:hidden flex items-center justify-between px-4 h-16"> 
-        <Logo className="h-7 w-auto" onClick={handleLogoClick} /> 
+        <Logo className="h-7 w-auto" onClick={handleLogoClick} href={logoHref} /> 
         
         <div className="flex items-center gap-3">
           <Link 
             href="/experiences" 
-            className="px-4 py-2 text-[11px] uppercase tracking-wider rounded-full bg-gold text-black font-bold" 
+            className="syren-btn-primary text-[10px]" 
           > 
             Explore experiences 
           </Link> 
@@ -92,101 +99,112 @@ export default function Navbar() {
           <button 
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             onClick={toggleMenu} 
-            className="p-2 rounded-lg border border-white/10 text-primary" 
+            className="p-2.5 min-h-[44px] min-w-[44px] rounded-lg border border-white/10 text-primary" 
           > 
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button> 
         </div>
 
-        {/* Mobile Dropdown */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-16 left-0 right-0 h-[calc(100vh-64px)] bg-background border-t border-border z-40 overflow-y-auto"
-            >
-              <div className="flex flex-col px-6 py-10 gap-6 min-h-full">
-                <div className="w-full">
-                  <button 
-                    onClick={() => setIsMobileMapOpen(!isMobileMapOpen)}
-                    aria-expanded={isMobileMapOpen}
-                    aria-haspopup="true"
-                    className="flex items-center justify-between w-full group"
-                  >
-                    <span className="font-serif text-2xl text-white tracking-wide group-hover:text-accent-gold transition-colors">The Map</span>
-                    <ChevronDown size={20} className={`text-accent-gold/40 transition-transform duration-500 ${isMobileMapOpen ? 'rotate-180 text-accent-gold' : ''}`} />
-                  </button>
-                  
-                  <AnimatePresence>
-                    {isMobileMapOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <div className="flex flex-col gap-4 mt-6 pl-4 border-l border-white/10">
-                          {destinations.map((dest) => (
-                            <Link 
-                              key={dest.slug} 
-                              href={`/destinations/${dest.slug}`} 
-                              className="group flex flex-col gap-0.5"
-                            >
-                              <span className="font-serif text-lg text-white/90 group-hover:text-accent-gold transition-colors">
-                                {dest.name}
-                              </span>
-                              <span className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 group-hover:text-accent-gold/60 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(196,160,82,0.2)]">
-                                {dest.tagline}
-                              </span>
-                            </Link>
-                          ))}
-                          <Link 
-                            href="/destinations" 
-                            className="mt-2 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-accent-gold font-bold group"
-                          >
-                            <span>Explore All Destinations</span>
-                            <div className="h-px w-6 bg-accent-gold/30 group-hover:w-10 transition-all duration-300" />
-                          </Link>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+      </div>
 
-                <Link href="/experiences" className="font-serif text-2xl text-white tracking-wide hover:text-accent-gold transition-colors">Experiences</Link>
-                <Link href="/about" className="font-serif text-2xl text-white tracking-wide hover:text-accent-gold transition-colors">About</Link>
-                <Link href="/quote" className="font-serif text-2xl text-accent-gold tracking-wide hover:text-white transition-colors">Contact</Link>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[10000] bg-background/95 backdrop-blur-xl overflow-y-auto pointer-events-auto"
+          >
+            <div className="flex flex-col min-h-full container-x pt-6 pb-10 gap-6">
+              <div className="flex items-center justify-between">
+                <Logo className="text-2xl" onClick={handleLogoClick} href={logoHref} />
+                <button
+                  type="button"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/70 hover:text-accent-gold transition-colors"
+                >
+                  Close
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="w-full">
+                <button 
+                  onClick={() => setIsMobileMapOpen(!isMobileMapOpen)}
+                  aria-expanded={isMobileMapOpen}
+                  aria-haspopup="true"
+                  className="flex items-center justify-between w-full group"
+                >
+                  <span className="font-serif text-2xl text-white tracking-wide group-hover:text-accent-gold transition-colors">The Map</span>
+                  <ChevronDown size={20} className={`text-accent-gold/40 transition-transform duration-500 ${isMobileMapOpen ? 'rotate-180 text-accent-gold' : ''}`} />
+                </button>
                 
-                <div className="mt-auto pt-8">
-                  <div className="grid grid-cols-2 gap-x-6 gap-y-4">
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-2">Inquiries</p>
-                      <a href="mailto:concierge@syren.travel" className="text-xs text-white/60 hover:text-accent-gold transition-colors">concierge@syren.travel</a>
-                    </div>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-2">Follow</p>
-                      <div className="flex gap-4">
-                        <a href="#" className="text-xs text-white/60 hover:text-accent-gold transition-colors">Instagram</a>
-                        <a href="#" className="text-xs text-white/60 hover:text-accent-gold transition-colors">LinkedIn</a>
+                <AnimatePresence>
+                  {isMobileMapOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-col gap-4 mt-6 pl-4 border-l border-white/10">
+                        {destinations.map((dest) => (
+                          <Link 
+                            key={dest.slug} 
+                            href={`/destinations/${dest.slug}`} 
+                            className="group flex flex-col gap-0.5"
+                          >
+                            <span className="font-serif text-lg text-white/90 group-hover:text-accent-gold transition-colors">
+                              {dest.name}
+                            </span>
+                            <span className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 group-hover:text-accent-gold/60 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(196,160,82,0.2)]">
+                              {dest.tagline}
+                            </span>
+                          </Link>
+                        ))}
+                        <Link 
+                          href="/destinations" 
+                          className="mt-2 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-accent-gold font-bold group"
+                        >
+                          <span>Explore All Destinations</span>
+                          <div className="h-px w-6 bg-accent-gold/30 group-hover:w-10 transition-all duration-300" />
+                        </Link>
                       </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link href="/experiences" className="mobile-nav-link">Experiences</Link>
+              <Link href="/about" className="mobile-nav-link">About</Link>
+              <Link href="/quote" className="mobile-nav-link text-accent-gold hover:text-white">Contact</Link>
+              
+              <div className="mt-auto pt-8">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-2">Inquiries</p>
+                    <a href="mailto:concierge@syren.travel" className="text-xs text-white/60 hover:text-accent-gold transition-colors">concierge@syren.travel</a>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-2">Follow</p>
+                    <div className="flex gap-4">
+                      <a href="#" className="text-xs text-white/60 hover:text-accent-gold transition-colors">Instagram</a>
+                      <a href="#" className="text-xs text-white/60 hover:text-accent-gold transition-colors">LinkedIn</a>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Desktop Navbar */}
-      <nav className="hidden md:flex max-w-7xl mx-auto px-6 h-20 items-center justify-between"> 
+      <nav className="hidden md:flex max-w-7xl mx-auto container-x h-20 items-center justify-between"> 
         
         {/* LOGO */} 
-        <Logo className="text-2xl" onClick={handleLogoClick} /> 
+        <Logo className="text-2xl" onClick={handleLogoClick} href={logoHref} /> 
  
          {/* LINKS */} 
          <div className="flex gap-10 text-sm tracking-wide"> 

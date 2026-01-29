@@ -35,7 +35,7 @@ export default function ExperienceCard({
           src={image}
           alt={alt ?? `A bespoke luxury journey through ${title} - Curated by Syren`}
           fill
-          sizes="(min-width: 1024px) 50vw, 100vw"
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
           priority={false}
           quality={90}

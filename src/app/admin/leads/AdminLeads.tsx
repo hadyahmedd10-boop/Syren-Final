@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { format } from "date-fns";
-import { Mail, Phone, Calendar, DollarSign, MessageSquare, Globe, Loader2 } from "lucide-react";
+import { Mail, Phone, Calendar, DollarSign, MessageSquare, Globe, Copy, X } from "lucide-react";
 
 interface Inquiry {
   id: string;
@@ -27,38 +27,23 @@ interface Quote {
   status: string;
 }
 
-export default function AdminLeads() {
-  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
-  const [quotes, setQuotes] = useState<Quote[]>([]);
-  const [loading, setLoading] = useState(true);
+interface AdminLeadsProps {
+  inquiries: Inquiry[];
+  quotes: Quote[];
+}
+
+export default function AdminLeads({ inquiries, quotes }: AdminLeadsProps) {
   const [activeTab, setActiveTab] = useState<"quotes" | "inquiries">("quotes");
+  const [openMessage, setOpenMessage] = useState<{ title: string; message: string } | null>(null);
 
-  useEffect(() => {
-    fetchLeads();
-  }, []);
-
-  const fetchLeads = async () => {
+  const handleCopy = async (value: string) => {
+    if (!value) return;
     try {
-      const res = await fetch("/api/admin/leads");
-      const data = await res.json();
-      if (res.ok) {
-        setInquiries(data.inquiries);
-        setQuotes(data.quotes);
-      }
-    } catch (error) {
-      console.error("Failed to fetch leads:", error);
-    } finally {
-      setLoading(false);
+      await navigator.clipboard.writeText(value);
+    } catch {
+      return;
     }
   };
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-8 h-8 text-accent-gold animate-spin" />
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
@@ -116,11 +101,27 @@ export default function AdminLeads() {
                           <div className="flex items-center gap-2 text-xs text-text-secondary hover:text-white transition-colors">
                             <Mail size={12} className="text-accent-gold" />
                             <a href={`mailto:${quote.email}`}>{quote.email}</a>
+                            <button
+                              type="button"
+                              onClick={() => handleCopy(quote.email)}
+                              className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-accent-gold/80 hover:text-accent-gold"
+                            >
+                              <Copy size={12} />
+                              Copy
+                            </button>
                           </div>
                           {quote.phone && (
                             <div className="flex items-center gap-2 text-xs text-text-secondary">
                               <Phone size={12} className="text-accent-gold" />
                               <span>{quote.phone}</span>
+                              <button
+                                type="button"
+                                onClick={() => handleCopy(quote.phone ?? "")}
+                                className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-accent-gold/80 hover:text-accent-gold"
+                              >
+                                <Copy size={12} />
+                                Copy
+                              </button>
                             </div>
                           )}
                         </div>
@@ -147,9 +148,16 @@ export default function AdminLeads() {
                       <td className="px-6 py-6 align-top max-w-md">
                         <div className="flex gap-2">
                           <MessageSquare size={14} className="text-accent-gold shrink-0 mt-0.5" />
-                          <p className="text-sm text-text-secondary leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">
-                            {quote.message}
-                          </p>
+                          <div className="space-y-2">
+                            <p className="text-sm text-text-secondary leading-relaxed line-clamp-3">{quote.message}</p>
+                            <button
+                              type="button"
+                              onClick={() => setOpenMessage({ title: `${quote.name} — Quote`, message: quote.message })}
+                              className="text-[10px] uppercase tracking-wider text-accent-gold/80 hover:text-accent-gold"
+                            >
+                              View
+                            </button>
+                          </div>
                         </div>
                       </td>
                     </tr>
@@ -172,11 +180,27 @@ export default function AdminLeads() {
                         <div className="flex items-center gap-2 text-xs text-text-secondary hover:text-white transition-colors">
                           <Mail size={12} className="text-accent-gold" />
                           <a href={`mailto:${inquiry.email}`}>{inquiry.email}</a>
+                          <button
+                            type="button"
+                            onClick={() => handleCopy(inquiry.email)}
+                            className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-accent-gold/80 hover:text-accent-gold"
+                          >
+                            <Copy size={12} />
+                            Copy
+                          </button>
                         </div>
                         {inquiry.phone && (
                           <div className="flex items-center gap-2 text-xs text-text-secondary">
                             <Phone size={12} className="text-accent-gold" />
                             <span>{inquiry.phone}</span>
+                            <button
+                              type="button"
+                              onClick={() => handleCopy(inquiry.phone ?? "")}
+                              className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-accent-gold/80 hover:text-accent-gold"
+                            >
+                              <Copy size={12} />
+                              Copy
+                            </button>
                           </div>
                         )}
                         {inquiry.pathname && (
@@ -193,9 +217,18 @@ export default function AdminLeads() {
                     <td className="px-6 py-6 align-top max-w-md">
                       <div className="flex gap-2">
                         <MessageSquare size={14} className="text-accent-gold shrink-0 mt-0.5" />
-                        <p className="text-sm text-text-secondary leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">
-                          {inquiry.message}
-                        </p>
+                        <div className="space-y-2">
+                          <p className="text-sm text-text-secondary leading-relaxed line-clamp-3">{inquiry.message}</p>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setOpenMessage({ title: `${inquiry.name} — Inquiry`, message: inquiry.message })
+                            }
+                            className="text-[10px] uppercase tracking-wider text-accent-gold/80 hover:text-accent-gold"
+                          >
+                            View
+                          </button>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -209,6 +242,33 @@ export default function AdminLeads() {
           </table>
         </div>
       </div>
+      {openMessage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
+          <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-surface shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+              <div className="text-white font-medium">{openMessage.title}</div>
+              <button
+                type="button"
+                onClick={() => setOpenMessage(null)}
+                className="text-text-secondary hover:text-white"
+                aria-label="Close message"
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <div className="px-6 py-5 text-sm text-text-secondary whitespace-pre-wrap">{openMessage.message}</div>
+            <div className="flex justify-end px-6 pb-6">
+              <button
+                type="button"
+                onClick={() => setOpenMessage(null)}
+                className="rounded-md bg-accent-gold px-4 py-2 text-xs font-semibold uppercase tracking-wider text-black"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

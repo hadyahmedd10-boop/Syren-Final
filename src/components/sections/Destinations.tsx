@@ -31,7 +31,7 @@ export default function Destinations() {
       aria-labelledby="destinations-title"
       className="relative bg-background scroll-mt-24 section"
     >
-      <div className="mx-auto max-w-6xl px-6 md:px-8">
+      <div className="mx-auto max-w-6xl container-x">
         <div className="mb-4 flex flex-col md:flex-row md:items-end md:justify-between md:mb-6">
           <SectionHeader 
             id="destinations-title"
@@ -62,7 +62,7 @@ export default function Destinations() {
 
         <div 
           ref={scrollRef}
-          className="flex overflow-x-auto pb-6 gap-4 md:gap-6 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:-mx-8 md:px-8"
+          className="flex overflow-x-auto pb-6 gap-4 md:gap-6 snap-x snap-mandatory scrollbar-hide -mx-[var(--container-x)] px-[var(--container-x)]"
         >
         {destinations.map((dest, index) => {
           return (

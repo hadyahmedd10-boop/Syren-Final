@@ -36,7 +36,7 @@ export default function DestinationExperiences({
 
   return (
     <section className={`section ${className}`}>
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl container-x">
         <SectionHeader 
           title={title} 
           label="Curated Journeys" 

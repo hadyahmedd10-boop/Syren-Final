@@ -34,7 +34,7 @@ export default function DestinationHero({ name, tagline, image }: DestinationHer
   };
 
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[55vh] md:min-h-[70vh] lg:min-h-[75vh] flex items-center justify-center overflow-hidden">
       <Image
         src={image}
         alt={`The majestic landscapes of ${name}, captured in an exclusive Syren journey`}
@@ -49,7 +49,7 @@ export default function DestinationHero({ name, tagline, image }: DestinationHer
       {/* Cinematic Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-background" />
       
-      <div className="relative z-10 text-center px-6 max-w-5xl">
+      <div className="relative z-10 text-center container-x max-w-5xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -57,14 +57,14 @@ export default function DestinationHero({ name, tagline, image }: DestinationHer
         >
           <motion.h1 
             variants={itemVariants}
-            className="font-serif text-white text-5xl md:text-7xl lg:text-8xl leading-none mb-6 tracking-tighter"
+            className="font-serif text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-none mb-6 tracking-tighter"
           >
             {name}
           </motion.h1>
           
           <motion.p 
             variants={itemVariants}
-            className="text-accent-gold font-sans text-sm md:text-lg uppercase tracking-[0.3em] font-light italic"
+            className="text-accent-gold font-sans text-[11px] sm:text-sm md:text-lg uppercase tracking-[0.3em] font-light italic"
           >
             {tagline}
           </motion.p>

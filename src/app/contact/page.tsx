@@ -15,8 +15,8 @@ export default function ContactPage() {
    return ( 
      <main className="min-h-screen bg-background">
        <h1 className="sr-only">Contact Syren</h1>
-       <section className="section"> 
-         <div className="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-8 md:gap-16"> 
+      <section className="section"> 
+        <div className="max-w-7xl mx-auto container-x grid md:grid-cols-2 gap-8 md:gap-16"> 
  
         {/* LEFT — INFO */} 
         <div> 

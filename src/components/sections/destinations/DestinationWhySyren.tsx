@@ -29,7 +29,7 @@ const features = [
 export default function DestinationWhySyren({ destinationName }: DestinationWhySyrenProps) {
   return (
     <section className="section bg-background border-b border-white/5">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl container-x">
         <SectionHeader 
           title={`Why Experience ${destinationName} with Syren`} 
           className="mb-12 md:mb-16"

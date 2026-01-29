@@ -106,7 +106,7 @@ export default function ExperiencesSectionNav() {
 
   return (
     <nav className="sticky top-[64px] md:top-[80px] z-40 border-b border-white/10 bg-black/60 backdrop-blur-md" aria-label="Experiences sections">
-      <div className="mx-auto flex max-w-7xl flex-col justify-center gap-3 px-4 py-3 sm:px-6 lg:px-8 md:py-4">
+      <div className="mx-auto flex max-w-7xl flex-col justify-center gap-3 container-x py-3 md:py-4">
         <div className="flex items-center gap-5 overflow-x-auto whitespace-nowrap scrollbar-hide md:gap-7">
           {EXPERIENCES_SECTIONS.map((section) => (
             <div key={section.id} className="flex items-center">
@@ -120,7 +120,7 @@ export default function ExperiencesSectionNav() {
                     : "text-white/70 hover:bg-white/5 hover:text-white"
                 }`}
               >
-                {section.label}
+                {section.id === "frequently-asked-questions" ? "FAQs" : section.label}
               </button>
             </div>
           ))}

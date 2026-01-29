@@ -8,6 +8,11 @@ export default function ContactForm() {
   const pathname = usePathname();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,10 +21,44 @@ export default function ContactForm() {
     honeypot: "",
   });
 
+  const validateForm = () => {
+    const errors: { name?: string; email?: string; message?: string } = {};
+    if (!formData.name.trim()) {
+      errors.name = "Full name is required.";
+    }
+    if (!formData.email.trim()) {
+      errors.email = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      errors.email = "Enter a valid email.";
+    }
+    if (!formData.message.trim()) {
+      errors.message = "Message is required.";
+    }
+    return errors;
+  };
+
+  const updateField = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (fieldErrors[field as keyof typeof fieldErrors]) {
+      setFieldErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === "loading") {
+      return;
+    }
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setStatus("error");
+      setErrorMessage("Please review the highlighted fields.");
+      return;
+    }
     setStatus("loading");
     setErrorMessage("");
+    setFieldErrors({});
 
     try {
       const response = await fetch("/api/notify/contact", {
@@ -74,35 +113,38 @@ export default function ContactForm() {
         required
         name="name"
         placeholder="Full Name"
-        className="input"
+        className={`input ${fieldErrors.name ? "border-red-400" : ""}`}
         value={formData.name}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        onChange={(e) => updateField("name", e.target.value)}
       />
+      {fieldErrors.name && <p className="text-xs text-red-400">{fieldErrors.name}</p>}
       <input
         required
         name="email"
         type="email"
         placeholder="Email Address"
-        className="input"
+        className={`input ${fieldErrors.email ? "border-red-400" : ""}`}
         value={formData.email}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        onChange={(e) => updateField("email", e.target.value)}
       />
+      {fieldErrors.email && <p className="text-xs text-red-400">{fieldErrors.email}</p>}
       <input
         name="whatsapp"
         placeholder="WhatsApp (optional)"
         className="input"
         value={formData.whatsapp}
-        onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+        onChange={(e) => updateField("whatsapp", e.target.value)}
       />
       <textarea
         required
         name="message"
         rows={4}
         placeholder="Tell us what you’re dreaming of…"
-        className="input"
+        className={`input ${fieldErrors.message ? "border-red-400" : ""}`}
         value={formData.message}
-        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+        onChange={(e) => updateField("message", e.target.value)}
       />
+      {fieldErrors.message && <p className="text-xs text-red-400">{fieldErrors.message}</p>}
 
       {status === "success" && (
         <div className="flex items-center gap-3 text-green-400 bg-green-400/10 p-4 border border-green-400/20">

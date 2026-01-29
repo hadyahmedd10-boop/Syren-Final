@@ -114,7 +114,7 @@ export default async function DestinationPage({ params }: Props) {
         image={destination.heroImage} 
       />
       
-      <div className="bg-background py-4">
+      <div className="bg-background">
         <DestinationIntro 
           description={destination.description} 
           vibeKeywords={destination.vibeKeywords} 
@@ -132,8 +132,8 @@ export default async function DestinationPage({ params }: Props) {
         />
       </div>
 
-      <section className="bg-background border-t border-border py-20 md:py-24"> 
-        <div className="mx-auto max-w-7xl px-6 md:px-8"> 
+      <section className="bg-background border-t border-border section"> 
+        <div className="mx-auto max-w-7xl container-x"> 
           <SectionHeader title="Recommended Add-Ons" />
     
           {destinationExcursions.length > 0 ? (

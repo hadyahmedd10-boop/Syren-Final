@@ -14,7 +14,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[55vh] flex items-center py-20">
+    <section id="hero" className="relative min-h-[50vh] md:min-h-[55vh] flex items-center py-16 md:py-20">
       <Image
         src={HERO_IMAGES.home}
         alt="A private luxury yacht navigating the crystal-clear waters of the Red Sea - A signature Syren experience"
@@ -29,7 +29,7 @@ export default function Hero() {
       {/* Cinematic Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 via-60% to-background" />
       
-      <div className="relative mx-auto max-w-5xl px-6 text-center w-full z-10">
+      <div className="relative mx-auto max-w-5xl container-x text-center w-full z-10">
         <motion.div
           variants={fadeInContainer}
           initial="hidden"
@@ -46,7 +46,7 @@ export default function Hero() {
           {/* Powerful Short Headline */}
           <motion.h1 
             variants={fadeInUp}
-            className="font-serif text-white text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 tracking-tight"
+            className="font-serif text-white text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 md:mb-8 tracking-tight"
           > 
             Egypt, Like you&apos;ve <br className="hidden md:block" /> never seen before
           </motion.h1> 
@@ -54,7 +54,7 @@ export default function Hero() {
           {/* Poetic sub-line */}
           <motion.p 
             variants={fadeInUp}
-            className="text-white/70 max-w-xl mx-auto text-base md:text-lg font-light italic mb-12 leading-relaxed"
+            className="text-white/70 max-w-xl mx-auto text-sm sm:text-base md:text-lg font-light italic mb-10 md:mb-12 leading-relaxed"
           > 
             Private journeys designed by local experts. Delivered with absolute precision.
           </motion.p>

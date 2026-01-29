@@ -31,13 +31,11 @@ export const EXPERIENCE_IMAGES = {
   "cairo-after-dark": expCairoAfterDark,
   "nile-signature": heroHome,
   "5-day-cairo-experience": heroHome,
-  "8-day-pyramids-nile-cruise": heroHome,
   "10-day-cairo-nile-red-sea-odyssey": heroHome,
   "12-day-egyptian-honeymoon-odyssey": heroHome,
   "family-adventure": heroHome,
   "siwa-desert-retreat": heroHome,
   "alexandria-coastal-elegance": heroHome,
-  "wellness-retreat": heroHome,
 } as const;
 
 export const EXCURSION_IMAGES = {

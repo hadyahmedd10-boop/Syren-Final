@@ -5,8 +5,8 @@ import SectionHeader from "@/components/layout/SectionHeader";
 
 export default function ExperiencesGrid() {
   return (
-    <div className="bg-background py-10 sm:py-12 lg:py-14">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="bg-background section">
+      <div className="mx-auto max-w-7xl container-x">
         <SectionHeader 
           title="Explore Our Journeys" 
           label="Complete Collection" 

@@ -150,7 +150,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
         </div>
       )}
       {/* 1. Cinematic Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+      <section className="relative min-h-[55vh] md:min-h-[70vh] lg:min-h-[75vh] w-full overflow-hidden">
         <Image
           src={experience.heroImage}
           alt={`Experience the essence of ${experience.title}, an ultra-private Egyptian odyssey`}
@@ -165,7 +165,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
         
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <Reveal>
-            <h1 className="mb-6 max-w-5xl font-serif text-5xl tracking-tight text-primary md:text-7xl lg:text-8xl">
+            <h1 className="mb-5 max-w-5xl font-serif text-4xl sm:text-5xl tracking-tight text-primary md:text-7xl lg:text-8xl">
               {experience.title}
             </h1>
           </Reveal>
@@ -184,17 +184,19 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
       </section>
 
       {/* 2. Introduction Section */}
-      <section className="mx-auto max-w-4xl px-6 text-center section bg-background">
-        <SectionHeader 
-          title="Experience Overview" 
-          label="The Soul of the Journey" 
-          className="mb-8 md:mb-12"
-        />
-        <Reveal>
-          <p className="mx-auto max-w-3xl font-sans text-lg leading-relaxed tracking-wide text-text-secondary md:text-xl md:leading-loose italic">
-            &ldquo;{experience.introduction}&rdquo;
-          </p>
-        </Reveal>
+      <section className="section bg-background">
+        <div className="mx-auto max-w-4xl container-x text-center">
+          <SectionHeader 
+            title="Experience Overview" 
+            label="The Soul of the Journey" 
+            className="mb-8 md:mb-12"
+          />
+          <Reveal>
+            <p className="mx-auto max-w-3xl font-sans text-lg leading-relaxed tracking-wide text-text-secondary md:text-xl md:leading-loose italic">
+              &ldquo;{experience.introduction}&rdquo;
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       {/* 3. Key Experience Highlights */}
@@ -224,8 +226,8 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
       )}
 
       {/* 4. STORY JOURNEY ITINERARY */}
-      <section id="itinerary" className="py-24 md:py-32 bg-background relative">
-        <div className="mx-auto max-w-6xl px-6 md:px-8">
+      <section id="itinerary" className="section bg-background relative scroll-mt-[120px]">
+        <div className="mx-auto max-w-6xl container-x">
           <SectionHeader 
             title="Your Curated Journey" 
             label="Day by Day" 
@@ -248,8 +250,8 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
       </section>
 
       {/* 5. What’s Included / Not Included */}
-      <section className="bg-surface/30 py-24 md:py-32 border-t border-border/50">
-        <div className="mx-auto max-w-5xl px-6 md:px-8">
+      <section className="bg-surface/30 section border-t border-border/50">
+        <div className="mx-auto max-w-5xl container-x">
           <Reveal>
             <div className="rounded-2xl border border-border/40 bg-background/50 p-8 md:p-16 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-gold/20 to-transparent" />
@@ -302,7 +304,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
 
       {/* 6. Testimonials (experience-specific) */}
       <section className="section bg-background">
-        <div className="mx-auto max-w-7xl px-6 md:px-8">
+        <div className="mx-auto max-w-7xl container-x">
           <SectionHeader 
             title="Traveler Stories" 
             label="The Testimony" 
@@ -336,7 +338,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
 
       {/* 7. Soft Conversion Section (inquiry / interest) */}
       <section className="relative overflow-hidden bg-surface section border-y border-white/5">
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
+        <div className="relative mx-auto max-w-4xl container-x text-center">
           <SectionHeader 
             title="Ready to Personalize This Experience?" 
             label="Personal Curation" 
@@ -379,12 +381,12 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
 
       {/* 8. Booking Section */}
       {experience.price && (
-        <section id="book" className="section bg-background relative overflow-hidden">
+        <section id="book" className="section bg-background relative overflow-hidden scroll-mt-[120px]">
           <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-gold rounded-full blur-[120px]" />
           </div>
           
-          <div className="mx-auto max-w-5xl px-6 md:px-8">
+          <div className="mx-auto max-w-5xl container-x">
             <Reveal>
               <BookingSection
                 experienceTitle={experience.title}

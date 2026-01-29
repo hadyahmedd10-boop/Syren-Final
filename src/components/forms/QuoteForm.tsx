@@ -7,6 +7,11 @@ import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 export default function QuoteForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,10 +22,44 @@ export default function QuoteForm() {
     honeypot: "",
   });
 
+  const validateForm = () => {
+    const errors: { name?: string; email?: string; message?: string } = {};
+    if (!formData.name.trim()) {
+      errors.name = "Full name is required.";
+    }
+    if (!formData.email.trim()) {
+      errors.email = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      errors.email = "Enter a valid email.";
+    }
+    if (!formData.message.trim()) {
+      errors.message = "Message is required.";
+    }
+    return errors;
+  };
+
+  const updateField = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (fieldErrors[field as keyof typeof fieldErrors]) {
+      setFieldErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === "loading") {
+      return;
+    }
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setStatus("error");
+      setErrorMessage("Please review the highlighted fields.");
+      return;
+    }
     setStatus("loading");
     setErrorMessage("");
+    setFieldErrors({});
 
     try {
       const res = await fetch("/api/notify/quote", {
@@ -94,10 +133,11 @@ export default function QuoteForm() {
                 required
                 type="text"
                 placeholder="Alexander Great"
-                className="w-full bg-white/5 border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-gold transition-colors font-sans"
+                className={`w-full bg-white/5 border-b py-3 text-white focus:outline-none focus:border-accent-gold transition-colors font-sans ${fieldErrors.name ? "border-red-400" : "border-white/20"}`}
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) => updateField("name", e.target.value)}
               />
+              {fieldErrors.name && <p className="text-xs text-red-400">{fieldErrors.name}</p>}
             </div>
 
             <div className="space-y-2">
@@ -107,10 +147,11 @@ export default function QuoteForm() {
                 required
                 type="email"
                 placeholder="alexander@luxury.com"
-                className="w-full bg-white/5 border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-gold transition-colors font-sans"
+                className={`w-full bg-white/5 border-b py-3 text-white focus:outline-none focus:border-accent-gold transition-colors font-sans ${fieldErrors.email ? "border-red-400" : "border-white/20"}`}
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) => updateField("email", e.target.value)}
               />
+              {fieldErrors.email && <p className="text-xs text-red-400">{fieldErrors.email}</p>}
             </div>
 
             <div className="space-y-2">
@@ -121,7 +162,7 @@ export default function QuoteForm() {
                 placeholder="+1 234 567 890"
                 className="w-full bg-white/5 border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-gold transition-colors font-sans"
                 value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                onChange={(e) => updateField("phone", e.target.value)}
               />
             </div>
 
@@ -133,7 +174,7 @@ export default function QuoteForm() {
                 placeholder="Spring 2026"
                 className="w-full bg-white/5 border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-gold transition-colors font-sans"
                 value={formData.trip_dates}
-                onChange={(e) => setFormData({ ...formData, trip_dates: e.target.value })}
+                onChange={(e) => updateField("trip_dates", e.target.value)}
               />
             </div>
           </div>
@@ -160,10 +201,11 @@ export default function QuoteForm() {
               id="message"
               rows={4}
               placeholder="Tell us about the moments you're seeking..."
-              className="w-full bg-white/5 border-b border-white/20 py-3 text-white focus:outline-none focus:border-accent-gold transition-colors font-sans resize-none"
+              className={`w-full bg-white/5 border-b py-3 text-white focus:outline-none focus:border-accent-gold transition-colors font-sans resize-none ${fieldErrors.message ? "border-red-400" : "border-white/20"}`}
               value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              onChange={(e) => updateField("message", e.target.value)}
             />
+            {fieldErrors.message && <p className="text-xs text-red-400">{fieldErrors.message}</p>}
           </div>
 
           {status === "success" && (

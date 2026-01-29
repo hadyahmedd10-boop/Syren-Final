@@ -15,7 +15,7 @@ export default function DestinationIntro({ description, vibeKeywords }: Destinat
 
   return (
     <section className="section bg-background border-y border-white/5">
-      <div className="mx-auto max-w-2xl px-6 text-center">
+      <div className="mx-auto max-w-2xl container-x text-center">
         <Reveal>
           <div className="space-y-12">
             {/* Soft Gold Divider */}
