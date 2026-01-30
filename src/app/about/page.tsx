@@ -5,6 +5,8 @@ import { HERO_IMAGES } from "@/lib/images";
 import { Sparkles, ShieldCheck, Globe, Users } from "lucide-react";
 import SectionHeader from "@/components/layout/SectionHeader";
 import FinalCTA from "@/components/sections/FinalCTA";
+import { WHATSAPP_LINK } from "@/config/social";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 import type { Metadata } from "next";
 
@@ -121,11 +123,9 @@ export default function AboutPage() {
             className="mb-12"
           />
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link href="/experiences" className="syren-btn-primary">
+            <WhatsAppButton label="Speak with a Curator" />
+            <Link href="/experiences" className="syren-btn-secondary">
               Explore Experiences
-            </Link>
-            <Link href="/contact" className="syren-btn-secondary">
-              Speak with a Curator
             </Link>
           </div>
         </div>

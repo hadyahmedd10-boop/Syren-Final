@@ -7,17 +7,21 @@ import Reveal from "@/components/motion/Reveal";
 import { experiences } from "@/data/experiences";
 import { CheckCircle2, Star, ArrowRight, MessageSquare, Sparkles } from "lucide-react";
 import ExperienceTracker from "@/components/ExperienceTracker";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import SectionHeader from "@/components/layout/SectionHeader";
 import BookingSection from "@/components/checkout/BookingSection";
 import CheckoutButton from "@/components/payments/CheckoutButton";
 import { excursions } from "@/data/excursions";
 import ItineraryTimeline from "@/components/sections/ItineraryTimeline";
 import ItineraryImageDebug from "@/components/dev/ItineraryImageDebug";
+import { SOCIAL_LINKS } from "@/config/social";
 
 interface Props {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ success?: string; canceled?: string }>;
 }
+
+import { SOCIAL_LINKS } from "@/config/social";
 
 export async function generateStaticParams() {
   return experiences.map((exp) => ({
@@ -117,7 +121,7 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
     }
   };
 
-  const whatsappLink = `https://wa.me/201000000000?text=${encodeURIComponent(
+  const whatsappLink = `${SOCIAL_LINKS.whatsapp}?text=${encodeURIComponent(
     `I want to plan my ${experience.title} journey with Syren`
   )}`;
 
@@ -362,8 +366,9 @@ export default async function ExperienceDetailPage({ params, searchParams }: Pro
                   target="_blank"
                   rel="noopener noreferrer"
                   className="syren-btn flex items-center gap-3 w-full sm:w-auto"
+                  aria-label={`Inquire about ${experience.title} via WhatsApp`}
                 >
-                  <MessageSquare size={18} />
+                  <MessageSquare size={18} aria-hidden="true" />
                   INQUIRE VIA WHATSAPP
                 </a>
                 <Link 

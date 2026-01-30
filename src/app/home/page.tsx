@@ -5,6 +5,7 @@ import Destinations from "@/components/sections/Destinations";
 import OurVision from "@/components/sections/OurVision";
 import FinalCTA from "@/components/sections/FinalCTA";
 import HomeScrollManager from "@/components/layout/HomeScrollManager";
+import { SOCIAL_LINKS } from "@/config/social";
 import type { Metadata } from "next";
 import Script from "next/script";
 
@@ -61,8 +62,7 @@ export default function Home() {
       "closes": "23:59"
     },
     "sameAs": [
-      "https://www.instagram.com/syren_egypt",
-      "https://twitter.com/syren_egypt"
+      SOCIAL_LINKS.instagram,
     ]
   };
 

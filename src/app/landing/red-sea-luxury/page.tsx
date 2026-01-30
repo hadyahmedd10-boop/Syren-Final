@@ -1,6 +1,7 @@
 import { constructMetadata } from "@/lib/seo";
 import LandingShell from "@/components/landing/LandingShell";
 import { DESTINATION_IMAGES } from "@/lib/images";
+import { SOCIAL_LINKS } from "@/config/social";
 
 export const metadata = constructMetadata({
   title: "Red Sea Luxury Sanctuary | Private Yachts & Coastal Solitude",
@@ -9,7 +10,7 @@ export const metadata = constructMetadata({
 });
 
 export default function RedSeaLuxuryLanding() {
-  const whatsappLink = `https://wa.me/201000000000?text=${encodeURIComponent(
+  const whatsappLink = `${SOCIAL_LINKS.whatsapp}?text=${encodeURIComponent(
     "I'm interested in the Red Sea Luxury Experience. I'd like to talk to a curator."
   )}`;
 
@@ -19,10 +20,10 @@ export default function RedSeaLuxuryLanding() {
       title="Red Sea, Redefined"
       subtitle="Where the desert meets the crystal depths. Private yacht charters, hidden reefs, and the ultimate coastal solitude for the discerning soul."
       heroImage={DESTINATION_IMAGES["red-sea"]}
-      primaryCtaLabel="Discover Coastal Luxury"
-      primaryCtaHref="/experiences"
-      secondaryCtaLabel="Talk to a curator"
-      secondaryCtaHref={whatsappLink}
+      primaryCtaLabel="Design Your Journey"
+      primaryCtaHref={whatsappLink}
+      secondaryCtaLabel="Discover Coastal Luxury"
+      secondaryCtaHref="/experiences"
       benefits={[
         "Private Yacht Charters & Crew",
         "Secret Reef & Island Access",

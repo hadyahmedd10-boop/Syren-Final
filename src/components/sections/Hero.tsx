@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeInContainer, fadeInUp } from "@/lib/animations";
 import { HERO_IMAGES } from "@/lib/images";
+import { WHATSAPP_LINK } from "@/config/social";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 export default function Hero() {
   useEffect(() => {
@@ -60,12 +62,10 @@ export default function Hero() {
           </motion.p>
 
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link
-              href="#destinations"
-              className="syren-btn min-w-[180px] sm:min-w-[220px]"
-            >
-              Begin Your Journey
-            </Link>
+            <WhatsAppButton 
+              label="Begin Your Journey"
+              location="hero"
+            />
             <Link
               href="/experiences"
               className="syren-btn-secondary min-w-[180px] sm:min-w-[220px]"

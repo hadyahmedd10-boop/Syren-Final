@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FinalCTA from "@/components/sections/FinalCTA";
+import { WHATSAPP_LINK } from "@/config/social";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Exclusive Egyptian Journeys | Syren",
@@ -22,9 +24,10 @@ export default function LuxuryLanding() {
             Private access. Seamless luxury. Designed entirely around you. 
           </p> 
   
-          <Link href="/contact" className="syren-btn px-12 py-4 text-lg"> 
-            Design My Journey 
-          </Link> 
+          <WhatsAppButton 
+            label="Design My Journey" 
+            className="px-12 py-4 text-lg"
+          />
         </div> 
       </section> 
 

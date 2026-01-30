@@ -1,6 +1,7 @@
 import { constructMetadata } from "@/lib/seo";
 import LandingShell from "@/components/landing/LandingShell";
 import { DESTINATION_IMAGES } from "@/lib/images";
+import { SOCIAL_LINKS } from "@/config/social";
 
 export const metadata = constructMetadata({
   title: "The Eternal Nile Journey | Private River Cruises & Sacred Sites",
@@ -9,7 +10,7 @@ export const metadata = constructMetadata({
 });
 
 export default function NileJourneyLanding() {
-  const whatsappLink = `https://wa.me/201000000000?text=${encodeURIComponent(
+  const whatsappLink = `${SOCIAL_LINKS.whatsapp}?text=${encodeURIComponent(
     "I'm interested in the Nile Journey Experience. I'd like to talk to a curator."
   )}`;
 
@@ -19,10 +20,10 @@ export default function NileJourneyLanding() {
       title="The Eternal Flow of the Nile"
       subtitle="A journey through Egypt's most powerful temples and the calm flow of the Nile. Slow, majestic, and deeply spiritual."
       heroImage={DESTINATION_IMAGES["luxor-aswan"]}
-      primaryCtaLabel="View River Journeys"
-      primaryCtaHref="/experiences"
-      secondaryCtaLabel="Talk to a curator"
-      secondaryCtaHref={whatsappLink}
+      primaryCtaLabel="Design Your Journey"
+      primaryCtaHref={whatsappLink}
+      secondaryCtaLabel="View River Journeys"
+      secondaryCtaHref="/experiences"
       benefits={[
         "Private Luxury Dahabiya Charters",
         "Expert-Led Temple Pilgrimages",

@@ -5,6 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import SocialProofStrip from "./SocialProofStrip";
 import TrustBadges from "./TrustBadges";
 import LandingTracking from "./LandingTracking";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 interface LandingShellProps {
   eyebrow: string;
@@ -119,21 +120,41 @@ export default function LandingShell({
           
           <Reveal delay={0.4}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link 
-                href={primaryCtaHref} 
-                className="syren-btn w-full sm:w-auto min-w-[200px]"
-                data-track-cta="primary"
-              >
-                {primaryCtaLabel}
-              </Link>
-              {secondaryCtaLabel && secondaryCtaHref && (
-                <Link 
-                  href={secondaryCtaHref} 
-                  className="syren-btn-secondary w-full sm:w-auto min-w-[200px]"
-                  data-track-cta="secondary"
+              {primaryCtaHref.startsWith("http") ? (
+                <WhatsAppButton
+                  href={primaryCtaHref}
+                  label={primaryCtaLabel}
+                  className="w-full sm:w-auto min-w-[200px]"
+                  data-track-cta="primary"
+                />
+              ) : (
+                <Link
+                  href={primaryCtaHref}
+                  className="syren-btn w-full sm:w-auto min-w-[200px]"
+                  data-track-cta="primary"
+                  aria-label={primaryCtaLabel}
                 >
-                  {secondaryCtaLabel}
+                  {primaryCtaLabel}
                 </Link>
+              )}
+              {secondaryCtaLabel && secondaryCtaHref && (
+                secondaryCtaHref.startsWith("http") ? (
+                  <WhatsAppButton
+                    href={secondaryCtaHref}
+                    label={secondaryCtaLabel}
+                    className="w-full sm:w-auto min-w-[200px]"
+                    data-track-cta="secondary"
+                  />
+                ) : (
+                  <Link
+                    href={secondaryCtaHref}
+                    className="syren-btn-secondary w-full sm:w-auto min-w-[200px]"
+                    data-track-cta="secondary"
+                    aria-label={secondaryCtaLabel}
+                  >
+                    {secondaryCtaLabel}
+                  </Link>
+                )
               )}
             </div>
           </Reveal>
@@ -199,18 +220,33 @@ export default function LandingShell({
           </Reveal>
           <Reveal delay={0.2}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
-              <Link 
-                href={primaryCtaHref} 
-                className="bg-black text-white px-10 py-4 font-sans font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-colors duration-500 w-full sm:w-auto"
-                data-track-cta="primary"
-              >
-                {primaryCtaLabel}
-              </Link>
+              {primaryCtaHref.startsWith("http") ? (
+                <a
+                  href={primaryCtaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black text-white px-10 py-4 font-sans font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-colors duration-500 w-full sm:w-auto"
+                  data-track-cta="primary"
+                  aria-label={`${primaryCtaLabel} via WhatsApp`}
+                >
+                  {primaryCtaLabel}
+                </a>
+              ) : (
+                <Link
+                  href={primaryCtaHref}
+                  className="bg-black text-white px-10 py-4 font-sans font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-colors duration-500 w-full sm:w-auto"
+                  data-track-cta="primary"
+                  aria-label={primaryCtaLabel}
+                >
+                  {primaryCtaLabel}
+                </Link>
+              )}
               {secondaryCtaLabel && secondaryCtaHref && (
-                <Link 
-                  href={secondaryCtaHref} 
+                <Link
+                  href={secondaryCtaHref}
                   className="border border-black px-10 py-4 font-sans font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-colors duration-500 w-full sm:w-auto"
                   data-track-cta="secondary"
+                  aria-label={secondaryCtaLabel}
                 >
                   {secondaryCtaLabel}
                 </Link>

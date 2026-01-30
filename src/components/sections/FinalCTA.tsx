@@ -5,6 +5,8 @@ import Link from "next/link";
 import SectionHeader from "../layout/SectionHeader";
 import Image from "next/image";
 import { HERO_IMAGES } from "@/lib/images";
+import { SOCIAL_LINKS, WHATSAPP_LINK } from "@/config/social";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 interface FinalCTAProps {
   className?: string;
@@ -42,14 +44,11 @@ export default function FinalCTA({ className = "", as: Component = "div" }: Fina
         <Reveal>
           <div className="flex flex-col items-center">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto mb-12">
-              <a 
-                href="https://wa.me/201000000000?text=I%20want%20to%20plan%20my%20journey%20with%20Syren"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="syren-btn w-full sm:min-w-[240px]"
-              >
-                PLAN YOUR JOURNEY
-              </a>
+              <WhatsAppButton 
+                label="Begin Your Journey" 
+                className="min-w-[200px]"
+                location="final_cta"
+              />
               <Link 
                 href="/experiences"
                 className="syren-btn-secondary w-full sm:min-w-[240px]"

@@ -4,11 +4,14 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/motion/Reveal";
 import SectionHeader from "@/components/layout/SectionHeader";
 import FinalCTA from "@/components/sections/FinalCTA";
-import CheckoutButton from "@/components/payments/CheckoutButton";
+import { constructMetadata } from "@/lib/seo";
+import CheckoutButton from "@/components/checkout/CheckoutButton";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { excursions } from "@/data/excursions";
 import { MessageSquare } from "lucide-react";
 import { destinations } from "@/data/destinations";
 import { HERO_IMAGES } from "@/lib/images";
+import { SOCIAL_LINKS } from "@/config/social";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -112,12 +115,13 @@ export default async function ExcursionPage({ params }: Props) {
                 />
                 
                 <a
-                  href={`https://wa.me/201000000000?text=${encodeURIComponent(`I want to book the ${excursion.title} excursion`)}`}
+                  href={`${SOCIAL_LINKS.whatsapp}?text=${encodeURIComponent(`I want to book the ${excursion.title} excursion`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="syren-btn-secondary flex items-center gap-3 w-full sm:w-auto"
+                  aria-label={`Inquire about ${excursion.title} via WhatsApp`}
                 >
-                  <MessageSquare size={16} />
+                  <MessageSquare size={16} aria-hidden="true" />
                   INQUIRE VIA WHATSAPP
                 </a>
               </div>
