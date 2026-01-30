@@ -7,6 +7,7 @@ import SectionHeader from "@/components/layout/SectionHeader";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { WHATSAPP_LINK } from "@/config/social";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import HeroShell from "@/components/ui/HeroShell";
 
 import type { Metadata } from "next";
 
@@ -45,27 +46,12 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] md:min-h-[60vh] lg:min-h-[65vh] flex items-center justify-center overflow-hidden">
-        <Image
-          src={HERO_IMAGES.home}
-          alt="About Syren: Private journeys designed by local experts"
-          fill
-          className="object-cover opacity-40"
-          priority
-          sizes="100vw"
-          placeholder="blur"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background" />
-        
-        <Reveal>
-          <div className="relative z-10 text-center px-6">
-            <span className="text-accent-gold font-sans text-xs uppercase tracking-[0.5em] mb-6 block">Our Story</span>
-            <h1 className="text-5xl md:text-8xl font-serif text-white mb-8">
-              About Syren
-            </h1>
-          </div>
-        </Reveal>
-      </section>
+      <HeroShell
+        backgroundImage={HERO_IMAGES.home.src}
+        eyebrow="Our Story"
+        title="About Syren"
+        heightClassName="min-h-[50vh] md:min-h-[60vh] lg:min-h-[65vh]"
+      />
 
       {/* Mission */}
       <section className="section">

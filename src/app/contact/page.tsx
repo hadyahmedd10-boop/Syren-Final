@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SectionHeader from "@/components/layout/SectionHeader";
 import { MessageCircle } from "lucide-react";
+import { HERO_IMAGES } from "@/lib/images";
+import HeroShell from "@/components/ui/HeroShell";
 
 import { SOCIAL_LINKS, WHATSAPP_LINK, SOCIAL_EVENTS } from "@/config/social";
 import ContactForm from "@/components/forms/ContactForm";
@@ -19,22 +21,21 @@ export default function ContactPage() {
    return ( 
      <main className="min-h-screen bg-background">
        <h1 className="sr-only">Contact Syren</h1>
+       
+       <HeroShell
+         backgroundImage={HERO_IMAGES.home.src}
+         eyebrow="Begin Your Journey"
+         title="Contact Syren"
+         subtitle="Every journey begins with a conversation. Our concierge team is ready."
+         heightClassName="min-h-[40vh] md:min-h-[50vh]"
+       />
+
       <section className="section"> 
         <div className="max-w-7xl mx-auto container-x grid md:grid-cols-2 gap-8 md:gap-16"> 
  
         {/* LEFT — INFO */} 
         <div> 
-          <SectionHeader 
-            title="Contact Syren" 
-            label="Begin Your Journey" 
-            align="left"
-            className="mb-6 md:mb-8"
-          />
-          <p className="text-text-secondary mb-8 md:mb-12"> 
-            Every journey begins with a conversation. Our concierge team is ready. 
-          </p> 
-
-          <div className="mb-8">
+          <div className="mb-8 mt-4">
             <WhatsAppButton className="w-full sm:w-auto" location="contact_page" />
           </div>
  

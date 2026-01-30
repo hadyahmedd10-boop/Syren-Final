@@ -4,8 +4,8 @@ import { excursions } from "@/data/excursions";
 import { destinations } from "@/data/destinations";
 import { HERO_IMAGES } from "@/lib/images";
 import Reveal from "@/components/motion/Reveal";
+import HeroShell from "@/components/ui/HeroShell";
 
-import Hero from "@/components/sections/experiences/ExperiencesHero";
 import ExperiencesGrid from "@/components/sections/experiences/ExperiencesGrid";
 import ExperiencesSectionNav from "@/components/sections/experiences/ExperiencesSectionNav";
 import ExperienceCard from "@/components/sections/ExperienceCard";
@@ -57,13 +57,17 @@ export default function ExperiencesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <HeroShell 
+        eyebrow="COLLECTIONS" 
+        title="Our Experiences" 
+        subtitle="Curated journeys through the soul of Egypt. Private. Profound. Personal." 
+        backgroundImage={HERO_IMAGES.home.src}
+        heightClassName="min-h-[62svh] md:min-h-[68svh]"
+      />
+
+      <ExperiencesSectionNav />
+
       <div id="experiences-scroll-root">
-        <section className="section-hero">
-          <Hero />
-        </section>
-
-        <ExperiencesSectionNav />
-
         <section id="explore-our-journeys" className="scroll-mt-[140px]">
           <ExperiencesGrid />
         </section>
@@ -103,10 +107,10 @@ export default function ExperiencesPage() {
           </div>
         </section>
 
-        <section id="echoes-of-extraordinary-journeys" className="scroll-mt-[140px]">
+        <section id="echoes-of-extraordinary-journeys" className="scroll-mt-32">
           <Testimonials />
         </section>
-        <section id="experience-egypt-properly" className="scroll-mt-[140px]">
+        <section id="experience-egypt-properly" className="scroll-mt-32">
           <CTA as="div" className="section border-t border-border" />
         </section>
       </div>

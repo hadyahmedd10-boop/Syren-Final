@@ -8,6 +8,7 @@ import { experiences } from "@/data/experiences";
 import { CheckCircle2, Star, ArrowRight, MessageSquare, Sparkles } from "lucide-react";
 import ExperienceTracker from "@/components/ExperienceTracker";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import HeroShell from "@/components/ui/HeroShell";
 import SectionHeader from "@/components/layout/SectionHeader";
 import BookingSection from "@/components/checkout/BookingSection";
 import CheckoutButton from "@/components/payments/CheckoutButton";

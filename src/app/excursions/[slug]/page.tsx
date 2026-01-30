@@ -7,6 +7,7 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import { constructMetadata } from "@/lib/seo";
 import CheckoutButton from "@/components/checkout/CheckoutButton";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import HeroShell from "@/components/ui/HeroShell";
 import { excursions } from "@/data/excursions";
 import { MessageSquare } from "lucide-react";
 import { destinations } from "@/data/destinations";
@@ -75,60 +76,27 @@ export default async function ExcursionPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] w-full overflow-hidden">
-        <Image
-          src={heroImage}
-          alt={`Immerse yourself in the ${excursion.title} excursion, a private journey through Egypt's wonders`}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center brightness-[0.55]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
-
-        <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
-          <div className="mx-auto max-w-5xl">
-            <Reveal>
-              <h1 className="font-serif text-5xl md:text-7xl tracking-tight text-accent-gold">
-                {excursion.title}
-              </h1>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <p className="mt-6 font-sans text-sm md:text-base uppercase tracking-[0.3em] text-white/85">
-                {excursion.duration} · {excursion.tourStyle} · {excursion.availability}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.3}>
-              <p className="mt-8 font-sans text-base md:text-lg text-white/90 max-w-2xl mx-auto mb-10">
-                {excursion.shortDescription}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.4}>
-              <div className="flex flex-col items-center justify-center gap-6">
-                <CheckoutButton 
-                  itemType="excursion" 
-                  slug={slug} 
-                  label="Reserve this Excursion" 
-                />
-                
-                <a
-                  href={`${SOCIAL_LINKS.whatsapp}?text=${encodeURIComponent(`I want to book the ${excursion.title} excursion`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="syren-btn-secondary flex items-center gap-3 w-full sm:w-auto"
-                  aria-label={`Inquire about ${excursion.title} via WhatsApp`}
-                >
-                  <MessageSquare size={16} aria-hidden="true" />
-                  INQUIRE VIA WHATSAPP
-                </a>
-              </div>
-            </Reveal>
-          </div>
+      <HeroShell
+        backgroundImage={typeof heroImage === "string" ? heroImage : heroImage.src}
+        eyebrow={`${excursion.duration} · ${excursion.tourStyle} · ${excursion.availability}`}
+        title={excursion.title}
+        subtitle={excursion.shortDescription}
+        heightClassName="min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh]"
+      >
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <WhatsAppButton 
+            label="Book This Excursion"
+            location="excursion_hero"
+            message={`I'm interested in the ${excursion.title} excursion.`}
+          />
+          <CheckoutButton 
+            priceId={excursion.priceId}
+            mode="payment"
+            label="Book Now"
+            className="w-full sm:w-auto min-w-[200px]"
+          />
         </div>
-      </section>
+      </HeroShell>
 
       {/* Highlights */}
       <section className="py-16 md:py-24 bg-surface/30 border-b border-border/50">

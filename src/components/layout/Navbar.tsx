@@ -48,22 +48,19 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const logoHref = pathname === "/" ? "/home#hero" : `${pathname}#hero`;
+  const logoHref = "/home#hero";
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const handleLogoClick = (e: React.MouseEvent) => {
-    const hero = document.getElementById("hero");
-    if (hero) {
-      e.preventDefault();
-      hero.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-    if (pathname === logoHref) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    if (pathname === "/home" || pathname === "/") {
+      const hero = document.getElementById("hero");
+      if (hero) {
+        e.preventDefault();
+        hero.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
@@ -108,29 +105,146 @@ const toggleMenu = () => {
 
 
   return ( 
-    <header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur border-b border-border">
+    <header className="fixed top-0 z-50 w-full bg-background/0 backdrop-blur-md transition-all duration-300">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
       {/* Mobile Navbar */}
-      <div className="md:hidden flex items-center justify-between px-4 h-16"> 
-        <Logo className="h-7 w-auto" onClick={handleLogoClick} href={logoHref} /> 
+      <div className="relative md:hidden flex items-center justify-between px-6 h-20"> 
+        <Logo className="h-7 w-auto relative z-10" onClick={handleLogoClick} href={logoHref} /> 
         
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4 relative z-10">
           <Link 
             href="/experiences" 
-            className="syren-btn-primary syren-nav-cta text-[9px] px-3 py-2"
+            className="syren-btn-primary syren-nav-cta"
           > 
-            Explore experiences 
+            Experiences
           </Link> 
         
           <button 
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             onClick={toggleMenu} 
-            className="p-2.5 min-h-[44px] min-w-[44px] rounded-lg border border-white/10 text-primary" 
+            className="text-white hover:text-accent-gold transition-colors" 
           > 
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button> 
         </div>
 
       </div>
+
+      {/* Desktop Navbar (Hidden on mobile, present for future expansion) */}
+
+
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={menuVariants}
+              className="fixed inset-0 z-[10000] bg-background/98 backdrop-blur-xl overflow-y-auto pointer-events-auto flex flex-col"
+            >
+              {/* Top Section */}
+              <div className="flex items-start justify-between px-6 pt-8 pb-4">
+                <div className="flex flex-col gap-1">
+                  <Logo className="text-3xl" onClick={handleLogoClick} href={logoHref} />
+                  <span className="text-xs text-white/60 font-serif italic tracking-wide">Private journeys across Egypt</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-accent-gold transition-colors pt-2"
+                >
+                  Close
+                  <X size={16} />
+                </button>
+              </div>
+
+              {/* Primary Navigation */}
+              <div className="flex-1 flex flex-col justify-center px-8 gap-8">
+                
+                <motion.div variants={itemVariants}>
+                  <Link href="/experiences" className="font-serif text-3xl text-white hover:text-accent-gold transition-colors block">
+                    Experiences
+                  </Link>
+                </motion.div>
+
+                {/* The Map Accordion */}
+                <motion.div variants={itemVariants}>
+                  <button 
+                    onClick={() => setIsMobileMapOpen(!isMobileMapOpen)}
+                    aria-expanded={isMobileMapOpen}
+                    className="flex items-center gap-3 group w-full text-left"
+                  >
+                    <span className="font-serif text-3xl text-white group-hover:text-accent-gold transition-colors">The Map</span>
+                    <ChevronDown size={20} className={`text-accent-gold/50 transition-transform duration-500 ${isMobileMapOpen ? 'rotate-180 text-accent-gold' : ''}`} />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {isMobileMapOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-col gap-3 mt-4 pl-4 border-l border-white/10 ml-1.5">
+                          <span className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-1 block">Destinations</span>
+                          {destinations.map((dest) => (
+                            <Link 
+                              key={dest.slug} 
+                              href={`/destinations/${dest.slug}`} 
+                              className="group block"
+                            >
+                              <span className="block font-serif text-lg text-white/70 group-hover:text-accent-gold transition-colors">
+                                {dest.name}
+                              </span>
+                            </Link>
+                          ))}
+                          <Link 
+                            href="/destinations" 
+                            className="mt-2 text-[10px] uppercase tracking-[0.2em] text-accent-gold/70 hover:text-accent-gold transition-colors"
+                          >
+                            View All Destinations
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                <motion.div variants={itemVariants}>
+                  <Link href="/about" className="font-serif text-3xl text-white hover:text-accent-gold transition-colors block">
+                    About
+                  </Link>
+                </motion.div>
+
+                <motion.div variants={itemVariants}>
+                  <Link href="/quote" className="font-serif text-3xl text-white hover:text-accent-gold transition-colors block">
+                    Contact
+                  </Link>
+                </motion.div>
+              </div>
+              
+              {/* Footer (Quiet Trust Layer) */}
+              <motion.div 
+                variants={itemVariants}
+                className="px-8 pb-16 pt-8"
+              >
+                <div className="flex flex-col gap-6 opacity-60 hover:opacity-100 transition-opacity duration-500">
+                  <a href={`mailto:${SOCIAL_LINKS.email}`} className="font-serif text-lg text-white hover:text-accent-gold transition-colors">{SOCIAL_LINKS.email}</a>
+                  <div className="flex gap-6">
+                    <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="text-[10px] uppercase tracking-widest text-white hover:text-accent-gold transition-colors">Instagram</a>
+                    <a href="#" className="text-[10px] uppercase tracking-widest text-white hover:text-accent-gold transition-colors">LinkedIn</a>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+
 
       {mounted && createPortal(
         <AnimatePresence>
@@ -304,16 +418,12 @@ const toggleMenu = () => {
         </div> 
 
         {/* CTA */} 
-        <a 
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackCta(SOCIAL_EVENTS.whatsapp, { location: "navbar_desktop", url: WHATSAPP_LINK })}
-            className="syren-btn-primary"
-            aria-label="Design Your Journey via WhatsApp"
-          > 
-            Design Your Journey 
-          </a> 
+        <Link 
+          href="/experiences" 
+          className="syren-btn-primary px-5 py-2 min-h-[auto]" 
+        > 
+          Explore Experiences 
+        </Link> 
       </nav> 
     </header> 
   ) 

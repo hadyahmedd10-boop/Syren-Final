@@ -1,5 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+import HeroShell from "@/components/ui/HeroShell";
 import Reveal from "@/components/motion/Reveal";
 import { CheckCircle2 } from "lucide-react";
 import SocialProofStrip from "./SocialProofStrip";
@@ -87,79 +88,52 @@ export default function LandingShell({
       />
       <LandingTracking pageTitle={title} />
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] flex items-center justify-center overflow-hidden">
-        <Image
-          src={heroImage}
-          alt={`Experience the extraordinary: ${title} - ${subtitle}`}
-          fill
-          priority
-          sizes="100vw"
-          placeholder={isStaticImage ? "blur" : undefined}
-          className="object-cover brightness-[0.45]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-background" />
-        
-        <div className="relative z-10 max-w-5xl px-6 text-center">
-          <Reveal delay={0.1}>
-            <span className="block font-serif text-accent-gold tracking-[0.5em] text-xs md:text-sm uppercase mb-6">
-              {eyebrow}
-            </span>
-          </Reveal>
-          
-          <Reveal delay={0.2}>
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.1] mb-8 tracking-tight">
-              {title}
-            </h1>
-          </Reveal>
-          
-          <Reveal delay={0.3}>
-            <p className="text-white/80 max-w-2xl mx-auto text-lg md:text-xl font-light italic mb-12 leading-relaxed">
-              {subtitle}
-            </p>
-          </Reveal>
-          
-          <Reveal delay={0.4}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              {primaryCtaHref.startsWith("http") ? (
-                <WhatsAppButton
-                  href={primaryCtaHref}
-                  label={primaryCtaLabel}
-                  className="w-full sm:w-auto min-w-[200px]"
-                  data-track-cta="primary"
-                />
-              ) : (
-                <Link
-                  href={primaryCtaHref}
-                  className="syren-btn w-full sm:w-auto min-w-[200px]"
-                  data-track-cta="primary"
-                  aria-label={primaryCtaLabel}
-                >
-                  {primaryCtaLabel}
-                </Link>
-              )}
-              {secondaryCtaLabel && secondaryCtaHref && (
-                secondaryCtaHref.startsWith("http") ? (
-                  <WhatsAppButton
-                    href={secondaryCtaHref}
-                    label={secondaryCtaLabel}
-                    className="w-full sm:w-auto min-w-[200px]"
-                    data-track-cta="secondary"
-                  />
-                ) : (
-                  <Link
-                    href={secondaryCtaHref}
-                    className="syren-btn-secondary w-full sm:w-auto min-w-[200px]"
-                    data-track-cta="secondary"
-                    aria-label={secondaryCtaLabel}
-                  >
-                    {secondaryCtaLabel}
-                  </Link>
-                )
-              )}
-            </div>
-          </Reveal>
+      <HeroShell
+        backgroundImage={typeof heroImage === "string" ? heroImage : heroImage.src}
+        eyebrow={eyebrow}
+        title={title}
+        subtitle={subtitle}
+        heightClassName="min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh]"
+      >
+        <div className="flex flex-col sm:flex-row items-center justify-start gap-6">
+          {primaryCtaHref.startsWith("http") ? (
+            <WhatsAppButton
+              href={primaryCtaHref}
+              label={primaryCtaLabel}
+              className="w-full sm:w-auto min-w-[200px]"
+              data-track-cta="primary"
+            />
+          ) : (
+            <Link
+              href={primaryCtaHref}
+              className="syren-btn w-full sm:w-auto min-w-[200px]"
+              data-track-cta="primary"
+              aria-label={primaryCtaLabel}
+            >
+              {primaryCtaLabel}
+            </Link>
+          )}
+          {secondaryCtaLabel && secondaryCtaHref && (
+            secondaryCtaHref.startsWith("http") ? (
+              <WhatsAppButton
+                href={secondaryCtaHref}
+                label={secondaryCtaLabel}
+                className="w-full sm:w-auto min-w-[200px]"
+                data-track-cta="secondary"
+              />
+            ) : (
+              <Link
+                href={secondaryCtaHref}
+                className="syren-btn-secondary w-full sm:w-auto min-w-[200px]"
+                data-track-cta="secondary"
+                aria-label={secondaryCtaLabel}
+              >
+                {secondaryCtaLabel}
+              </Link>
+            )
+          )}
         </div>
-      </section>
+      </HeroShell>
 
       {/* Social Proof Strip */}
       <SocialProofStrip />

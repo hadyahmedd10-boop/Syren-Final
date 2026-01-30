@@ -1,13 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { motion } from "framer-motion";
-import { fadeInContainer, fadeInUp } from "@/lib/animations";
 import { HERO_IMAGES } from "@/lib/images";
-import { WHATSAPP_LINK } from "@/config/social";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import HeroShell from "@/components/ui/HeroShell";
 
 export default function Hero() {
   useEffect(() => {
@@ -16,68 +13,25 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[50vh] md:min-h-[55vh] flex items-center py-16 md:py-20">
-      <Image
-        src={HERO_IMAGES.home}
-        alt="A private luxury yacht navigating the crystal-clear waters of the Red Sea - A signature Syren experience"
-        fill
-        priority
-        sizes="100vw"
-        quality={85}
-        placeholder="blur"
-        className="object-cover object-center"
-      />
-      
-      {/* Cinematic Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/40 via-60% to-background" />
-      
-      <div className="relative mx-auto max-w-5xl container-x text-center w-full z-10">
-        <motion.div
-          variants={fadeInContainer}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Editorial Brand Label */}
-          <motion.span 
-            variants={fadeInUp}
-            className="block font-serif text-accent-gold tracking-[0.5em] text-[11px] md:text-[12px] uppercase mb-6 opacity-90"
-          > 
-            Syren
-          </motion.span> 
-      
-          {/* Powerful Short Headline */}
-          <motion.h1 
-            variants={fadeInUp}
-            className="font-serif text-white text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 md:mb-8 tracking-tight"
-          > 
-            Egypt, Like you&apos;ve <br className="hidden md:block" /> never seen before
-          </motion.h1> 
-      
-          {/* Poetic sub-line */}
-          <motion.p 
-            variants={fadeInUp}
-            className="text-white/70 max-w-xl mx-auto text-sm sm:text-base md:text-lg font-light italic mb-10 md:mb-12 leading-relaxed"
-          > 
-            Private journeys designed by local experts. Delivered with absolute precision.
-          </motion.p>
+    <HeroShell
+      backgroundImage={HERO_IMAGES.home.src}
+      eyebrow="Syren"
+      title={
+        <>
+          Egypt, Like you&apos;ve <br className="hidden md:block" /> never seen before
+        </>
+      }
+      subtitle="Private journeys designed by local experts. Delivered with absolute precision."
+    >
+      <div className="mt-10 flex flex-wrap items-center gap-4">
+        <a href="/quote" className="syren-btn-primary px-8 py-3">
+          Begin Your Journey
+        </a>
 
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <WhatsAppButton 
-              label="Begin Your Journey"
-              location="hero"
-            />
-            <Link
-              href="/experiences"
-              className="syren-btn-secondary min-w-[180px] sm:min-w-[220px]"
-            >
-              Explore Experiences
-            </Link>
-          </motion.div>
-        </motion.div>
+        <a href="/experiences" className="syren-btn-secondary px-8 py-3">
+          Explore Experiences
+        </a>
       </div>
-
-      {/* Section Bridge Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-8 md:h-12 bg-gradient-to-t from-background via-background/80 to-transparent" />
-    </section>
+    </HeroShell>
   );
 }
