@@ -5,7 +5,7 @@ import Reveal from "@/components/motion/Reveal";
 import SectionHeader from "@/components/layout/SectionHeader";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { constructMetadata } from "@/lib/seo";
-import CheckoutButton from "@/components/checkout/CheckoutButton";
+import CheckoutButton from "@/components/payments/CheckoutButton";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import HeroShell from "@/components/ui/HeroShell";
 import { excursions } from "@/data/excursions";
@@ -90,10 +90,9 @@ export default async function ExcursionPage({ params }: Props) {
             message={`I'm interested in the ${excursion.title} excursion.`}
           />
           <CheckoutButton 
-            priceId={excursion.priceId}
-            mode="payment"
+            itemType="excursion"
+            slug={excursion.slug}
             label="Book Now"
-            className="w-full sm:w-auto min-w-[200px]"
           />
         </div>
       </HeroShell>
