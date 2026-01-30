@@ -15,7 +15,7 @@ import CheckoutButton from "@/components/payments/CheckoutButton";
 import { excursions } from "@/data/excursions";
 import ItineraryTimeline from "@/components/sections/ItineraryTimeline";
 import ItineraryImageDebug from "@/components/dev/ItineraryImageDebug";
-import { SOCIAL_LINKS } from "@/config/social";
+
 
 interface Props {
   params: Promise<{ slug: string }>;
