@@ -25,17 +25,17 @@ export default function ShareYourStory() {
   const isFirstRender = useRef(true)
 
   const storySchema = z.object({
-    name: z.string().trim().min(2, "Please enter your name."),
+    name: z.string().trim().min(2, "Name is required (min 2 characters)."),
     email: z.preprocess(
       (val) => (typeof val === "string" && val.trim() === "" ? undefined : val),
-      z.string().email("Please enter a valid email.").optional()
+      z.string().email("Please enter a valid email address.").optional()
     ),
     message: z
       .string()
       .trim()
-      .min(20, "Please write at least 20 characters.")
+      .min(20, "Please share a bit more (min 20 characters).")
       .max(1000, "Please keep your story under 1000 characters."),
-    rating: z.number().min(1, "Please select a rating.").max(5, "Please select a rating."),
+    rating: z.number().min(1, "Please rate your experience.").max(5, "Rating must be between 1 and 5.").default(5),
     experience_slug: z.preprocess(
       (val) => (typeof val === "string" && val.trim() === "" ? undefined : val),
       z.string().optional()
@@ -100,7 +100,7 @@ export default function ShareYourStory() {
     setStatus("idle")
     setErrorMessage("")
     setFieldErrors({})
-    setRating(0)
+    setRating(5)
     setHoverRating(0)
     setOpen(true)
   }
@@ -169,7 +169,7 @@ export default function ShareYourStory() {
       if (response.ok) {
         setStatus("success");
         form.reset()
-        setRating(0)
+        setRating(5)
         setHoverRating(0)
         setTimeout(() => setOpen(false), 3000)
       } else {
@@ -255,7 +255,7 @@ export default function ShareYourStory() {
 
               {status === "success" && ( 
                 <p className="text-green-400 mb-6 bg-green-400/10 py-3 rounded-lg border border-green-400/20 text-sm px-4"> 
-                  Thank you! Your review will appear once approved. 
+                  Thank you — your story was received. If we select it, we may reach out for permission to feature it.
                 </p> 
               )} 
 
@@ -277,9 +277,11 @@ export default function ShareYourStory() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
+                    <label htmlFor="name" className="text-[10px] uppercase tracking-[0.2em] text-accent-gold font-bold">Name</label>
                     <input 
+                      id="name"
                       name="name" 
-                      placeholder="Your Name" 
+                      placeholder="Your name" 
                       required 
                       className="syren-input"
                       aria-invalid={!!fieldErrors.name}
@@ -290,10 +292,12 @@ export default function ShareYourStory() {
                     )}
                   </div>
                   <div className="space-y-2">
+                    <label htmlFor="email" className="text-[10px] uppercase tracking-[0.2em] text-accent-gold font-bold">Email (Optional)</label>
                     <input 
+                      id="email"
                       name="email" 
                       type="email" 
-                      placeholder="Email" 
+                      placeholder="So we can follow up, if needed" 
                       className="syren-input"
                       aria-invalid={!!fieldErrors.email}
                       onChange={() => fieldErrors.email && setFieldErrors(prev => ({ ...prev, email: undefined }))}
@@ -314,10 +318,12 @@ export default function ShareYourStory() {
                 </div>
 
                 <div className="space-y-2">
+                  <label htmlFor="message" className="text-[10px] uppercase tracking-[0.2em] text-accent-gold font-bold">Your Story</label>
                   <textarea 
+                    id="message"
                     name="message" 
                     rows={4} 
-                    placeholder="Your story..." 
+                    placeholder="What made this journey unforgettable? The small details matter." 
                     required 
                     className="syren-input"
                     aria-invalid={!!fieldErrors.message}
@@ -330,7 +336,7 @@ export default function ShareYourStory() {
 
                 <div className="rounded-md border border-border bg-surface/70 px-4 py-3">
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-xs uppercase tracking-[0.3em] text-text-secondary">Rating</span>
+                    <span className="text-xs uppercase tracking-[0.3em] text-text-secondary">Overall Experience</span>
                     <div
                       className="flex items-center gap-1"
                       onMouseLeave={() => setHoverRating(0)}
@@ -382,8 +388,11 @@ export default function ShareYourStory() {
                   disabled={status === "loading"} 
                   className="syren-btn-primary w-full mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
                 > 
-                  {status === "loading" ? 'Submitting...' : 'Submit Story'} 
+                  {status === "loading" ? 'Sending...' : 'Share your story'} 
                 </button> 
+                <p className="text-center text-xs text-text-secondary opacity-60 mt-2">
+                  By submitting, you confirm this is your original experience. We never publish without permission.
+                </p>
               </form> 
               </div>
             </motion.div> 

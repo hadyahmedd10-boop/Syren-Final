@@ -61,6 +61,10 @@
   --font-playfair: ui-serif, Georgia, "Times New Roman", Times, serif;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
   @apply bg-background;

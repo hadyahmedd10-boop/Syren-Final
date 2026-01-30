@@ -99,8 +99,8 @@ export async function POST(req: Request) {
 
   if (error) { 
     console.error("Testimonials insert failed:", error);
-    return NextResponse.json({ ok: false, error: "Failed to save testimonial." }, { status: 500 }); 
+    return NextResponse.json({ ok: false, error: "Unable to save your story at this time. Please try again." }, { status: 500 }); 
   } 
 
-  return NextResponse.json({ ok: true }); 
+  return NextResponse.json({ ok: true, success: true }); 
 }

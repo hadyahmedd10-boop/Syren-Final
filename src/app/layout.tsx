@@ -6,6 +6,7 @@ import { PHProvider } from "@/providers/PostHogProvider";
 import PostHogPageView from "@/providers/PostHogPageView";
 import { Suspense } from "react";
 import { validateExcursionData } from "@/lib/data-validator";
+import ViewportBadge from "@/components/dev/ViewportBadge";
 
 // Run data validation in development
 if (process.env.NODE_ENV === "development") {
@@ -76,6 +77,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <ViewportBadge />
         </PHProvider>
       </body>
     </html>
