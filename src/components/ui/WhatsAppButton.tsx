@@ -22,6 +22,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 interface WhatsAppButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   label?: string;
   text?: string; // For generating whatsapp link with message
+  message?: string; // Alias for text
   location?: string; // For analytics tracking
 }
 
@@ -30,12 +31,14 @@ export default function WhatsAppButton({
   href,
   label = "Start conversation on WhatsApp",
   text,
+  message,
   location = "unknown",
   onClick,
   ...props
 }: WhatsAppButtonProps) {
-  // Construct URL if not provided but text is
-  const finalHref = href || (text ? `${WHATSAPP_LINK}?text=${encodeURIComponent(text)}` : WHATSAPP_LINK);
+  // Construct URL if not provided but text/message is
+  const customMessage = message || text;
+  const finalHref = href || (customMessage ? `${SOCIAL_LINKS.whatsapp}?text=${encodeURIComponent(customMessage)}` : WHATSAPP_LINK);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     trackCta(SOCIAL_EVENTS.whatsapp, { location, url: finalHref });

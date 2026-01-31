@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link" 
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { destinations } from "@/data/destinations";
 import { SOCIAL_LINKS, WHATSAPP_LINK } from "@/config/social";
 
@@ -22,7 +22,7 @@ function Logo({ className = "", onClick, href = "/home#hero" }: { className?: st
   );
 }
 
-const menuVariants = {
+const menuVariants: Variants = {
   closed: {
     opacity: 0,
     y: 10,
@@ -35,7 +35,7 @@ const menuVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   closed: { opacity: 0, y: 10 },
   open: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
 };

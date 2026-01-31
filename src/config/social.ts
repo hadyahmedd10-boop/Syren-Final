@@ -1,6 +1,7 @@
 export const SOCIAL_LINKS = { 
   instagram: "https://www.instagram.com/syrentravel", 
   whatsapp: "https://wa.me/201016015723",
+  linkedin: "https://www.linkedin.com/company/syren-travel",
   email: "Syrentravel@outlook.com", 
 }; 
 
