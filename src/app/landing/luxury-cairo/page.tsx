@@ -5,6 +5,7 @@ import DestinationIntro from "@/components/sections/destinations/DestinationIntr
 import DestinationExperiences from "@/components/sections/destinations/DestinationExperiences";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { experiences } from "@/data/experiences";
+import { DESTINATION_IMAGES } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Luxury Cairo Experience | Private Egyptian Journeys",
@@ -22,7 +23,14 @@ export default function LuxuryCairoLanding() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Hero />
+      <Hero 
+        title={
+          <>
+            Cairo, Like you&apos;ve <br className="hidden md:block" /> never seen before
+          </>
+        }
+        backgroundImage={DESTINATION_IMAGES.cairo}
+      />
       
       <div className="section px-6 md:px-8 max-w-4xl mx-auto text-center">
         <span className="text-accent-gold font-sans text-xs uppercase tracking-[0.5em] mb-4 block">Exclusive Campaign</span>
