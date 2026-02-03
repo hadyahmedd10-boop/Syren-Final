@@ -2,6 +2,7 @@
 import heroHome from "../../public/images/hero/luxury.jpg";
 import heroCairo from "../../public/images/hero/cairo.jpg";
 import heroLuxorAswan from "../../public/images/hero/luxor-aswan.jpg.jpg";
+import heroRedSea from "../../public/images/hero/red-sea.jpg.jpg";
 import heroSiwa from "../../public/images/hero/siwa-oasis.jpg.jpg";
 import heroAlexandria from "../../public/images/hero/alexandria.jpg.jpg";
 import heroHurghada from "../../public/images/hero/hurghada.jpg.jpg";
@@ -10,7 +11,7 @@ import heroHurghada from "../../public/images/hero/hurghada.jpg.jpg";
 // Temporary fallbacks for missing assets
 const destLuxorAswan = heroLuxorAswan;
 const destCairo = heroCairo;
-const destRedSea = heroHome; // Still missing
+const destRedSea = heroRedSea;
 const destSiwaOasis = heroSiwa;
 const destAlexandria = heroAlexandria;
 const destHurghada = heroHurghada;
