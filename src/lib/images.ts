@@ -1,15 +1,19 @@
 // Hero Images
 import heroHome from "../../public/images/hero/luxury.jpg";
 import heroCairo from "../../public/images/hero/cairo.jpg";
+import heroLuxorAswan from "../../public/images/hero/luxor-aswan.jpg.jpg";
+import heroSiwa from "../../public/images/hero/siwa-oasis.jpg.jpg";
+import heroAlexandria from "../../public/images/hero/alexandria.jpg.jpg";
+import heroHurghada from "../../public/images/hero/hurghada.jpg.jpg";
 
 // Destination Images
 // Temporary fallbacks for missing assets
-const destLuxorAswan = heroHome;
+const destLuxorAswan = heroLuxorAswan;
 const destCairo = heroCairo;
-const destRedSea = heroHome;
-const destSiwaOasis = heroHome;
-const destAlexandria = heroHome;
-const destHurghada = heroHome;
+const destRedSea = heroHome; // Still missing
+const destSiwaOasis = heroSiwa;
+const destAlexandria = heroAlexandria;
+const destHurghada = heroHurghada;
 
 // Experience Images
 import expCairoAfterDark from "../../public/images/experiences/party.jpg";
