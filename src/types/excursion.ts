@@ -14,8 +14,8 @@ export type Excursion = {
   tourStyle: string; // e.g. "Private Guided Tour" 
   availability: string; // e.g. "Daily Departures" 
   shortDescription: string; 
-  heroImage?: StaticImageData; 
-  image?: StaticImageData; 
+  heroImage?: StaticImageData | string;
+  image?: StaticImageData | string;
   imageAlt?: string; 
 
   highlights: string[]; 
@@ -24,6 +24,10 @@ export type Excursion = {
  
   priceCents: number; 
   currency?: "usd" | "eur" | "gbp"; 
+
+  category?: string;
+  type?: "excursion";
+  featured?: boolean;
 
   itinerary: ExcursionItineraryItem[]; 
 };

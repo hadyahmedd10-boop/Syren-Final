@@ -385,4 +385,184 @@ export const excursions: Excursion[] = [
       },
     ],
   },
+
+  // Cairo Tours (Moved from Experiences)
+  {
+    slug: "cairo-in-a-day-from-hurghada",
+    destinationSlug: "hurghada",
+    title: "Cairo in a Day — Private Air Journey from Hurghada",
+    duration: "1 Day",
+    tourStyle: "Private | By Plane",
+    availability: "Daily Departures",
+    shortDescription: "This curated day journey connects Hurghada and Cairo by air, allowing you to experience Egypt’s most iconic landmarks without compromise. With private transfers, an expert Egyptologist, and carefully paced visits, the day unfolds smoothly — focused on meaning, not movement.",
+    heroImage: "/images/excursions/cairo-in-a-day-from-hurghada/cover.jpg",
+    image: "/images/excursions/cairo-in-a-day-from-hurghada/cover.jpg",
+    imageAlt: "Private air journey to Cairo from Hurghada",
+    priceCents: 35000,
+    highlights: [
+      "The Giza Plateau: the Great Pyramids, Sphinx, and Valley Temple",
+      "Refined local lunch in Cairo",
+      "The Grand Egyptian Museum (selected galleries & highlights)",
+      "Old Cairo: Hanging Church & Ben Ezra Synagogue",
+      "Islamic Cairo & a guided walk through Khan El Khalili’s most authentic lanes"
+    ],
+    included: [
+      "Private transfers",
+      "Expert Egyptologist",
+      "Domestic flights",
+      "Lunch",
+      "Entrance fees"
+    ],
+    notIncluded: [],
+    category: "Day Tours",
+    type: "excursion",
+    featured: false,
+    itinerary: [
+      {
+        title: "The Cairo Day Journey",
+        description: "Early transfer from your Hurghada hotel to the airport for a short domestic flight to Cairo. Upon arrival, enjoy a private welcome by your Egyptologist and driver. Visit the Giza Plateau, enjoy a refined local lunch, and explore selected galleries of the Grand Egyptian Museum. Continue to Old Cairo to see the Hanging Church and Ben Ezra Synagogue, followed by a guided walk through Khan El Khalili. Return to Cairo Airport for your evening flight back to Hurghada — supported every step of the way."
+      }
+    ]
+  },
+  {
+    slug: "nile-maxim-dinner-cruise",
+    destinationSlug: "cairo",
+    title: "Nile Maxim — Evening Dinner Cruise in Cairo",
+    duration: "Evening",
+    tourStyle: "Private Transfer | Shared Cruise",
+    availability: "Daily Departures",
+    shortDescription: "Step aboard the Nile Maxim for a refined dinner cruise designed for relaxed evenings rather than spectacle. Enjoy a carefully prepared menu paired with live Egyptian music, a traditional belly dance performance, and a folkloric show — all set against the glow of Cairo after dark.",
+    heroImage: "/images/excursions/nile-maxim-dinner-cruise/cover.jpg",
+    image: "/images/excursions/nile-maxim-dinner-cruise/cover.jpg",
+    imageAlt: "Nile Maxim dinner cruise in Cairo",
+    priceCents: 12000,
+    highlights: [
+      "Open dinner service with Egyptian & international options",
+      "Live Egyptian music and soft Oriental melodies",
+      "Traditional belly dance and folkloric show",
+      "Views of Cairo’s illuminated skyline"
+    ],
+    included: [
+      "Hotel pickup and private transfer",
+      "Dinner cruise ticket",
+      "Open buffet dinner",
+      "Live entertainment"
+    ],
+    notIncluded: [],
+    category: "Evening Experiences",
+    type: "excursion",
+    featured: false,
+    itinerary: [
+      {
+        title: "Evening on the Nile",
+        description: "Hotel pickup and private transfer to board the Nile Maxim. Enjoy an open dinner service with Egyptian & international options, accompanied by live performances and soft Oriental music. Return transfer to your hotel."
+      }
+    ]
+  },
+  {
+    slug: "cairo-beyond-the-pyramids",
+    destinationSlug: "cairo",
+    title: "Cairo Beyond the Pyramids — Culture, Faith & Living History",
+    duration: "1 Day",
+    tourStyle: "Private Guided City Tour",
+    availability: "Daily Departures",
+    shortDescription: "Designed for travelers who have already seen the pyramids, this full-day city journey explores Cairo’s cultural, religious, and architectural heritage with balance and clarity.",
+    heroImage: "/images/excursions/cairo-beyond-the-pyramids/cover.jpg",
+    image: "/images/excursions/cairo-beyond-the-pyramids/cover.jpg",
+    imageAlt: "Cultural tour of Cairo beyond the pyramids",
+    priceCents: 0,
+    highlights: [
+      "Grand Egyptian Museum (curated highlights)",
+      "Cairo Citadel & Mohamed Ali Mosque",
+      "Lunch at a quality local restaurant",
+      "Khan El Khalili Bazaar (guided walk)",
+      "Coptic Cairo: Hanging Church, Ben Ezra Synagogue, Abu Serga"
+    ],
+    included: [
+      "Private transfers",
+      "Expert Egyptologist guide",
+      "Lunch",
+      "Entrance fees"
+    ],
+    notIncluded: [],
+    category: "Cultural Tours",
+    type: "excursion",
+    itinerary: [
+      {
+        title: "Culture, Faith & History",
+        description: "Begin with curated highlights of the Grand Egyptian Museum, followed by a visit to the Cairo Citadel & Mohamed Ali Mosque. Enjoy lunch at a quality local restaurant before a guided walk through Khan El Khalili Bazaar. Conclude with Coptic Cairo, visiting the Hanging Church, Ben Ezra Synagogue, and Abu Serga."
+      }
+    ]
+  },
+  {
+    slug: "tanoura-night-old-cairo",
+    destinationSlug: "cairo",
+    title: "Tanoura Night — Whirling Dervishes of Old Cairo",
+    duration: "Evening",
+    tourStyle: "Cultural Night Experience",
+    availability: "Selected Evenings",
+    shortDescription: "Held at the 16th-century Wekalet El Ghoury, this traditional Tanoura performance blends live folkloric music with the hypnotic whirling dance rooted in Sufi tradition.",
+    heroImage: "/images/excursions/tanoura-night-old-cairo/cover.jpg",
+    image: "/images/excursions/tanoura-night-old-cairo/cover.jpg",
+    imageAlt: "Whirling dervishes performing Tanoura dance",
+    priceCents: 0,
+    highlights: [
+      "Historic venue: Wekalet El Ghoury (16th century)",
+      "Traditional Tanoura whirling dervish performance",
+      "Live folkloric music"
+    ],
+    included: [
+      "Evening hotel pickup and return transfer",
+      "Performance tickets",
+      "Private vehicle"
+    ],
+    notIncluded: [],
+    category: "Evening Experiences",
+    type: "excursion",
+    featured: false,
+    itinerary: [
+      {
+        title: "The Whirling Dervishes",
+        description: "Evening hotel pickup and transfer to Wekalet El Ghoury. Witness the mesmerizing live music and Tanoura performance. Return transfer to your hotel."
+      }
+    ]
+  },
+  {
+    slug: "cairo-private-photo-session",
+    destinationSlug: "cairo",
+    title: "Cairo Through the Lens — Private Photography Experience",
+    duration: "Half Day",
+    tourStyle: "Private Creative Experience",
+    availability: "Upon Request",
+    shortDescription: "This experience is designed for travelers who want meaningful memories — not rushed snapshots. With up to three iconic locations, your photographer guides you through natural compositions and light-driven moments.",
+    heroImage: "/images/excursions/cairo-private-photo-session/cover.jpg",
+    image: "/images/excursions/cairo-private-photo-session/cover.jpg",
+    imageAlt: "Private photography session in Cairo",
+    priceCents: 25000,
+    highlights: [
+      "Private professional photographer guide",
+      "20 professionally edited images included",
+      "Full digital gallery access",
+      "Flexible start time",
+      "Locations: Giza Plateau, Sphinx area, Khan El Khalili"
+    ],
+    included: [
+      "Private photographer",
+      "20 professionally edited images",
+      "Full digital gallery"
+    ],
+    notIncluded: [
+      "Entrance fees to locations",
+      "Transportation (unless arranged)"
+    ],
+    category: "Creative Experiences",
+    type: "excursion",
+    featured: false,
+    itinerary: [
+      {
+        title: "Cairo Through the Lens",
+        description: "Meet your private photographer for a half-day session. Visit up to three iconic locations such as the Giza Plateau, Sphinx area, or Khan El Khalili. Your photographer will guide you through natural compositions and light-driven moments."
+      }
+    ]
+  }
 ]; 

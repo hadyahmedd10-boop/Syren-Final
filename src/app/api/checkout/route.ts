@@ -21,6 +21,13 @@ const PRICING_MAP: Record<string, number> = {
   "giftun-island-snorkeling": 6500,
   "paradise-island-snorkeling": 7500,
   "hurghada-quad-bike": 5500,
+
+  // Migrated Cairo Tours
+  "cairo-in-a-day-from-hurghada": 35000,
+  "nile-maxim-dinner-cruise": 12000,
+  "cairo-beyond-the-pyramids": 18000,
+  "tanoura-night-old-cairo": 8000,
+  "cairo-private-photo-session": 25000,
 };
 
 export async function POST(req: Request) {

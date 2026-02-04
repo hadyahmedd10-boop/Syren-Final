@@ -30,5 +30,7 @@ export interface Experience {
     perPerson: boolean;
   };
   whatsappMessage?: string;
-  category?: 'nightlife' | 'luxury' | 'adventure' | 'cultural';
+  category?: 'nightlife' | 'luxury' | 'adventure' | 'cultural' | 'cairo-experiences';
+  style?: string;
+  idealFor?: string;
 }

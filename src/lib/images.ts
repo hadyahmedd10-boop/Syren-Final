@@ -17,7 +17,11 @@ const destAlexandria = heroAlexandria;
 const destHurghada = heroHurghada;
 
 // Experience Images
-import expCairoAfterDark from "../../public/images/experiences/party.jpg";
+import expCairo5Day from "../../public/images/experiences/cairo-5-day.jpg";
+import exp10DayOdyssey from "../../public/images/experiences/10-day-odyssey.jpg";
+import expHoneymoon from "../../public/images/experiences/honeymoon.png";
+import expFamily from "../../public/images/experiences/family-adventure.png";
+// import expCairoAfterDark from "../../public/images/experiences/party.jpg"; // File missing, using fallback
 
 export const HERO_IMAGES = {
   home: heroHome,
@@ -33,12 +37,12 @@ export const DESTINATION_IMAGES = {
 } as const;
 
 export const EXPERIENCE_IMAGES = {
-  "cairo-after-dark": expCairoAfterDark,
+  "cairo-after-dark": heroHome, // Fallback until image is restored
   "nile-signature": heroHome,
-  "5-day-cairo-experience": heroHome,
-  "10-day-cairo-nile-red-sea-odyssey": heroHome,
-  "12-day-egyptian-honeymoon-odyssey": heroHome,
-  "family-adventure": heroHome,
+  "5-day-cairo-experience": expCairo5Day,
+  "10-day-cairo-nile-red-sea-odyssey": exp10DayOdyssey,
+  "12-day-egyptian-honeymoon-odyssey": expHoneymoon,
+  "family-adventure": expFamily,
   "siwa-desert-retreat": heroHome,
   "alexandria-coastal-elegance": heroHome,
 } as const;
