@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Reveal from "@/components/motion/Reveal";
 import { destinations } from "@/data/destinations";
 import { excursions } from "@/data/excursions";
-import { HERO_IMAGES } from "@/lib/images";
-import ExperienceCard from "@/components/sections/ExperienceCard";
 import DestinationHero from "@/components/sections/destinations/DestinationHero";
 import SectionHeader from "@/components/layout/SectionHeader";
 import DestinationIntro from "@/components/sections/destinations/DestinationIntro";
 import DestinationWhySyren from "@/components/sections/destinations/DestinationWhySyren";
 import DestinationExperiences from "@/components/sections/destinations/DestinationExperiences";
+import ExcursionFilterList from "@/components/excursions/ExcursionFilterList";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Script from "next/script";
 
@@ -132,31 +130,19 @@ export default async function DestinationPage({ params }: Props) {
         />
       </div>
 
-      <section className="bg-background border-t border-border section"> 
+      <section 
+        id="tours-excursions" 
+        className="bg-background border-t border-border section scroll-mt-24"
+      > 
         <div className="mx-auto max-w-7xl container-x"> 
           <SectionHeader title="Recommended Add-Ons" />
     
           {destinationExcursions.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-6"> 
-              {destinationExcursions.map((exc, index) => {
-                const displayImage = exc.image || destination.heroImage || HERO_IMAGES.home;
-                
-                return ( 
-                  <Reveal key={exc.slug} delay={0.05 * (index + 1)}> 
-                    <ExperienceCard 
-                       title={exc.title} 
-                       description={exc.shortDescription} 
-                       image={displayImage} 
-                       alt={exc.imageAlt ?? exc.title} 
-                       duration={exc.duration} 
-                       cities={destination.name} 
-                       buttonText="View Excursion" 
-                       href={`/excursions/${exc.slug}`} 
-                     /> 
-                  </Reveal> 
-                );
-              })} 
-            </div> 
+            <ExcursionFilterList 
+              excursions={destinationExcursions}
+              destinationName={destination.name}
+              destinationHeroImage={destination.heroImage}
+            />
           ) : (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <p className="font-sans text-lg text-text-secondary">

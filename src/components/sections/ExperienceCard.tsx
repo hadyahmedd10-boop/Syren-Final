@@ -41,8 +41,8 @@ export default function ExperienceCard({
           quality={90}
         />
         
-        {/* Premium Overlay */}
-        <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:bg-black/30" />
+        {/* Premium Overlay - Commented out to improve image visibility */}
+        {/* <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:bg-black/30" /> */}
         
         {/* Floating Badge */}
         {duration && (

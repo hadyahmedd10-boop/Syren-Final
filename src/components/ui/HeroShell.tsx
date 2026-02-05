@@ -38,8 +38,8 @@ export default function HeroShell({
       {backgroundImage && (
         <div className="absolute inset-0">
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
+            className="absolute inset-0 bg-cover bg-center blur-[2px] scale-105"
+            style={{ backgroundImage: `url("${backgroundImage}")` }}
           />
           {/* Premium overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/80" />

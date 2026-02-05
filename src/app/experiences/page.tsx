@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
 import { experiences } from "@/data/experiences";
-import { excursions } from "@/data/excursions";
-import { destinations } from "@/data/destinations";
 import { HERO_IMAGES } from "@/lib/images";
-import Reveal from "@/components/motion/Reveal";
 import HeroShell from "@/components/ui/HeroShell";
 
 import ExperiencesGrid from "@/components/sections/experiences/ExperiencesGrid";
 import ExperiencesSectionNav from "@/components/sections/experiences/ExperiencesSectionNav";
-import ExperienceCard from "@/components/sections/ExperienceCard";
-import SectionHeader from "@/components/layout/SectionHeader";
+import ToursAndExcursions from "@/components/sections/experiences/ToursAndExcursions";
 import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/FinalCTA";
 import Testimonials from "@/components/sections/TestimonialsPreview";
@@ -76,36 +72,7 @@ export default function ExperiencesPage() {
           <FAQ />
         </section>
 
-        <section id="tours-excursions" className="scroll-mt-[140px] section-tight"> 
-          <div className="mx-auto max-w-7xl container-x">
-            <SectionHeader 
-              title="Tours & Excursions" 
-              description="Premium add-ons curated to elevate your destination experience — private, seamless, and unforgettable."
-              className="mb-6 sm:mb-8"
-            />
-          
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"> 
-              {excursions.map((exc, i) => {
-                const destination = destinations.find(d => d.slug === exc.destinationSlug);
-                const displayImage = exc.image || destination?.heroImage || HERO_IMAGES.home;
-                
-                return ( 
-                  <Reveal key={exc.slug} delay={0.05 * i}> 
-                    <ExperienceCard 
-                      title={exc.title}
-                      description={exc.shortDescription}
-                      image={displayImage}
-                      alt={exc.imageAlt ?? exc.title}
-                      duration={exc.duration}
-                      buttonText="Discover Excursion"
-                      href={`/excursions/${exc.slug}`}
-                    /> 
-                  </Reveal> 
-                );
-              })} 
-            </div> 
-          </div>
-        </section>
+        <ToursAndExcursions />
 
         <section id="echoes-of-extraordinary-journeys" className="scroll-mt-32">
           <Testimonials />

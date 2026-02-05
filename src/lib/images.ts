@@ -48,13 +48,33 @@ export const EXPERIENCE_IMAGES = {
 } as const;
 
 export const EXCURSION_IMAGES = {
-  "hurghada-luxor-day-trip": heroHome,
-  "hurghada-cairo-day-trip": heroHome,
-  "hurghada-jeep-safari": heroHome,
-  "mahmya-island-snorkeling": heroHome,
-  "giftun-island-snorkeling": heroHome,
-  "paradise-island-snorkeling": heroHome,
-  "hurghada-quad-bike": heroHome,
+  "hurghada-luxor-day-trip": "/images/excursions/Luxor Day Trip/hurghada-luxor-day-trip.jpg",
+  "hurghada-cairo-day-trip": "/images/excursions/Cairo Day Trip by Car/hurghada-cairo-day-trip.jpg",
+  "hurghada-jeep-safari": "/images/excursions/7-Hour Jeep Safari/hurghada-jeep-safari.jpg",
+  "mahmya-island-snorkeling": "/images/excursions/Mahmya Island Snorkeling/mahmya-island-snorkeling.jpg",
+  "giftun-island-snorkeling": "/images/excursions/Giftun Island Snorkeling/giftun-island-snorkeling.jpg",
+  "paradise-island-snorkeling": "/images/excursions/Paradise Island Snorkeling/paradise-island-snorkeling.jpg",
+  "hurghada-quad-bike": "/images/excursions/Hurghada Quad Bike Adventure/hurghada-quad-bike.jpg",
+  "cairo-in-a-day-from-hurghada": "/images/excursions/Cairo in a Day (Plane)/cairo-in-a-day-from-hurghada.jpg",
+  "nile-maxim-dinner-cruise": "/images/excursions/nile-maxim-dinner-cruise/nile-maxim-dinner-cruise.jpg",
+  "cairo-beyond-the-pyramids": "/images/excursions/cairo-beyond-the-pyramids/cairo-beyond-the-pyramids.jpg",
+  "tanoura-night-old-cairo": "/images/excursions/tanoura-night-old-cairo/tanoura-night-old-cairo.jpg",
+  "cairo-private-photo-session": "/images/excursions/cairo-private-photo-session/cairo-private-photo-session.jpg",
+} as const;
+
+export const EXCURSION_COVERS = {
+  "hurghada-luxor-day-trip": "/images/excursions/Luxor Day Trip/cover.jpg",
+  "hurghada-cairo-day-trip": "/images/excursions/Cairo Day Trip by Car/cover.jpg",
+  "hurghada-jeep-safari": "/images/excursions/7-Hour Jeep Safari/cover.jpg",
+  "mahmya-island-snorkeling": "/images/excursions/Mahmya Island Snorkeling/cover.jpg",
+  "giftun-island-snorkeling": "/images/excursions/Giftun Island Snorkeling/cover.jpg",
+  "paradise-island-snorkeling": "/images/excursions/Paradise Island Snorkeling/cover.jpg",
+  "hurghada-quad-bike": "/images/excursions/Hurghada Quad Bike Adventure/cover.jpg",
+  "cairo-in-a-day-from-hurghada": "/images/excursions/Cairo in a Day (Plane)/cover.jpg",
+  "nile-maxim-dinner-cruise": "/images/excursions/nile-maxim-dinner-cruise/cover.jpg",
+  "cairo-beyond-the-pyramids": "/images/excursions/cairo-beyond-the-pyramids/cover.jpg",
+  "tanoura-night-old-cairo": "/images/excursions/tanoura-night-old-cairo/cover.jpg",
+  "cairo-private-photo-session": "/images/excursions/cairo-private-photo-session/cover.jpg",
 } as const;
 
 export const images = {
@@ -62,4 +82,5 @@ export const images = {
   destinations: DESTINATION_IMAGES,
   experiences: EXPERIENCE_IMAGES,
   excursions: EXCURSION_IMAGES,
+  excursionCovers: EXCURSION_COVERS,
 } as const;
